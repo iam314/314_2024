@@ -344,6 +344,13 @@ ul>li {
   }
 }
 
+button {
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  text-align: left;
+}
+
 @media screen and (max-width: 991px) {
   .wrap.contact {
     margin-top: 8rem;

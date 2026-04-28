@@ -1,18 +1,19 @@
+ 
 <!DOCTYPE html>
 <!-- Designed and developed by Lyudmil Dachev -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Lyudmil Dachev – Brand Identity & Digital Product Designer</title>
-  <link rel="canonical" href="https://www.iam314.com/thank-you.html" />
-  <meta name="description" content="Lyudmil Dachev is a brand identity and digital product designer crafting clean, functional visuals and usable interfaces for startups and established brands.">
+  <title>Contact – Lyudmil Dachev</title>
+  <link rel="canonical" href="https://www.iam314.com/contact.html" />
+  <meta name="description" content="Project inquiries and direct contact. Start a project or license a system with Lyudmil Dachev.">
 	<meta name="author" content="Lyudmil Dachev">
-  <meta property="og:title" content="Lyudmil Dachev – Brand Identity & Digital Product Designer">
-  <meta property="og:description" content="Lyudmil Dachev is a brand identity and digital product designer crafting clean, functional visuals and usable interfaces for startups and established brands.">
-  <meta property="og:image" content="images/opengraph.png">
-  <meta property="twitter:title" content="Lyudmil Dachev – Brand Identity & Digital Product Designer">
-  <meta property="twitter:description" content="Lyudmil Dachev is a brand identity and digital product designer crafting clean, functional visuals and usable interfaces for startups and established brands.">
-  <meta property="twitter:image" content="images/opengraph.png">
+  <meta property="og:title" content="Contact – Lyudmil Dachev">
+  <meta property="og:description" content="Project inquiries and direct contact. Start a project or license a system with Lyudmil Dachev.">
+  <meta property="og:image" content="images/ogimages/Open Graph - Contact.png">
+  <meta property="twitter:title" content="Contact – Lyudmil Dachev">
+  <meta property="twitter:description" content="Project inquiries and direct contact. Start a project or license a system with Lyudmil Dachev.">
+  <meta property="twitter:image" content="images/ogimages/Open Graph - Contact.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -144,15 +145,44 @@
     </nav>
   </header>
   <main>   
-  <section id="intro" class="wrap hero">
+  <section class="wrap hero">
     <div class="grid">
       <div class="hero_wrap hero-grid">
-        <h1 class="txt-xl">Thank you!</h1>
-        <p class="subtxt">You just made my day.</p>
-        <p class="txt-l name">Lyudmil Dachev<br>– Designer</p>
+        <h1 class="txt-xl">Project inquiries,<br>and direct contact.</h1>
+        <p class="subtxt">Inquiries for new work. Available for a coffee or a conversation about anything interesting — I keep the circle small.</p>
       </div>
     </div>
   </section>
+      <section class="wrap">
+      <div class="grid">
+        <div class="txt-item faq-grid">
+          <div class="faq-item">
+             <h2 class="txt-s">Connect</h2><br>
+                <p class="paragraph1 paragraph1-s">
+                  <a href="mailto:hi@iam314.com" class="contact-link">hi@iam314.com</a><br>
+                  <a href="https://www.linkedin.com/in/iam314/" class="contact-link">linkedIn</a> 
+                </p>
+          </div>
+          <div class="faq-item">
+          <h2 class="txt-s">Location</h2><br>
+            <p class="paragraph1 paragraph1-s">
+Sofia, Bulgaria
+UTC+2 / EET
+<div class="sofia-time">
+  <span id="hours">00</span><span class="blink">:</span><span id="minutes">00</span>
+</div>
+            </p>
+            
+          </div>
+          <div class="faq-item">
+            <h2 class="txt-s">Availability</h2><br>
+            <p class="paragraph1 paragraph1-s">● Active / Booking <br>
+            Sofia — worldwide
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
   <footer class="wrap contact">
     <div class="grid">
@@ -163,7 +193,7 @@
           </div>
       </div>
       <div class="contact-img-wrap footerimg-grid"><img src="images/IMG_7242.webp" loading="lazy" alt="Headshot of Lyudmil Dachev" class="headshot"></div>
-      <div class="contact-links-wrap footerlinks-grid">
+      <div class="contact-links-wrap footerlinks-grid hide">
         <div class="likst-flex">
           <a href="mailto:hi@iam314.com" class="contact-link">hi@iam314.com</a>
           <a href="https://www.linkedin.com/in/iam314/" class="contact-link">linkedIn</a>
@@ -174,3 +204,28 @@
   <script src="js/lyudmils.js" type="text/javascript"></script>
 </body>
 </html>
+
+<!-- This is the script that runs the clock in the contact page. It updates every minute to show the current time in Sofia, Bulgaria. The script uses the Intl.DateTimeFormat API to get the current time in the specified timezone and updates the HTML elements with the corresponding hours and minutes. -->
+
+ <script>function updateSofiaTime() {
+  const now = new Date();
+  
+  const formatter = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Sofia',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  });
+
+  const parts = formatter.formatToParts(now);
+  const hourVal = parts.find(p => p.type === 'hour').value;
+  const minuteVal = parts.find(p => p.type === 'minute').value;
+
+  document.getElementById('hours').textContent = hourVal;
+  document.getElementById('minutes').textContent = minuteVal;
+}
+
+updateSofiaTime();
+setInterval(updateSofiaTime, 1000);
+ </script>
+

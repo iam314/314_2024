@@ -22,79 +22,122 @@
   <link href="/images/favicon.png" rel="shortcut icon" type="image/x-icon">
   <link href="/images/webclip.png" rel="apple-touch-icon">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Lyudmil Dachev",
-    "jobTitle": "Brand Identity & Digital Product Designer",
-    "description": "Brand identity and digital product designer crafting clean, functional visuals and usable interfaces for startups and established brands.",
-    "url": "https://www.iam314.com",
-    "email": "hi@iam314.com",
-    "image": "https://www.iam314.com/images/opengraph.png",
-    "sameAs": [
-      "https://www.linkedin.com/in/iam314/",
-      "https://thosethings.studio/"
-    ],
-    "knowsAbout": [
-      "Brand Identity Design",
-      "Digital Product Design",
-      "UI/UX Design",
-      "Graphic Design",
-      "Visual Communication",
-      "Poster Design",
-      "Art"
-    ],
-    "alumniOf": {
-      "@type": "EducationalOrganization",
-      "name": "Visual Communication Degree"
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://www.iam314.com/#person",
+      "name": "Lyudmil Dachev",
+      "jobTitle": "Brand Identity Designer & Webflow Developer",
+      "description": "Brand identity designer, Webflow developer, and maker. Building visual systems for founder-led businesses and independent art prints and type under my own name. Solo practice based in Sofia, operating worldwide.",
+      "url": "https://www.iam314.com",
+      "email": "hi@iam314.com",
+      "image": "https://www.iam314.com/images/opengraph.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Sofia",
+        "addressCountry": "BG"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/iam314/",
+        "https://www.behance.net/iam314"
+      ],
+      "knowsAbout": [
+        "Brand Identity Design",
+        "Webflow Development",
+        "Web Design",
+        "Art Direction",
+        "Typography",
+        "Type Design",
+        "Logo Design",
+        "Visual Systems",
+        "Printmaking",
+        "Graphic Design",
+        "Visual Communication"
+      ],
+      "worksFor": { "@id": "https://www.iam314.com/#organization" }
     },
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Studio 314"
-    },
-    "hasOccupation": {
-      "@type": "Occupation",
-      "name": "Designer",
-      "occupationLocation": {
-        "@type": "Country",
-        "name": "Bulgaria"
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://www.iam314.com/#organization",
+      "name": "iam314",
+      "url": "https://www.iam314.com",
+      "logo": "https://www.iam314.com/images/favicon.png",
+      "founder": { "@id": "https://www.iam314.com/#person" },
+      "description": "Solo brand identity and Webflow studio by Lyudmil Dachev. Based in Sofia, working with founder-led businesses worldwide.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Sofia",
+        "addressCountry": "BG"
+      },
+      "areaServed": "Worldwide",
+      "priceRange": "€€€",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Design Services & Products",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Brand Identity Design",
+              "description": "Full brand identity systems for founder-led businesses. Discovery, visual language, logo system, color, typography, brand standards and output files."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Webflow Development",
+              "description": "Design and development of brand websites built in Webflow. From concept to launch."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Art Direction",
+              "description": "Art direction for brand campaigns, digital products, and visual systems."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "314 bits — Geometric Display Typeface"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Minimal Flag Icons & Lottie Animations"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Art Prints by Lyudmil Dachev"
+            }
+          }
+        ]
       }
-    }
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Lyudmil Dachev",
-    "url": "https://www.iam314.com",
-    "description": "Portfolio and store of Lyudmil Dachev, a brand identity and digital product designer.",
-    "author": {
-      "@type": "Person",
-      "name": "Lyudmil Dachev"
     },
-    "publisher": {
-      "@type": "Person",
-      "name": "Lyudmil Dachev"
+    {
+      "@type": "WebSite",
+      "@id": "https://www.iam314.com/#website",
+      "url": "https://www.iam314.com",
+      "name": "Lyudmil Dachev — iam314",
+      "description": "Brand identity, Webflow development, art prints, and type by Lyudmil Dachev. Solo practice based in Sofia, operating worldwide.",
+      "publisher": { "@id": "https://www.iam314.com/#organization" },
+      "author": { "@id": "https://www.iam314.com/#person" }
     }
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "314",
-    "url": "https://www.iam314.com",
-    "logo": "https://www.iam314.com/images/favicon.png",
-    "founder": {
-      "@type": "Person",
-      "name": "Lyudmil Dachev"
-    }
-  }
-  </script>
+  ]
+}
+</script>
 
 </head>
 

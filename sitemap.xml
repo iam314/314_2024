@@ -1,53 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
   <url>
     <loc>https://www.iam314.com/</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-05-02</lastmod>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/open-graph.png</image:loc>
+      <image:title>Lyudmil Dachev – Brand Identity &amp; Digital Product Designer</image:title>
+      <image:caption>Lyudmil Dachev is a brand identity and digital product designer crafting clean, functional visuals and usable interfaces for startups and established brands.</image:caption>
+    </image:image>
   </url>
+
   <url>
-    <loc>https://www.iam314.com/store.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.iam314.com/314bits.html</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://www.iam314.com/contact/</loc>
+    <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/open-graph-contact.png</image:loc>
+      <image:title>Contact – Lyudmil Dachev</image:title>
+      <image:caption>Project inquiries and direct contact. Start a project or license a system with Lyudmil Dachev.</image:caption>
+    </image:image>
   </url>
+
   <url>
-    <loc>https://www.iam314.com/flag-icons.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.iam314.com/the-horizon.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.iam314.com/the-kiss.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-    <url>
-    <loc>https://www.iam314.com/stray.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.iam314.com/signup.html</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://www.iam314.com/newsletter/</loc>
+    <lastmod>2026-05-02</lastmod>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/open-graph-newsletter.png</image:loc>
+      <image:title>Newsletter — New Work &amp; Limited Releases by Lyudmil Dachev</image:title>
+      <image:caption>Subscribe for infrequent updates on new art prints, type releases, and selected work by Lyudmil Dachev — plus occasional notes on process. No spam, no schedule.</image:caption>
+    </image:image>
   </url>
+
   <url>
-    <loc>https://www.iam314.com/thank-you.html</loc>
-    <changefreq>yearly</changefreq>
+    <loc>https://www.iam314.com/thanks/</loc>
+    <lastmod>2026-05-02</lastmod>
     <priority>0.5</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/open-graph-thanks.png</image:loc>
+      <image:title>Thank you — Lyudmil Dachev</image:title>
+      <image:caption>You just made my day.</image:caption>
+    </image:image>
   </url>
+
   <url>
-    <loc>https://www.iam314.com/niceandrandom.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://www.iam314.com/store/</loc>
+    <lastmod>2026-05-02</lastmod>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/open-graph-store.png</image:loc>
+      <image:title>Store – Prints &amp; Digital Products by Lyudmil Dachev</image:title>
+      <image:caption>Browse limited edition screen prints, prints, typefaces, and other digital products by Lyudmil Dachev.</image:caption>
+    </image:image>
   </url>
+
+  <url>
+    <loc>https://www.iam314.com/store/314bits-font/</loc>
+    <lastmod>2026-05-02</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/open-graph-314bits.png</image:loc>
+      <image:title>314 bits — Geometric Display Typeface (575 Glyphs) by Lyudmil Dachev</image:title>
+      <image:caption>314 Bits is a geometric display typeface developed from 2009–2024. Includes 575 glyphs and OpenType features (aalt, salt, ss01, subs, sups). Instant download.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.iam314.com/store/flag-icons/</loc>
+    <lastmod>2026-05-02</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/open-graph-flag-icons.png</image:loc>
+      <image:title>Flag Icons – 112 Minimal Flag Icons &amp; Lottie Animations by Lyudmil Dachev</image:title>
+      <image:caption>Flag Icons is a collection of 112 minimal flag icons by Lyudmil Dachev, plus 15 animated flags in Lottie, JSON, GIF and EPS formats. Personal &amp; commercial use allowed.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.iam314.com/store/horizon-print/</loc>
+    <lastmod>2026-05-02</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/open-graph-the-horizon.png</image:loc>
+      <image:title>The horizon – Limited Edition Screen Print by Lyudmil Dachev</image:title>
+      <image:caption>The horizon is a limited edition hand-pulled screen print by Lyudmil Dachev. Edition of 5, signed and numbered, 25×17.5 cm. Ships worldwide.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.iam314.com/store/kiss-print/</loc>
+    <lastmod>2026-05-02</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/open-graph-the-kiss.png</image:loc>
+      <image:title>The kiss – Limited Edition Screen Print by Lyudmil Dachev</image:title>
+      <image:caption>The kiss is a limited edition hand-pulled screen print by Lyudmil Dachev. Edition of 9, signed and numbered, 40×50 cm. Ships worldwide.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.iam314.com/store/stray-print/</loc>
+    <lastmod>2026-05-02</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/open-graph-stray.png</image:loc>
+      <image:title>Stray – Limited Edition Giclée Print by Lyudmil Dachev</image:title>
+      <image:caption>Stray is an original fine art giclée print by Lyudmil Dachev, printed on museum-quality Hahnemühle Photo Rag® paper and hand-signed by the artist. Available in 30 × 40 cm. Ships worldwide.</image:caption>
+    </image:image>
+  </url>
+
 </urlset>

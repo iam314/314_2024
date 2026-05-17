@@ -64,13 +64,42 @@
     },
     {
       "@type": "WebPage",
-      "@id": "https://www.iam314.com/work/marks/", 
+      "@id": "https://www.iam314.com/work/marks/",
       "url": "https://www.iam314.com/work/marks/",
       "name": "Marks — Logo Collection by Lyudmil Dachev",
       "isPartOf": { "@id": "https://www.iam314.com/#website" },
       "about": { "@id": "https://www.iam314.com/#person" },
       "description": "A curated collection of logo marks and brand symbols by Lyudmil Dachev. Identity work spanning diverse industries from a solo design practice based in Sofia."
     }
+    <!--(if schemaType == "case-study")-->
+    ,{
+      "@type": "CreativeWork",
+      "@id": "https://www.iam314.com/work/marks/#work",
+      "url": "https://www.iam314.com/work/marks/",
+      "name": "Marks — Logo Collection by Lyudmil Dachev",
+      "creator": { "@id": "https://www.iam314.com/#person" },
+      "description": "A curated collection of logo marks and brand symbols by Lyudmil Dachev. Identity work spanning diverse industries from a solo design practice based in Sofia.",
+      "image": "/images/ogimages/Open Graph - Marks.png"
+    }
+    <!--(endif)-->
+    <!--(if schemaType == "product")-->
+    ,{
+      "@type": "Product",
+      "@id": "https://www.iam314.com/work/marks/#product",
+      "name": "Marks — Logo Collection by Lyudmil Dachev",
+      "image": "/images/ogimages/Open Graph - Marks.png",
+      "description": "A curated collection of logo marks and brand symbols by Lyudmil Dachev. Identity work spanning diverse industries from a solo design practice based in Sofia.",
+      "brand": { "@id": "https://www.iam314.com/#organization" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.iam314.com/work/marks/",
+        "price": "",
+        "priceCurrency": "EUR",
+        "availability": "",
+        "seller": { "@id": "https://www.iam314.com/#organization" }
+      }
+    }
+    <!--(endif)-->
   ]
 }
 </script>

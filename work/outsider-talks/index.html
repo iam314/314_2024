@@ -64,13 +64,42 @@
     },
     {
       "@type": "WebPage",
-      "@id": "https://www.iam314.com/work/outsider-talks/", 
+      "@id": "https://www.iam314.com/work/outsider-talks/",
       "url": "https://www.iam314.com/work/outsider-talks/",
       "name": "Outsider Talks — Brand Identity by Lyudmil Dachev",
       "isPartOf": { "@id": "https://www.iam314.com/#website" },
       "about": { "@id": "https://www.iam314.com/#person" },
       "description": "Brand identity for Outsider Talks, a podcast about alternative lifestyles and unconventional paths. Logo and visual identity by Lyudmil Dachev."
     }
+    <!--(if schemaType == "case-study")-->
+    ,{
+      "@type": "CreativeWork",
+      "@id": "https://www.iam314.com/work/outsider-talks/#work",
+      "url": "https://www.iam314.com/work/outsider-talks/",
+      "name": "Outsider Talks — Brand Identity by Lyudmil Dachev",
+      "creator": { "@id": "https://www.iam314.com/#person" },
+      "description": "Brand identity for Outsider Talks, a podcast about alternative lifestyles and unconventional paths. Logo and visual identity by Lyudmil Dachev.",
+      "image": "/images/ogimages/Open Graph - Otsider talks.png"
+    }
+    <!--(endif)-->
+    <!--(if schemaType == "product")-->
+    ,{
+      "@type": "Product",
+      "@id": "https://www.iam314.com/work/outsider-talks/#product",
+      "name": "Outsider Talks — Brand Identity by Lyudmil Dachev",
+      "image": "/images/ogimages/Open Graph - Otsider talks.png",
+      "description": "Brand identity for Outsider Talks, a podcast about alternative lifestyles and unconventional paths. Logo and visual identity by Lyudmil Dachev.",
+      "brand": { "@id": "https://www.iam314.com/#organization" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.iam314.com/work/outsider-talks/",
+        "price": "",
+        "priceCurrency": "EUR",
+        "availability": "",
+        "seller": { "@id": "https://www.iam314.com/#organization" }
+      }
+    }
+    <!--(endif)-->
   ]
 }
 </script>
@@ -98,7 +127,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js" defer></script>
 
-</head>
+</head> 
 
 <body class="body-light">
   <header>

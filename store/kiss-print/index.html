@@ -64,13 +64,42 @@
     },
     {
       "@type": "WebPage",
-      "@id": "https://www.iam314.com/store/kiss-print/", 
+      "@id": "https://www.iam314.com/store/kiss-print/",
       "url": "https://www.iam314.com/store/kiss-print/",
       "name": "The kiss – Limited Edition Screen Print by Lyudmil Dachev",
       "isPartOf": { "@id": "https://www.iam314.com/#website" },
       "about": { "@id": "https://www.iam314.com/#person" },
       "description": "The kiss is a limited edition hand-pulled screen print by Lyudmil Dachev. Edition of 9, signed and numbered, 40×50 cm. Ships worldwide."
     }
+    <!--(if schemaType == "case-study")-->
+    ,{
+      "@type": "CreativeWork",
+      "@id": "https://www.iam314.com/store/kiss-print/#work",
+      "url": "https://www.iam314.com/store/kiss-print/",
+      "name": "The kiss – Limited Edition Screen Print by Lyudmil Dachev",
+      "creator": { "@id": "https://www.iam314.com/#person" },
+      "description": "The kiss is a limited edition hand-pulled screen print by Lyudmil Dachev. Edition of 9, signed and numbered, 40×50 cm. Ships worldwide.",
+      "image": "/images/ogimages/open-graph-the-kiss.png"
+    }
+    <!--(endif)-->
+    <!--(if schemaType == "product")-->
+    ,{
+      "@type": "Product",
+      "@id": "https://www.iam314.com/store/kiss-print/#product",
+      "name": "The kiss – Limited Edition Screen Print by Lyudmil Dachev",
+      "image": "/images/ogimages/open-graph-the-kiss.png",
+      "description": "The kiss is a limited edition hand-pulled screen print by Lyudmil Dachev. Edition of 9, signed and numbered, 40×50 cm. Ships worldwide.",
+      "brand": { "@id": "https://www.iam314.com/#organization" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.iam314.com/store/kiss-print/",
+        "price": "40",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/SoldOut",
+        "seller": { "@id": "https://www.iam314.com/#organization" }
+      }
+    }
+    <!--(endif)-->
   ]
 }
 </script>

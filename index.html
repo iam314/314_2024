@@ -65,13 +65,42 @@
     },
     {
       "@type": "WebPage",
-      "@id": "https://www.iam314.com/", 
+      "@id": "https://www.iam314.com/",
       "url": "https://www.iam314.com/",
       "name": "Lyudmil Dachev – Brand Identity & Digital Product Designer",
       "isPartOf": { "@id": "https://www.iam314.com/#website" },
       "about": { "@id": "https://www.iam314.com/#person" },
       "description": "Lyudmil Dachev is a brand identity and digital product designer crafting clean, functional visuals and usable interfaces for startups and established brands."
     }
+    <!--(if schemaType == "case-study")-->
+    ,{
+      "@type": "CreativeWork",
+      "@id": "https://www.iam314.com/#work",
+      "url": "https://www.iam314.com/",
+      "name": "Lyudmil Dachev – Brand Identity & Digital Product Designer",
+      "creator": { "@id": "https://www.iam314.com/#person" },
+      "description": "Lyudmil Dachev is a brand identity and digital product designer crafting clean, functional visuals and usable interfaces for startups and established brands.",
+      "image": "/images/ogimages/open-graph.png"
+    }
+    <!--(endif)-->
+    <!--(if schemaType == "product")-->
+    ,{
+      "@type": "Product",
+      "@id": "https://www.iam314.com/#product",
+      "name": "Lyudmil Dachev – Brand Identity & Digital Product Designer",
+      "image": "/images/ogimages/open-graph.png",
+      "description": "Lyudmil Dachev is a brand identity and digital product designer crafting clean, functional visuals and usable interfaces for startups and established brands.",
+      "brand": { "@id": "https://www.iam314.com/#organization" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.iam314.com/",
+        "price": "",
+        "priceCurrency": "EUR",
+        "availability": "",
+        "seller": { "@id": "https://www.iam314.com/#organization" }
+      }
+    }
+    <!--(endif)-->
   ]
 }
 </script>
@@ -99,7 +128,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js" defer></script>
 
-</head>
+</head> 
 
 <body class="body-light">
   <header>

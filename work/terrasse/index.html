@@ -64,13 +64,42 @@
     },
     {
       "@type": "WebPage",
-      "@id": "https://www.iam314.com/work/terrasse/", 
+      "@id": "https://www.iam314.com/work/terrasse/",
       "url": "https://www.iam314.com/work/terrasse/",
       "name": "Terrasse — Brand Identity & Campaign by Lyudmil Dachev",
       "isPartOf": { "@id": "https://www.iam314.com/#website" },
       "about": { "@id": "https://www.iam314.com/#person" },
       "description": "Brand identity and social media campaign for Terrasse by Raffy, a club in downtown Sofia. Logo, visual identity, and graphics by Lyudmil Dachev."
     }
+    <!--(if schemaType == "case-study")-->
+    ,{
+      "@type": "CreativeWork",
+      "@id": "https://www.iam314.com/work/terrasse/#work",
+      "url": "https://www.iam314.com/work/terrasse/",
+      "name": "Terrasse — Brand Identity & Campaign by Lyudmil Dachev",
+      "creator": { "@id": "https://www.iam314.com/#person" },
+      "description": "Brand identity and social media campaign for Terrasse by Raffy, a club in downtown Sofia. Logo, visual identity, and graphics by Lyudmil Dachev.",
+      "image": "/images/ogimages/Open Graph - Terrasse.png"
+    }
+    <!--(endif)-->
+    <!--(if schemaType == "product")-->
+    ,{
+      "@type": "Product",
+      "@id": "https://www.iam314.com/work/terrasse/#product",
+      "name": "Terrasse — Brand Identity & Campaign by Lyudmil Dachev",
+      "image": "/images/ogimages/Open Graph - Terrasse.png",
+      "description": "Brand identity and social media campaign for Terrasse by Raffy, a club in downtown Sofia. Logo, visual identity, and graphics by Lyudmil Dachev.",
+      "brand": { "@id": "https://www.iam314.com/#organization" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.iam314.com/work/terrasse/",
+        "price": "",
+        "priceCurrency": "EUR",
+        "availability": "",
+        "seller": { "@id": "https://www.iam314.com/#organization" }
+      }
+    }
+    <!--(endif)-->
   ]
 }
 </script>
@@ -98,7 +127,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js" defer></script>
 
-</head>
+</head> 
 
 <body class="body-light">
   <header>

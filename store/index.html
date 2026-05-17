@@ -1,3 +1,4 @@
+ 
 <!DOCTYPE html>
 <!-- Designed and developed by Lyudmil Dachev -->
 <html lang="en">
@@ -64,13 +65,42 @@
     },
     {
       "@type": "WebPage",
-      "@id": "https://www.iam314.com/store/", 
+      "@id": "https://www.iam314.com/store/",
       "url": "https://www.iam314.com/store/",
       "name": "Store – Prints &amp; Digital Products by Lyudmil Dachev",
       "isPartOf": { "@id": "https://www.iam314.com/#website" },
       "about": { "@id": "https://www.iam314.com/#person" },
       "description": "Browse limited edition screen prints, prints, typefaces, and other digital products by Lyudmil Dachev."
     }
+    <!--(if schemaType == "case-study")-->
+    ,{
+      "@type": "CreativeWork",
+      "@id": "https://www.iam314.com/store/#work",
+      "url": "https://www.iam314.com/store/",
+      "name": "Store – Prints &amp; Digital Products by Lyudmil Dachev",
+      "creator": { "@id": "https://www.iam314.com/#person" },
+      "description": "Browse limited edition screen prints, prints, typefaces, and other digital products by Lyudmil Dachev.",
+      "image": "/images/ogimages/open-graph-store.png"
+    }
+    <!--(endif)-->
+    <!--(if schemaType == "product")-->
+    ,{
+      "@type": "Product",
+      "@id": "https://www.iam314.com/store/#product",
+      "name": "Store – Prints &amp; Digital Products by Lyudmil Dachev",
+      "image": "/images/ogimages/open-graph-store.png",
+      "description": "Browse limited edition screen prints, prints, typefaces, and other digital products by Lyudmil Dachev.",
+      "brand": { "@id": "https://www.iam314.com/#organization" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.iam314.com/store/",
+        "price": "40",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "seller": { "@id": "https://www.iam314.com/#organization" }
+      }
+    }
+    <!--(endif)-->
   ]
 }
 </script>
@@ -98,7 +128,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js" defer></script>
 
-</head>
+</head> 
 
 <body class="body-light">
   <header>

@@ -65,13 +65,42 @@
     },
     {
       "@type": "WebPage",
-      "@id": "https://www.iam314.com/contact/", 
+      "@id": "https://www.iam314.com/contact/",
       "url": "https://www.iam314.com/contact/",
       "name": "Contact – Lyudmil Dachev",
       "isPartOf": { "@id": "https://www.iam314.com/#website" },
       "about": { "@id": "https://www.iam314.com/#person" },
       "description": "Project inquiries and direct contact. Start a project or license a system with Lyudmil Dachev."
     }
+    <!--(if schemaType == "case-study")-->
+    ,{
+      "@type": "CreativeWork",
+      "@id": "https://www.iam314.com/contact/#work",
+      "url": "https://www.iam314.com/contact/",
+      "name": "Contact – Lyudmil Dachev",
+      "creator": { "@id": "https://www.iam314.com/#person" },
+      "description": "Project inquiries and direct contact. Start a project or license a system with Lyudmil Dachev.",
+      "image": "/images/ogimages/open-graph-contact.png"
+    }
+    <!--(endif)-->
+    <!--(if schemaType == "product")-->
+    ,{
+      "@type": "Product",
+      "@id": "https://www.iam314.com/contact/#product",
+      "name": "Contact – Lyudmil Dachev",
+      "image": "/images/ogimages/open-graph-contact.png",
+      "description": "Project inquiries and direct contact. Start a project or license a system with Lyudmil Dachev.",
+      "brand": { "@id": "https://www.iam314.com/#organization" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.iam314.com/contact/",
+        "price": "",
+        "priceCurrency": "EUR",
+        "availability": "",
+        "seller": { "@id": "https://www.iam314.com/#organization" }
+      }
+    }
+    <!--(endif)-->
   ]
 }
 </script>
@@ -100,7 +129,7 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js" defer></script>
 
 </head>
-
+ 
 <body class="body-light">
   <header>
     <nav class="wrap">

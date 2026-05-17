@@ -64,13 +64,42 @@
     },
     {
       "@type": "WebPage",
-      "@id": "https://www.iam314.com/niceandrandom/", 
+      "@id": "https://www.iam314.com/niceandrandom/",
       "url": "https://www.iam314.com/niceandrandom/",
       "name": "Nice & Random — Lyudmil Dachev",
       "isPartOf": { "@id": "https://www.iam314.com/#website" },
       "about": { "@id": "https://www.iam314.com/#person" },
       "description": "A personal archive of images, moments, and things that matter. Skating, graffiti, counter-culture, and everything in between. The other side of the practice."
     }
+    <!--(if schemaType == "case-study")-->
+    ,{
+      "@type": "CreativeWork",
+      "@id": "https://www.iam314.com/niceandrandom/#work",
+      "url": "https://www.iam314.com/niceandrandom/",
+      "name": "Nice & Random — Lyudmil Dachev",
+      "creator": { "@id": "https://www.iam314.com/#person" },
+      "description": "A personal archive of images, moments, and things that matter. Skating, graffiti, counter-culture, and everything in between. The other side of the practice.",
+      "image": "/images/ogimages/Open Graph - Nice Random.png"
+    }
+    <!--(endif)-->
+    <!--(if schemaType == "product")-->
+    ,{
+      "@type": "Product",
+      "@id": "https://www.iam314.com/niceandrandom/#product",
+      "name": "Nice & Random — Lyudmil Dachev",
+      "image": "/images/ogimages/Open Graph - Nice Random.png",
+      "description": "A personal archive of images, moments, and things that matter. Skating, graffiti, counter-culture, and everything in between. The other side of the practice.",
+      "brand": { "@id": "https://www.iam314.com/#organization" },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.iam314.com/niceandrandom/",
+        "price": "",
+        "priceCurrency": "EUR",
+        "availability": "",
+        "seller": { "@id": "https://www.iam314.com/#organization" }
+      }
+    }
+    <!--(endif)-->
   ]
 }
 </script>
@@ -98,7 +127,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js" defer></script>
 
-</head>
+</head> 
 
 <body class="body-light">
   <header>

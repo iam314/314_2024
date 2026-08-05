@@ -4,54 +4,153 @@
 
   <url>
     <loc>https://www.iam314.com/</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-07-30</lastmod>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://www.iam314.com/images/ogimages/open-graph.png</image:loc>
+      <image:loc>https://www.iam314.com/images/ogimages/opengraph.png</image:loc>
       <image:title>Lyudmil Dachev – Brand Identity &amp; Digital Product Designer</image:title>
       <image:caption>Lyudmil Dachev is a brand identity and digital product designer crafting clean, functional visuals and usable interfaces for startups and established brands.</image:caption>
     </image:image>
   </url>
 
   <url>
-    <loc>https://www.iam314.com/contact/</loc>
-    <lastmod>2026-05-02</lastmod>
+    <loc>https://www.iam314.com/work/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20Work.png</image:loc>
+      <image:title>Work – Selected Projects by Lyudmil Dachev</image:title>
+      <image:caption>Brand identity, Webflow, and logo marks by Lyudmil Dachev. Case studies and selected projects from a solo design practice based in Sofia.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.iam314.com/work/the-rnb-awards/</loc>
+    <lastmod>2026-07-30</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.iam314.com/images/ogimages/open-graph-contact.png</image:loc>
-      <image:title>Contact – Lyudmil Dachev</image:title>
-      <image:caption>Project inquiries and direct contact. Start a project or license a system with Lyudmil Dachev.</image:caption>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20The%20R%26B%20Awards.png</image:loc>
+      <image:title>The R&amp;B Awards — Brand Identity &amp; Website by Lyudmil Dachev</image:title>
+      <image:caption>Brand identity and Webflow website for The R&amp;B Awards, a music awards show celebrating rhythm and blues. Logo system, visual identity, and web design by Lyudmil Dachev.</image:caption>
     </image:image>
   </url>
 
   <url>
-    <loc>https://www.iam314.com/newsletter/</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.7</priority>
+    <loc>https://www.iam314.com/work/brand-springboard/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.iam314.com/images/ogimages/open-graph-newsletter.png</image:loc>
-      <image:title>Newsletter — New Work &amp; Limited Releases by Lyudmil Dachev</image:title>
-      <image:caption>Subscribe for infrequent updates on new art prints, type releases, and selected work by Lyudmil Dachev — plus occasional notes on process. No spam, no schedule.</image:caption>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20Brand%20springboard.png</image:loc>
+      <image:title>Brand Springboard — Brand Identity &amp; Website by Lyudmil Dachev</image:title>
+      <image:caption>Brand identity and website for Brand Springboard, a marketing company bridging creatives and marketing experts. Logo system, visual language, and web design and webflow build by Lyudmil Dachev.</image:caption>
     </image:image>
   </url>
 
   <url>
-    <loc>https://www.iam314.com/thanks/</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.5</priority>
+    <loc>https://www.iam314.com/work/workship/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.iam314.com/images/ogimages/open-graph-thanks.png</image:loc>
-      <image:title>Thank you — Lyudmil Dachev</image:title>
-      <image:caption>You just made my day.</image:caption>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20Workship.png</image:loc>
+      <image:title>Workship — Brand Identity by Lyudmil Dachev</image:title>
+      <image:caption>Brand identity for Workship, a mobile coworking space operating from a converted bus. Custom wordmark by Lyudmil Dachev.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.iam314.com/work/outsider-talks/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20Otsider%20talks.png</image:loc>
+      <image:title>Outsider Talks — Brand Identity by Lyudmil Dachev</image:title>
+      <image:caption>Brand identity for Outsider Talks, a podcast about alternative lifestyles and unconventional paths. Logo and visual identity by Lyudmil Dachev.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.iam314.com/work/terrasse/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20Terrasse.png</image:loc>
+      <image:title>Terrasse — Brand Identity by Lyudmil Dachev</image:title>
+      <image:caption>Brand identity and social media campaign for Terrasse by Raffy, a club in downtown Sofia. Logo, visual identity, and graphics by Lyudmil Dachev.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.iam314.com/work/bbc-maestro/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20BBC%20masetro.png</image:loc>
+      <image:title>BBC Maestro — Web App Design by Lyudmil Dachev</image:title>
+      <image:caption>UX/UI and web app design for BBC Maestro, a performance scoring application for the BBC television show. Art direction and product design by Lyudmil Dachev.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.iam314.com/work/air-quality/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20Air%20quality%20app.png</image:loc>
+      <image:title>Air Quality App — Mobile App Design by Lyudmil Dachev</image:title>
+      <image:caption>UX/UI and mobile app design for an air quality monitoring application for Melon. Real-time data visualisation and dark mode by Lyudmil Dachev.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.iam314.com/work/ora-estete/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20Ora%20estete.png</image:loc>
+      <image:title>Ora Estete — Logo &amp; Website by Lyudmil Dachev</image:title>
+      <image:caption>Logo design and website for Ora Estete, a full service video production company. Logo design, web design and Webflow development by Lyudmil Dachev.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.iam314.com/work/fotofabrika/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20Fotofabrika.png</image:loc>
+      <image:title>Fotofabrika — Website Design by Lyudmil Dachev</image:title>
+      <image:caption>Website design and development for Fotofabrika Foundation, a photography foundation and events space in Sofia. Light and dark theme by Lyudmil Dachev.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.iam314.com/work/crazy-frog/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20Crazy%20frog.png</image:loc>
+      <image:title>Crazy Frog — Brand Identity by Lyudmil Dachev</image:title>
+      <image:caption>Brand identity and custom Shopify theme for Crazy Frog, an online retailer of children's clothes and accessories. Logo, identity and web design by Lyudmil Dachev.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.iam314.com/work/marks/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20Marks.png</image:loc>
+      <image:title>Marks — Logo Collection by Lyudmil Dachev</image:title>
+      <image:caption>A curated collection of logo marks and brand symbols by Lyudmil Dachev. Identity work spanning diverse industries from a solo design practice based in Sofia.</image:caption>
     </image:image>
   </url>
 
   <url>
     <loc>https://www.iam314.com/store/</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-07-30</lastmod>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://www.iam314.com/images/ogimages/open-graph-store.png</image:loc>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20Store.png</image:loc>
       <image:title>Store – Prints &amp; Digital Products by Lyudmil Dachev</image:title>
       <image:caption>Browse limited edition screen prints, prints, typefaces, and other digital products by Lyudmil Dachev.</image:caption>
     </image:image>
@@ -59,10 +158,10 @@
 
   <url>
     <loc>https://www.iam314.com/store/314bits-font/</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-07-30</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.iam314.com/images/ogimages/open-graph-314bits.png</image:loc>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20314%20bits.png</image:loc>
       <image:title>314 bits — Geometric Display Typeface (575 Glyphs) by Lyudmil Dachev</image:title>
       <image:caption>314 Bits is a geometric display typeface developed from 2009–2024. Includes 575 glyphs and OpenType features (aalt, salt, ss01, subs, sups). Instant download.</image:caption>
     </image:image>
@@ -70,10 +169,10 @@
 
   <url>
     <loc>https://www.iam314.com/store/flag-icons/</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-07-30</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.iam314.com/images/ogimages/open-graph-flag-icons.png</image:loc>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20Flag%20icons.png</image:loc>
       <image:title>Flag Icons – 112 Minimal Flag Icons &amp; Lottie Animations by Lyudmil Dachev</image:title>
       <image:caption>Flag Icons is a collection of 112 minimal flag icons by Lyudmil Dachev, plus 15 animated flags in Lottie, JSON, GIF and EPS formats. Personal &amp; commercial use allowed.</image:caption>
     </image:image>
@@ -81,10 +180,10 @@
 
   <url>
     <loc>https://www.iam314.com/store/horizon-print/</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-07-30</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.iam314.com/images/ogimages/open-graph-the-horizon.png</image:loc>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20The%20horizon.png</image:loc>
       <image:title>The horizon – Limited Edition Screen Print by Lyudmil Dachev</image:title>
       <image:caption>The horizon is a limited edition hand-pulled screen print by Lyudmil Dachev. Edition of 5, signed and numbered, 25×17.5 cm. Ships worldwide.</image:caption>
     </image:image>
@@ -92,10 +191,10 @@
 
   <url>
     <loc>https://www.iam314.com/store/kiss-print/</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-07-30</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.iam314.com/images/ogimages/open-graph-the-kiss.png</image:loc>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20The%20kiss.png</image:loc>
       <image:title>The kiss – Limited Edition Screen Print by Lyudmil Dachev</image:title>
       <image:caption>The kiss is a limited edition hand-pulled screen print by Lyudmil Dachev. Edition of 9, signed and numbered, 40×50 cm. Ships worldwide.</image:caption>
     </image:image>
@@ -103,12 +202,56 @@
 
   <url>
     <loc>https://www.iam314.com/store/stray-print/</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-07-30</lastmod>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.iam314.com/images/ogimages/open-graph-stray.png</image:loc>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20Stray.png</image:loc>
       <image:title>Stray – Limited Edition Giclée Print by Lyudmil Dachev</image:title>
       <image:caption>Stray is an original fine art giclée print by Lyudmil Dachev, printed on museum-quality Hahnemühle Photo Rag® paper and hand-signed by the artist. Available in 30 × 40 cm. Ships worldwide.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.iam314.com/contact/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20Contact.png</image:loc>
+      <image:title>Contact – Lyudmil Dachev</image:title>
+      <image:caption>Project inquiries and direct contact. Start a project or license a system with Lyudmil Dachev.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.iam314.com/newsletter/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20Newsletter.png</image:loc>
+      <image:title>Newsletter — New Work &amp; Limited Releases by Lyudmil Dachev</image:title>
+      <image:caption>Subscribe for infrequent updates on new art prints, type releases, and selected work by Lyudmil Dachev — plus occasional notes on process. No spam, no schedule.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.iam314.com/niceandrandom/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/Open%20Graph%20-%20Nice%20Random.png</image:loc>
+      <image:title>Nice &amp; Random — Lyudmil Dachev</image:title>
+      <image:caption>A personal archive of images, moments, and things that matter. Skating, graffiti, counter-culture, and everything in between. The other side of the practice.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.iam314.com/thanks/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <priority>0.5</priority>
+    <image:image>
+      <image:loc>https://www.iam314.com/images/ogimages/opengraph.png</image:loc>
+      <image:title>Thank you — Lyudmil Dachev</image:title>
+      <image:caption>You just made my day.</image:caption>
     </image:image>
   </url>
 

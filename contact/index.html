@@ -10,10 +10,10 @@
 	<meta name="author" content="Lyudmil Dachev">
   <meta property="og:title" content="Contact – Lyudmil Dachev">
   <meta property="og:description" content="Project inquiries and direct contact. Start a project or license a system with Lyudmil Dachev.">
-  <meta property="og:image" content="/images/ogimages/open-graph-contact.png">
+  <meta property="og:image" content="/images/ogimages/Open Graph - Contact.png">
   <meta property="twitter:title" content="Contact – Lyudmil Dachev">
   <meta property="twitter:description" content="Project inquiries and direct contact. Start a project or license a system with Lyudmil Dachev.">
-  <meta property="twitter:image" content="/images/ogimages/open-graph-contact.png">
+  <meta property="twitter:image" content="/images/ogimages/Open Graph - Contact.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -191,27 +191,4 @@ UTC+2 / EET
 </body>
 </html>
 
-<!-- This is the script that runs the clock in the contact page. It updates every minute to show the current time in Sofia, Bulgaria. The script uses the Intl.DateTimeFormat API to get the current time in the specified timezone and updates the HTML elements with the corresponding hours and minutes. -->
-
- <script>function updateSofiaTime() {
-  const now = new Date();
-  
-  const formatter = new Intl.DateTimeFormat('en-GB', {
-    timeZone: 'Europe/Sofia',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-  });
-
-  const parts = formatter.formatToParts(now);
-  const hourVal = parts.find(p => p.type === 'hour').value;
-  const minuteVal = parts.find(p => p.type === 'minute').value;
-
-  document.getElementById('hours').textContent = hourVal;
-  document.getElementById('minutes').textContent = minuteVal;
-}
-
-updateSofiaTime();
-setInterval(updateSofiaTime, 1000);
- </script>
 

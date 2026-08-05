@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+
+<h1 id="codekit→astromigrationplan">CodeKit → Astro Migration Plan</h1>
+
+<p><strong>Project:</strong> iam314.com (314_snq)
+<strong>Repo:</strong> <code>github.com/iam314/314_snq</code> (branch <code>main</code>, no GitHub Actions)
+<strong>Date:</strong> 2026&#8211;08&#8211;05
+<strong>Status:</strong> Draft — pending review</p>
+
+<hr />
+
+<h2 id="1.currentstateinventory">1. Current state (inventory)</h2>
+
+<h3 id="templatingsystem">Templating system</h3>
+
+<ul>
+<li><strong>22 <code>.kit</code> templates</strong> + <strong>10 partials</strong> compiled by CodeKit to <code>build/</code>.</li>
+<li>Template variables: <code>&lt;!-- $title = ... --&gt;</code>, <code>&lt;!-- $link = ... --&gt;</code>, <code>&lt;!-- $description = ... --&gt;</code>, <code>&lt;!-- $ogimage = ... --&gt;</code>, <code>&lt;!-- $work = current --&gt;</code> (nav active flag).</li>
+<li>Partials included via <code>&lt;!-- @include /partials/_name.kit --&gt;</code>.</li>
+</ul>
+
+<h3 id="pages22">Pages (22)</h3>
+
+<table>
+<colgroup>
+<col />
+<col />
+</colgroup>
+
+<thead>
+<tr>
+	<th> Section </th>
+	<th> Pages </th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td> Top level </td>
+	<td> <code>index.kit</code>, <code>contact/index.kit</code>, <code>newsletter/index.kit</code>, <code>thanks/index.kit</code>, <code>niceandrandom/index.kit</code> </td>
+</tr>
+<tr>
+	<td> Work </td>
+	<td> <code>work/index.kit</code> + 12 case studies (<code>the-rnb-awards</code>, <code>brand-springboard</code>, <code>workship</code>, <code>outsider-talks</code>, <code>terrasse</code>, <code>bbc-maestro</code>, <code>air-quality</code>, <code>ora-estete</code>, <code>fotofabrika</code>, <code>crazy-frog</code>, <code>marks</code>, <code>jwax</code>) </td>
+</tr>
+<tr>
+	<td> Store </td>
+	<td> <code>store/index.kit</code> + 5 products (<code>stray-print</code>, <code>horizon-print</code>, <code>kiss-print</code>, <code>314bits-font</code>, <code>flag-icons</code>) </td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="partials10">Partials (10)</h3>
+
+<ul>
+<li>Headers: <code>_header.kit</code>, <code>_header-case-study.kit</code> (adds CreativeWork schema), <code>_header-product.kit</code> (adds Product schema)</li>
+<li><code>_nav.kit</code>, <code>_footer.kit</code>, <code>_footer-inner.kit</code>, <code>_footer-photoonly.kit</code>, <code>_cta.kit</code>, <code>_faq.kit</code></li>
+</ul>
+
+<h3 id="assets">Assets</h3>
+
+<ul>
+<li><code>css/</code> — <code>normalize.css</code>, <code>lyudmils.css</code> (<sub>1784</sub> lines), <code>nandr.css</code> (Nice &amp; Random styles)</li>
+<li><code>js/lyudmils.js</code> — theme toggle (localStorage <code>iam314_theme_preference</code>), Sofia clock, lazy Lottie loader; <sub>80</sub> lines dead commented code</li>
+<li><code>images/</code> — <strong>72 MB, 154 files</strong> (hand-optimized AVIFs with pre-made <code>-p-*</code> responsive variants)</li>
+<li><code>fonts/</code> — Geist Regular/Medium (woff2/woff/ttf/otf), self-hosted, declared in <code>@font-face</code></li>
+<li><code>uploads/pictures/</code> — Nice &amp; Random gallery (<sub>120</sub> images)</li>
+<li><code>Lyudmil-Dachev-CV-eng-photo.pdf</code></li>
+</ul>
+
+<h3 id="third-partyintegrations">Third-party integrations</h3>
+
+<ul>
+<li>ConvertKit (newsletter form, <code>app.kit.com/forms/8948137/subscriptions</code>)</li>
+<li>Payhip (store cart/checkout, <code>payhip.com/payhip.js</code>)</li>
+<li>Swiper (product galleries, CDN)</li>
+<li>Lottie (<code>@lottiefiles/lottie-player</code>)</li>
+<li>Google Analytics (<code>G-8K5NWXN6WD</code>)</li>
+<li>Google site verification (<code>google4ca3a6165e588755.html</code>)</li>
+<li>Zoho verification (<code>zohoverify/verifyforzoho.html</code>)</li>
+</ul>
+
+<h3 id="infrastructure">Infrastructure</h3>
+
+<ul>
+<li>GitHub Pages with custom domain (<code>CNAME</code> → <code>www.iam314.com</code>)</li>
+<li><code>robots.txt</code> + hand-written <code>sitemap.xml</code> (only 9 URLs)</li>
+<li>8 legacy top-level meta-refresh redirects: <code>stray.html</code>, <code>store.html</code>, <code>signup.html</code>, <code>thank-you.html</code>, <code>the-horizon.html</code>, <code>the-kiss.html</code>, <code>314bits.html</code>, <code>flag-icons.html</code></li>
+<li><strong>Deployment (confirmed):</strong> <code>build/</code> output is pushed from <strong>another repo</strong> (a separate GitHub Pages repo). No build happens in this repo. After migration this must be replaced with a CI script that builds on push.</li>
+</ul>
+
+<hr />
+
+<h2 id="2.🔴immediatefixeslivebugstechdebt">2. 🔴 Immediate fixes (live bugs / tech debt)</h2>
+
+<p>These affect the <strong>current live site</strong> and should be fixed regardless of migration.</p>
+
+<table>
+<colgroup>
+<col />
+<col />
+<col />
+<col />
+</colgroup>
+
+<thead>
+<tr>
+	<th> # </th>
+	<th> Issue </th>
+	<th> Location </th>
+	<th> Severity </th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td> 1 </td>
+	<td> <strong>OG images 404 on live site.</strong> Pages reference lowercase names (<code>open-graph.png</code>, <code>open-graph-work.png</code>, <code>open-graph-contact.png</code>, <code>open-graph-store.png</code>, <code>open-graph-newsletter.png</code>, <code>open-graph-thanks.png</code>, <code>open-graph-314bits.png</code>, <code>open-graph-flag-icons.png</code>, <code>open-graph-the-horizon.png</code>, <code>open-graph-the-kiss.png</code>, <code>open-graph-stray.png</code>) but actual files are <code>opengraph.png</code> + <code>Open Graph - Work.png</code> etc. (title-case with spaces). Verified with curl: <code>open-graph.png</code> → 404, <code>Open Graph - Work.png</code> → 200. Affects: <code>/</code>, <code>/work/</code>, <code>/contact/</code>, <code>/store/</code>, <code>/newsletter/</code>, <code>/thanks/</code>, all 5 product pages. Only case studies work. </td>
+	<td> All <code>.kit</code> files + <code>build/*</code> </td>
+	<td> 🔴 High </td>
+</tr>
+<tr>
+	<td> 2 </td>
+	<td> <strong>Broken JSON in newsletter form</strong> — <code>&quot;success_message&quot;:&quot;You’re in. I’ll email when new work is released.&quot;redirect_url&quot;:&quot;&quot;</code> missing comma. Invalid <code>data-options</code> for ConvertKit. </td>
+	<td> <code>newsletter/index.kit</code> </td>
+	<td> 🔴 High </td>
+</tr>
+<tr>
+	<td> 3 </td>
+	<td> <strong>Homepage hero srcset wrong</strong> — all <code>w</code> descriptors point to <code>Lyudmil_Dachev-work.avif</code> (full-res) instead of <code>-p-500/800/1080/1600/2000</code> variants. Mobile users download full image. </td>
+	<td> <code>index.kit</code> </td>
+	<td> 🟠 Medium </td>
+</tr>
+<tr>
+	<td> 4 </td>
+	<td> <strong>Sitemap missing <sub>12</sub> pages</strong> — no <code>/work/</code>, no <code>/niceandrandom/</code>, no case studies. </td>
+	<td> <code>sitemap.xml</code> </td>
+	<td> 🟠 Medium </td>
+</tr>
+<tr>
+	<td> 5 </td>
+	<td> <strong>Jwax case study copy-paste broken</strong> — uses Brand Springboard images/Lottie, OG image points to R&amp;B Awards, unlinked from <code>/work/</code>, only thumb exists. Finish or delete. </td>
+	<td> <code>work/jwax/index.kit</code> </td>
+	<td> 🟠 Medium </td>
+</tr>
+<tr>
+	<td> 6 </td>
+	<td> <strong>Duplicate Sofia clock logic</strong> — contact page inline script runs every 1s; <code>lyudmils.js</code> also updates every 60s. </td>
+	<td> <code>contact/index.kit</code> + <code>js/lyudmils.js</code> </td>
+	<td> 🟡 Low </td>
+</tr>
+<tr>
+	<td> 7 </td>
+	<td> <strong>Housekeeping</strong> — 19 <code>.DS_Store</code> committed; <code>build/</code> output committed despite its own <code>*</code> <code>.gitignore</code>; <code>&lt;/snan&gt;</code> typo in <code>store/index.kit</code>; <sub>80</sub> lines dead code in <code>lyudmils.js</code>; leftover <code>niceandrandom/index-copy.html</code>; no root <code>.gitignore</code>; no custom 404 page. </td>
+	<td> repo-wide </td>
+	<td> 🟡 Low </td>
+</tr>
+<tr>
+	<td> 8 </td>
+	<td> <strong>Verify <code>https://iam314.com/thanks/</code></strong> (non-www, used as Payhip successUrl) resolves. </td>
+	<td> Payhip config </td>
+	<td> 🟡 Low </td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="3.migrationplan">3. Migration plan</h2>
+
+<h3 id="phase0—baseline">Phase 0 — Baseline</h3>
+
+<ul>
+<li><code>git tag codekit-legacy</code> (or branch) to preserve current working state.</li>
+<li>Fix live bugs (#1–#4 at minimum) before or during migration.</li>
+</ul>
+
+<h3 id="phase1—scaffold">Phase 1 — Scaffold</h3>
+
+<ul>
+<li>New Astro project in <code>astro/</code> subfolder (or new repo).</li>
+<li>Config: <code>output: 'static'</code>, <code>site: 'https://www.iam314.com'</code>, <code>trailingSlash: 'always'</code>.</li>
+<li>Copy static assets into <code>public/</code>: <code>css/</code>, <code>fonts/</code>, <code>images/</code>, <code>uploads/</code>, <code>js/lyudmils.js</code>, PDF, <code>CNAME</code>, <code>robots.txt</code>, <code>google4ca3a6165e588755.html</code>, <code>zohoverify/</code>.</li>
+</ul>
+
+<p><strong>Key decision — images:</strong> keep hand-optimized AVIFs + <code>-p-*</code> variants in <code>public/</code> with existing <code>&lt;img&gt;</code>/<code>srcset</code> markup. Do <strong>not</strong> run them through Astro&#8217;s image pipeline initially (avoids re-encoding, zero visual regression). Can adopt <code>astro:assets</code> selectively later (e.g. uploads gallery).</p>
+
+<h3 id="phase2—componentarchitecture1:1mapping">Phase 2 — Component architecture (1:1 mapping)</h3>
+
+<table>
+<colgroup>
+<col />
+<col />
+</colgroup>
+
+<thead>
+<tr>
+	<th> CodeKit </th>
+	<th> Astro </th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td> <code>_header.kit</code> + <code>_header-case-study.kit</code> + <code>_header-product.kit</code> </td>
+	<td> <code>src/layouts/BaseLayout.astro</code> with <code>schemaType</code> prop (base / case-study / product) </td>
+</tr>
+<tr>
+	<td> <code>&lt;!-- $title --&gt;</code> <code>$link</code> <code>$description</code> <code>$ogimage</code> </td>
+	<td> Layout frontmatter props </td>
+</tr>
+<tr>
+	<td> <code>_nav.kit</code> + <code>&lt;!-- $work = current --&gt;</code> </td>
+	<td> <code>src/components/Nav.astro</code> — active state via <code>Astro.url.pathname</code> </td>
+</tr>
+<tr>
+	<td> <code>_footer.kit</code> / <code>_footer-inner.kit</code> / <code>_footer-photoonly.kit</code> </td>
+	<td> <code>src/components/Footer.astro</code> with <code>variant</code> prop </td>
+</tr>
+<tr>
+	<td> <code>_cta.kit</code>, <code>_faq.kit</code> </td>
+	<td> <code>src/components/CTA.astro</code>, <code>src/components/Faq.astro</code> </td>
+</tr>
+<tr>
+	<td> JSON-LD in headers </td>
+	<td> <code>src/components/Head.astro</code> — Person/Org/WebSite/WebPage + optional Product/CreativeWork </td>
+</tr>
+<tr>
+	<td> Header scripts (gtag, Payhip, Swiper, Lottie) </td>
+	<td> <code>src/scripts/</code> + <code>&lt;script&gt;</code> / <code>is:inline</code> </td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="phase3—pages">Phase 3 — Pages</h3>
+
+<ul>
+<li><strong>Static pages</strong> → plain <code>.astro</code> files (body HTML copies over nearly verbatim):
+<code>src/pages/index.astro</code>, <code>contact.astro</code>, <code>newsletter.astro</code>, <code>thanks.astro</code>, <code>niceandrandom.astro</code></li>
+<li><strong>Work index</strong> → <code>src/pages/work/index.astro</code></li>
+<li><strong>12 case studies</strong> → <em>fast path:</em> individual <code>.astro</code> pages with shared <code>CaseStudy</code> layout (keeps hand-editing HTML as today). <em>Nice-to-have:</em> <code>src/content/work/*.md(x)</code> content collection with frontmatter (title, labels, og-image, up-next) so pages become data-driven.</li>
+<li><strong>Store</strong> → <code>store/index.astro</code> + <code>src/pages/store/[slug].astro</code> (5 products) with Product schema (price, availability, Payhip buttons).</li>
+<li><strong>&#8220;Up next&#8221;</strong> → <code>src/components/UpNext.astro</code> (repeated 12× today).</li>
+</ul>
+
+<h3 id="phase4—redirectsseo">Phase 4 — Redirects &amp; SEO</h3>
+
+<ul>
+<li>8 legacy meta-refresh redirects → Astro <code>redirects</code> config (proper 301s).</li>
+<li><code>@astrojs/sitemap</code> → auto full sitemap (fixes bug #4 permanently).</li>
+<li><code>src/pages/404.astro</code> styled like the site.</li>
+<li>Keep <code>robots.txt</code>, <code>CNAME</code>, verification files in <code>public/</code>.</li>
+</ul>
+
+<h3 id="phase5—jstheming">Phase 5 — JS &amp; theming</h3>
+
+<ul>
+<li>Clean <code>lyudmils.js</code> (strip dead code), move to <code>src/scripts/</code>, load from layout.</li>
+<li>Optional: inline critical theme script in <code>&lt;head&gt;</code> to avoid light→dark flash (currently <code>defer</code>'d).</li>
+</ul>
+
+<h3 id="phase6—buildverifydeploy">Phase 6 — Build, verify, deploy</h3>
+
+<ul>
+<li><code>npm run build</code> → <code>dist/</code>; diff URLs against <code>build/</code> / live site (links, trailing slashes, og images, schema).</li>
+<li><strong>Deployment (replaces manual build/ push to the pages repo):</strong></li>
+<li> Keep the existing pages repo as the target, but stop committing build output manually.</li>
+<li> Add a GitHub Actions workflow in this repo that runs on push to <code>main</code>:
+
+<ol>
+<li>Checkout this repo</li>
+<li>Set up Node (e.g. v22+, <code>actions/setup-node</code>)</li>
+<li><code>npm ci</code></li>
+<li><code>npm run build</code></li>
+<li>Deploy <code>dist/</code> to the pages repo (e.g. <code>peaceiris/actions-gh-pages</code> with <code>publish_dir: dist</code> + the <code>CNAME</code> file kept in <code>public/</code>), <strong>or</strong> publish via <code>actions/deploy-pages</code> if GH Pages is configured on this repo instead.</li>
+</ol></li>
+<li> Alternative if they prefer to keep a separate pages repo: use <code>peaceiris/actions-gh-pages</code> pointing at that repo (needs a token with repo scope).</li>
+<li> Sketch of the workflow (see also <code>docs/</code> for reference):</li>
+</ul>
+
+<pre><code class="yaml">name: Build &amp; Deploy
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.PAGES_TOKEN }}
+          publish_dir: ./dist
+          external_repository: &lt;owner&gt;/&lt;pages-repo&gt;
+          publish_branch: main
+</code></pre>
+
+<hr />
+
+<h2 id="4.openquestionsforlyudmil">4. Open questions for Lyudmil</h2>
+
+<ol>
+<li>~~How is <code>build/</code> published to GitHub Pages today?~~ <strong>Answered:</strong> pushed from a separate pages repo. Phase 6 adds a GH Actions workflow (build on push → publish <code>dist/</code> to that repo).</li>
+<li><strong>Which repo / token setup for the deploy step?</strong> The pages repo name + whether a <code>PAGES_TOKEN</code> (fine-grained PAT) already exists, or if GH Pages can be pointed at this repo instead (simpler, no extra token).</li>
+<li><strong>Images:</strong> keep in <code>public/</code> as-is (recommended) or go full <code>astro:assets</code>?</li>
+<li><strong>Case studies:</strong> quick <code>.astro</code> pages (recommended first) or MDX content collection?</li>
+<li><strong>Jwax:</strong> finish or delete?</li>
+<li><strong>Do you want to rename the OG image files to the lowercase scheme</strong> (referenced in <code>.kit</code>) <strong>or update references to match actual files?</strong> (recommended: rename files to the lowercase scheme — cleaner URLs, and spaces/special chars in URLs are fragile)</li>
+<li><strong>Non-www <code>iam314.com/thanks/</code></strong> — verify it resolves; consider updating Payhip successUrl to <code>www</code>.</li>
+</ol>
+
+<hr />
+
+<h2 id="5.definitionofdoneacceptancechecklist">5. Definition of done (acceptance checklist)</h2>
+
+<ul>
+<li>[ ] All 22 pages render with identical HTML output (diff against <code>build/</code>)</li>
+<li>[ ] All internal links + trailing slashes work</li>
+<li>[ ] OG images resolve (200) for every page</li>
+<li>[ ] Sitemap contains all pages</li>
+<li>[ ] Theme toggle, Sofia clock, Lottie, Swiper, Payhip, ConvertKit, GA all work</li>
+<li>[ ] JSON-LD schema valid for base / case-study / product pages</li>
+<li>[ ] Legacy redirect URLs still work (301)</li>
+<li>[ ] <code>npm run build</code> succeeds</li>
+<li>[ ] GH Actions workflow builds on push to <code>main</code> and publishes <code>dist/</code> to the pages repo automatically</li>
+<li>[ ] Deployment pipeline verified end-to-end (push a commit → live site updates)</li>
+</ul>
+
+</body>
+</html>
+

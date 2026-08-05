@@ -169,6 +169,76 @@
 </tbody>
 </table>
 
+<h3 id="round2—livesiteaudit2026-08-05">Round 2 — live site audit (2026&#8211;08&#8211;05)</h3>
+
+<p>Full crawl of all 23 pages + 183 local assets against the live server. Round 1 fixes confirmed deployed (all OG images 200, sitemap = 23 URLs, cleaned JS, hero srcset live). New findings:</p>
+
+<table>
+<colgroup>
+<col />
+<col />
+<col />
+</colgroup>
+
+<thead>
+<tr>
+	<th> # </th>
+	<th> Issue </th>
+	<th> Status </th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td> 1 </td>
+	<td> <code>og:image</code> / <code>twitter:image</code> were <strong>relative</strong> URLs (<code>/images/...</code>) — OG spec requires absolute; FB/Twitter/LinkedIn scrapers may ignore them </td>
+	<td> <strong>FIXED</strong>: all 3 header partials now emit <code>https://www.iam314.com</code> + <code>$ogimage</code> (meta tags + JSON-LD <code>image</code> nodes) </td>
+</tr>
+<tr>
+	<td> 2 </td>
+	<td> Lottie player (<strong>384KB, render-blocking</strong>) loaded on all 23 pages; only 9 pages actually use <code>&lt;lottie-player&gt;</code>; <code>lyudmils.js</code> already had a lazy loader </td>
+	<td> <strong>FIXED</strong>: removed eager script from all 3 headers; lazy loader injects on demand </td>
+</tr>
+<tr>
+	<td> 3 </td>
+	<td> Swiper (<strong>151KB JS + CSS</strong>) loaded on all pages; only 5 product pages use it </td>
+	<td> <strong>FIXED</strong>: moved to <code>_header-product.kit</code> only </td>
+</tr>
+<tr>
+	<td> 4 </td>
+	<td> ~~Payhip script on all pages; only 5 product pages need it~~ </td>
+	<td> <strong>KEPT ON ALL PAGES (deliberate)</strong> — the floating cart (<code>enableCart: true</code>) must stay visible site-wide, otherwise items vanish from the cart when leaving a product page. Payhip stays in all 3 headers; only Swiper is scoped to <code>_header-product.kit</code> </td>
+</tr>
+<tr>
+	<td> 5 </td>
+	<td> Nice &amp; Random gallery: <strong>7.7MB eager</strong>, 1/51 lazy, no dimensions </td>
+	<td> <strong>FIXED</strong>: all 50 imgs got <code>loading=&quot;lazy&quot;</code> + real <code>width</code>/<code>height</code> (prevents layout shift) </td>
+</tr>
+<tr>
+	<td> 6 </td>
+	<td> Marks page = <strong>574KB HTML</strong> (65 inline SVG logos, <code>fill=&quot;currentColor&quot;</code> for dark-mode theming) </td>
+	<td> OPEN — performance; options: inline <code>&lt;symbol&gt;</code> sprite, or external sprite + <code>&lt;use&gt;</code> (modern browsers inherit <code>currentColor</code>) </td>
+</tr>
+<tr>
+	<td> 7 </td>
+	<td> No custom 404 (GitHub default) </td>
+	<td> OPEN — add <code>404.html</code> </td>
+</tr>
+<tr>
+	<td> 8 </td>
+	<td> Dead link on niceandrandom: <code>http://iam314.com/01.mp3</code> → 404 </td>
+	<td> OPEN — content decision: remove <code>&lt;a&gt;</code> wrapper or keep as history </td>
+</tr>
+<tr>
+	<td> 9 </td>
+	<td> <code>fill=&quot;currentCOlor&quot;</code> typos (17×) in marks SVGs </td>
+	<td> Works (CSS keywords case-insensitive) but sloppy — clean up during Astro migration </td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Reminder:</strong> these .kit changes require a CodeKit rebuild + deploy before they reach the live site.</p>
+
 <hr />
 
 <h2 id="3.migrationplan">3. Migration plan</h2>

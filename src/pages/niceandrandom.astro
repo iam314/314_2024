@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { gallery } from '../data/gallery';
+
+const meta = {
+  title: 'Nice & Random — Lyudmil Dachev',
+  description:
+    'A personal archive of images, moments, and things that matter. Skating, graffiti, counter-culture, and everything in between. The other side of the practice.',
+  link: 'https://www.iam314.com/niceandrandom/',
+  ogImage: '/images/ogimages/Open Graph - Nice Random.png',
+};
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  link={meta.link}
+  ogImage={meta.ogImage}
+  footerVariant="inner"
+>
+  <main>
+    <div class="visually-hidden">
+      <h1>Nice & Random — Lyudmil Dachev</h1>
+      <p>A personal archive of images, moments, and things that matter. Skating, graffiti, counter-culture, travel, and everything in between. The other side of the practice by Lyudmil Dachev.</p>
+    </div>
+    <section class="wrap">
+      <div class="grid inner-projects-hero">
+        <div class="projects-grid">
+          <div class="grid-1">
+            <div id="left_column">
+              {
+                gallery.map((img) => (
+                  <img
+                    class="floated img-responsive-nandr"
+                    title={img.title}
+                    alt={img.alt}
+                    src={img.src}
+                    loading="lazy"
+                    width={img.width}
+                    height={img.height}
+                  />
+                ))
+              }
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

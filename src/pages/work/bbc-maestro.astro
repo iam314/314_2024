@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Cta from '../../components/CTA.astro';
+
+const meta = {
+  title: "BBC Maestro — Web App Design by Lyudmil Dachev",
+  description: "UX/UI and web app design for BBC Maestro, a performance scoring application for the BBC television show. Art direction and product design by Lyudmil Dachev.",
+  link: "https://www.iam314.com/work/bbc-maestro/",
+  ogImage: "/images/ogimages/Open Graph - BBC masetro.png",
+};
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  link={meta.link}
+  ogImage={meta.ogImage}
+  schemaType="case-study"
+  footerVariant="photoOnly"
+>
+  <section class="wrap">
+    <div class="grid">
+      <div class="inner-projects-hero hero-grid projects-top-reset">
+        <h1 class="txt-xl">BBC Maestro</h1>
+        <h2 style="margin-bottom: 0;" class="subtxt">Web App Design</h2>
+          <ul class="labels">
+            <li class="labels subtxtgray">UX/UI</li>
+            <li class="labels subtxtgray">Web app design</li>
+            <li class="labels subtxtgray">Art direction</li>
+          </ul>
+      </div>
+    </div>
+  </section>
+  <section class="wrap">
+    <div class="grid inner-projects-hero marging-reset">
+      <div class="projects-grid">
+        <div class="grid-1">
+          
+          <figure>
+            <img class="img-responsive" src="/images/work/bbc-maestro/bbc-maestrologin_animation.gif" 
+                 alt="BBC Maestro web app login screen motion study by Lyudmil Dachev" 
+                 loading="lazy" width="2560" height="1204">
+            <figcaption class="visually-hidden">
+              A motion study of the login interface for the BBC Maestro performance scoring application.
+            </figcaption>
+          </figure>
+
+          <figure>
+            <img class="img-responsive" src="/images/work/bbc-maestro/bbc-maesto-first-flow.gif" 
+                 alt="Primary user journey and interface flow for BBC Maestro" 
+                 loading="lazy" width="2560" height="1552">
+            <figcaption class="visually-hidden">
+              The primary user flow for the scoring app, demonstrating minimalist UI and intuitive navigation.
+            </figcaption>
+          </figure>
+
+          <figure>
+            <img class="img-responsive" src="/images/work/bbc-maestro/bbc-maesto-scnd-flow.gif" 
+                 alt="Secondary web app interface interactions for BBC Maestro" 
+                 loading="lazy" width="2560" height="2256">
+            <figcaption class="visually-hidden">
+              Detailed interface interactions showing the performance scoring system in action.
+            </figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </div>
+  </section> 
+
+<!-- up next -->
+  <section class="wrap">
+    <a href="/work/air-quality/" class="upnext-link">
+    <div class="grid">
+      <div class="inner-projects-hero hero-grid projects-top-reset">
+        <h3 class="subtxt subtxtgray">up next</h3>
+        <h4 class="txt-xl">Air Quality App</h4>
+        <h5 class="subtxt">Mobile App Design</h5>
+          <ul class="labels">
+            <li class="labels subtxtgray">UX/UI</li>
+            <li class="labels subtxtgray">Mobile design</li>
+            <li class="labels subtxtgray">Data visualization</li>
+          </ul>
+      </div>
+    </div>
+
+    <div class="grid inner-projects-hero marging-reset">
+      <div class="projects-grid" style="padding-bottom: 0;">
+        <div class="grid-1">
+
+          <div>
+            <figure class="upnext-img">
+<img class="img-responsive" src="/images/work/air-quality/air-quality-app-main-screens.avif" 
+                 alt="Main interface screens for the Air Quality monitoring app by Lyudmil Dachev" 
+                 loading="lazy" width="2560" height="2404">
+            <figcaption class="visually-hidden">
+              Overview of the primary mobile interface screens for the Air Quality monitoring application.
+            </figcaption>
+            </figure>
+          </div>                                         
+
+        </div>
+      </div>
+    </div>
+    </a>
+  </section>
+<!-- end of upnext -->
+
+<Cta />
+</BaseLayout>

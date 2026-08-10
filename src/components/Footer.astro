@@ -1,0 +1,24 @@
+---
+interface Props {
+  variant?: 'home' | 'inner' | 'photoOnly';
+}
+
+const { variant = 'home' } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="wrap contact">
+  <div class="grid">
+    <div class={'copyroght-wrap ' + (variant === 'inner' ? 'footercopy-grid footercopy-grid-ovr' : 'footercopy-grid')}>
+      <div class="copyright">© {year} Lyudmil Dachev</div>
+    </div>
+    <div class={'contact-img-wrap footerimg-grid' + (variant === 'inner' ? ' hide' : '')}>
+      <img src="/images/lyudmil-dachev-brand-identity-designer.avif" loading="lazy" alt="Lyudmil Dachev — Designer and Founder of iam314" class="headshot">
+    </div>
+    <div class={'contact-links-wrap footerlinks-grid' + (variant === 'photoOnly' ? ' hide' : variant === 'inner' ? ' footerlinks-grid-ovr' : '')}>
+      <div class={'likst-flex' + (variant === 'inner' ? ' likst-flex-ovr' : '')}>
+        <a href="mailto:hi@iam314.com" class="contact-link">hi@iam314.com</a>
+      </div>
+    </div>
+  </div>
+</footer>

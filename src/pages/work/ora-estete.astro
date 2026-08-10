@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Cta from '../../components/CTA.astro';
+
+const meta = {
+  title: "Ora Estete — Logo Design & Website by Lyudmil Dachev",
+  description: "Logo design and website for Ora Estete, a full service video production company. Logo design, web design and Webflow development by Lyudmil Dachev.",
+  link: "https://www.iam314.com/work/ora-estete/",
+  ogImage: "/images/ogimages/Open Graph - Ora estete.png",
+};
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  link={meta.link}
+  ogImage={meta.ogImage}
+  schemaType="case-study"
+  footerVariant="photoOnly"
+>
+  <section class="wrap">
+    <div class="grid">
+      <div class="inner-projects-hero hero-grid projects-top-reset">
+        <h1 class="txt-xl">Ora Estete</h1>
+        <h2 style="margin-bottom: 0;" class="subtxt">Logo & Website</h2>
+          <ul class="labels">
+            <li class="labels subtxtgray">Logo design</li>
+            <li class="labels subtxtgray">Web design</li>
+            <li class="labels subtxtgray">Development</li>
+            <li class="labels subtxtgray">Webflow</li>
+          </ul>
+      </div>
+    </div>
+  </section>
+<section class="wrap">
+    <div class="grid inner-projects-hero marging-reset">
+      <div class="projects-grid">
+        <div class="grid-1">
+
+          <figure>
+            <lottie-player 
+              src="/images/work/ora-estete/ora-estete_logo-animation.json" 
+              background="#fbfbfb" 
+              speed="1" 
+              loop 
+              autoplay 
+              muted
+              role="img"
+              width="1920"
+              height="1080"
+              aria-label="Animated Ora Estete logo by Lyudmil Dachev">
+            </lottie-player>
+            <figcaption class="visually-hidden">
+              Motion design for the Ora Estete identity, showcasing the fluid brand mark for the video production studio.
+            </figcaption>
+          </figure>
+
+          <div class="grid-2">
+            <figure>
+              <img class="img-responsive" src="/images/work/ora-estete/ora-estete_logo-onlight.avif" 
+                   alt="Ora Estete primary logo on light background" 
+                   loading="lazy" width="1152" height="664">
+              <figcaption class="visually-hidden">Ora Estete primary logo displayed on a clean light background.</figcaption>
+            </figure>
+            <figure>
+              <img class="img-responsive" src="/images/work/ora-estete/ora-estete_logo-ondark.avif" 
+                   alt="Ora Estete primary logo on dark background" 
+                   loading="lazy" width="1152" height="664">
+              <figcaption class="visually-hidden">Ora Estete primary logo displayed on a high-contrast dark background.</figcaption>
+            </figure>
+          </div>
+
+          <figure>
+            <img class="img-responsive" src="/images/work/ora-estete/ora-estete-website-pages-desktop.avif" 
+                 alt="Desktop UI/UX design for Ora Estete video production studio" 
+                 loading="lazy" width="2560" height="1598">
+            <figcaption class="visually-hidden">
+              Comprehensive desktop web design for Ora Estete, showcasing the portfolio-first approach for their production work.
+            </figcaption>
+          </figure>
+
+          <figure>
+            <img class="img-responsive" src="/images/work/ora-estete/ora-estete-website-pages-mobile.avif" 
+                 alt="Responsive mobile design for the Ora Estete website" 
+                 loading="lazy" width="2560" height="1108">
+            <figcaption class="visually-hidden">
+              The responsive mobile interface for Ora Estete, optimized for viewing high-quality video content on the go.
+            </figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </div>
+  </section> 
+
+<!-- up next -->
+  <section class="wrap">
+    <a href="/work/fotofabrika/" class="upnext-link">
+    <div class="grid">
+      <div class="inner-projects-hero hero-grid projects-top-reset">
+        <h3 class="subtxt subtxtgray">up next</h3>
+        <h4 class="txt-xl">Fotofabrika</h4>
+        <h5 class="subtxt">Website Design & Development</h5>
+          <ul class="labels">
+            <li class="labels subtxtgray">UI/UX</li>
+            <li class="labels subtxtgray">Web design</li>
+            <li class="labels subtxtgray">Development</li>
+            <li class="labels subtxtgray">Webflow</li>
+          </ul>
+      </div>
+    </div>
+
+    <div class="grid inner-projects-hero marging-reset">
+      <div class="projects-grid" style="padding-bottom: 0;">
+        <div class="grid-1">
+
+          <div>
+            <figure class="upnext-img">
+            <img class="img-responsive" src="/images/work/fotofabrika/fotofabrika_website-home_page.gif" 
+                 alt="Fotofabrika website homepage interaction and scrolling experience" 
+                 loading="lazy" width="2560" height="1440">
+            <figcaption class="visually-hidden">
+              A scrolling showcase of the Fotofabrika Foundation homepage, highlighting the minimalist grid and photography-centric layout.
+            </figcaption>
+            </figure>
+          </div>                                         
+
+        </div>
+      </div>
+    </div>
+    </a>
+  </section>
+<!-- end of upnext -->
+
+<Cta />
+</BaseLayout>

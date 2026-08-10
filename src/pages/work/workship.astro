@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Cta from '../../components/CTA.astro';
+
+const meta = {
+  title: "Workship — Brand Identity by Lyudmil Dachev",
+  description: "Brand identity for Workship, a mobile coworking space operating from a converted bus. Custom wordmark by Lyudmil Dachev.",
+  link: "https://www.iam314.com/work/workship/",
+  ogImage: "/images/ogimages/Open Graph - Workship.png",
+};
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  link={meta.link}
+  ogImage={meta.ogImage}
+  schemaType="case-study"
+  footerVariant="photoOnly"
+>
+  <section class="wrap">
+    <div class="grid">
+      <div class="inner-projects-hero hero-grid projects-top-reset">
+        <h1 class="txt-xl">Workship</h1>
+        <h2 style="margin-bottom: 0;" class="subtxt">Identity</h2>
+          <ul class="labels">
+            <li class="labels subtxtgray">Logo design</li>
+            <li class="labels subtxtgray">Identity</li>
+          </ul>
+      </div>
+    </div>
+  </section>    
+  <section class="wrap">
+    <div class="grid inner-projects-hero marging-reset">
+      <div class="projects-grid">
+        <div class="grid-1">
+          <figure>
+            <img class="img-responsive" src="/images/work/workship/workship_logo_black_white.avif" 
+                alt="Workship custom wordmark and logo design by Lyudmil Dachev" 
+                loading="lazy" width="2561" height="1600">
+            <figcaption class="visually-hidden">
+              The primary custom wordmark for Workship, featuring high-contrast minimalist custom typography.
+            </figcaption>
+          </figure>
+
+          <figure>
+            <img class="img-responsive" src="/images/work/workship/Workship_color_palette.avif" 
+                alt="Brand color palette for Workship coworking space" 
+                loading="lazy" width="2560" height="1600">
+            <figcaption class="visually-hidden">
+              A sophisticated, high-contrast color palette designed for the Workship mobile coworking brand.
+            </figcaption>
+          </figure>
+
+          <figure>
+            <img class="img-responsive" src="/images/work/workship/workship_pattern-elemnts.avif" 
+                alt="Geometric brand pattern elements for Workship" 
+                loading="lazy" width="2560" height="1951">
+            <figcaption class="visually-hidden">
+              Modular geometric patterns used as a supporting visual language for the Workship identity.
+            </figcaption>
+          </figure>
+
+          <figure>
+            <img class="img-responsive" src="/images/work/workship/workship_vertical-lockup.avif" 
+                alt="Workship vertical logo lockup variation by Lyudmil Dachev" 
+                loading="lazy" width="2560" height="791">
+            <figcaption class="visually-hidden">
+              A vertical lockup variation of the Workship logo, optimized for narrow applications.
+            </figcaption>
+          </figure>
+
+          <figure>
+            <video 
+              width="1920" height="1080" 
+              preload="auto" autoplay loop muted playsinline 
+              poster="/images/work/workship/workship_logo_black_white.avif" 
+              class="project-video img-responsive">
+              <source src="/images/work/workship/workship-logo-patern_animation (1080p).mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <figcaption class="visually-hidden">
+              A motion design study showing the Workship logo and pattern elements in a seamless loop.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section> 
+
+<!-- up next -->
+  <section class="wrap">
+    <a href="/work/outsider-talks/" class="upnext-link">
+    <div class="grid">
+      <div class="inner-projects-hero hero-grid projects-top-reset">
+        <h3 class="subtxt subtxtgray">up next</h3>
+        <h4 class="txt-xl">Outsider Talks</h4>
+        <h5 class="subtxt">Identity</h5>
+          <ul class="labels">
+            <li class="labels subtxtgray">Logo design</li>
+            <li class="labels subtxtgray">Identity</li>
+          </ul>
+      </div>
+    </div>
+
+    <div class="grid inner-projects-hero marging-reset">
+      <div class="projects-grid" style="padding-bottom: 0;">
+        <div class="grid-1">
+
+          <div>
+            <figure class="upnext-img">
+          <lottie-player class="img-responsive"
+            src="/images/work/outsider-talks/outsider-talks_logo-animation.json" 
+            background="transparent" 
+            speed="1" 
+            loop 
+            autoplay
+            muted 
+            role="img" 
+            width="1920" 
+            height="1200" 
+            aria-label="Animated Outsider Talks logo by Lyudmil Dachev">
+          </lottie-player>
+          <figcaption class="visually-hidden">
+            Animated logo for Outsider Talks, a podcast exploring unconventional life paths.
+          </figcaption>
+            </figure>
+          </div>                                         
+
+        </div>
+      </div>
+    </div>
+    </a>
+  </section>
+<!-- end of upnext -->
+
+<Cta />
+</BaseLayout>

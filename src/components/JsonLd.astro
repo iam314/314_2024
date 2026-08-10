@@ -1,0 +1,100 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  link: string;
+  ogImage: string;
+  schemaType?: 'base' | 'case-study' | 'product';
+  price?: string;
+  availability?: string;
+}
+
+const {
+  title,
+  description,
+  link,
+  ogImage,
+  schemaType = 'base',
+  price,
+  availability,
+} = Astro.props;
+
+const baseGraph = [
+  {
+    '@type': 'Person',
+    '@id': 'https://www.iam314.com/#person',
+    name: 'Lyudmil Dachev',
+    jobTitle: 'Brand Identity Designer & Webflow Developer',
+    description:
+      'Brand identity designer, Webflow developer, and maker. Building visual systems for founder-led businesses and independent art prints and type under my own name.',
+    url: 'https://www.iam314.com',
+    image: 'https://www.iam314.com/images/lyudmil-dachev-brand-identity-designer.avif',
+    address: { '@type': 'PostalAddress', addressLocality: 'Sofia', addressCountry: 'BG' },
+    sameAs: ['https://www.linkedin.com/in/iam314/', 'https://www.behance.net/iam314'],
+    worksFor: { '@id': 'https://www.iam314.com/#organization' },
+  },
+  {
+    '@type': 'ProfessionalService',
+    '@id': 'https://www.iam314.com/#organization',
+    name: 'iam314',
+    url: 'https://www.iam314.com',
+    logo: 'https://www.iam314.com/images/favicon.png',
+    founder: { '@id': 'https://www.iam314.com/#person' },
+    priceRange: '€€€',
+    areaServed: 'Worldwide',
+  },
+  {
+    '@type': 'WebSite',
+    '@id': 'https://www.iam314.com/#website',
+    url: 'https://www.iam314.com',
+    name: 'iam314',
+    publisher: { '@id': 'https://www.iam314.com/#organization' },
+  },
+  {
+    '@type': 'WebPage',
+    '@id': link,
+    url: link,
+    name: title,
+    isPartOf: { '@id': 'https://www.iam314.com/#website' },
+    about: { '@id': 'https://www.iam314.com/#person' },
+    description,
+  },
+];
+
+const graph = [...baseGraph];
+
+if (schemaType === 'case-study') {
+  graph.push({
+    '@type': 'CreativeWork',
+    '@id': link + '#work',
+    url: link,
+    name: title,
+    creator: { '@id': 'https://www.iam314.com/#person' },
+    description,
+    image: 'https://www.iam314.com' + ogImage,
+  });
+}
+
+if (schemaType === 'product') {
+  graph.push({
+    '@type': 'Product',
+    '@id': link + '#product',
+    name: title,
+    image: 'https://www.iam314.com' + ogImage,
+    description,
+    brand: { '@id': 'https://www.iam314.com/#organization' },
+    offers: {
+      '@type': 'Offer',
+      url: link,
+      price,
+      priceCurrency: 'EUR',
+      availability,
+      seller: { '@id': 'https://www.iam314.com/#organization' },
+    },
+  });
+}
+
+const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
+---
+
+<script type="application/ld+json" is:inline set:html={jsonLd} />

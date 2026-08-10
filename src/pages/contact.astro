@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const meta = {
+  title: 'Contact – Lyudmil Dachev',
+  description: 'Project inquiries and direct contact. Start a project or license a system with Lyudmil Dachev.',
+  link: 'https://www.iam314.com/contact/',
+  ogImage: '/images/ogimages/Open Graph - Contact.png',
+};
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  link={meta.link}
+  ogImage={meta.ogImage}
+  footerVariant="photoOnly"
+>
+  <section class="wrap hero">
+    <div class="grid">
+      <div class="hero_wrap hero-grid">
+        <h1 class="txt-xl">Project inquiries,<br>and direct contact.</h1>
+        <p class="subtxt subtxtgray">Inquiries for new work. Available for a coffee or a conversation about anything interesting — I keep the circle small.</p>
+      </div>
+    </div>
+  </section>
+  <section class="wrap">
+    <div class="grid">
+      <div class="txt-item faq-grid">
+        <div class="faq-item">
+          <h2 class="txt-s">Connect</h2><br>
+          <p class="paragraph1 paragraph1-s">
+            <a href="mailto:hi@iam314.com" class="contact-link">hi@iam314.com</a>
+          </p>
+        </div>
+        <div class="faq-item">
+          <h2 class="txt-s">Location</h2><br>
+          <p class="paragraph1 paragraph1-s">
+            Sofia, Bulgaria
+            UTC+2 / EET
+          </p>
+          <div class="sofia-time">
+            <time id="sofia-clock" datetime="00:00">
+              <span id="hours">00</span><span class="blink">:</span><span id="minutes">00</span>
+            </time>
+          </div>
+        </div>
+        <div class="faq-item">
+          <h2 class="txt-s">Availability</h2><br>
+          <p class="paragraph1 paragraph1-s">● Active / Booking <br>
+            Sofia — worldwide
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

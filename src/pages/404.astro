@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const meta = {
+  title: '404 – Page not found | Lyudmil Dachev',
+  description: 'The page you are looking for does not exist or has been moved.',
+  link: 'https://www.iam314.com/404.html',
+  ogImage: '/images/ogimages/opengraph.png',
+};
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  link={meta.link}
+  ogImage={meta.ogImage}
+  footerVariant="home"
+>
+  <section class="wrap hero">
+    <div class="grid">
+      <div class="hero_wrap hero-grid">
+        <h1 class="txt-xl">404.<br>Page not found.</h1>
+        <p class="subtxt">The page you're looking for doesn't exist — it may have moved or never been here.</p>
+        <p class="txt-l name"><a href="/" class="contact-link">Back to the homepage ↗</a></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { products } from '../../data/products';
+
+const meta = {
+  title: 'Store – Prints & Digital Products by Lyudmil Dachev',
+  description:
+    'Browse limited edition screen prints, prints, typefaces, and other digital products by Lyudmil Dachev.',
+  link: 'https://www.iam314.com/store/',
+  ogImage: '/images/ogimages/Open Graph - Store.png',
+};
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  link={meta.link}
+  ogImage={meta.ogImage}
+  footerVariant="inner"
+>
+  <div class="visually-hidden">
+    <h1>Store. Prints & Digital Products by Lyudmil Dachev</h1>
+    <p>Original giclée prints, hand-pulled screen prints, and digital products by Lyudmil Dachev. Independent work available to buy directly.</p>
+  </div>
+  <section class="wrap">
+    <div class="grid inner-store-hero">
+      <div class="products-grid">
+        <ul role="list" class="w-list-unstyled grid-3">
+          {
+            products.map((p) => (
+              <li class="grid-item">
+                <article>
+                  <a class="product-links" href={p.href} aria-label={p.aria}>
+                    <div class="product-wrapper">
+                      <div class="product-image">
+                        <img class="img-responsive" loading="lazy" src={p.thumb} alt={p.thumbAlt}>
+                      </div>
+                    </div>
+                    <div class="titleprice">
+                      <h2 class="txt-smaller">{p.name}</h2>
+                      <p class="subtxtgray">{p.type}</p>
+                      <p class="txt-smaller" set:html={p.price} />
+                    </div>
+                  </a>
+                </article>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

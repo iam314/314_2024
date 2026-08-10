@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const meta = {
+  title: 'Thank you — Lyudmil Dachev',
+  description: 'You just made my day.',
+  link: 'https://www.iam314.com/thanks/',
+  ogImage: '/images/ogimages/opengraph.png',
+};
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  link={meta.link}
+  ogImage={meta.ogImage}
+  footerVariant="home"
+>
+  <section id="intro" class="wrap hero">
+    <div class="grid">
+      <div class="hero_wrap hero-grid">
+        <h1 class="txt-xl">Thank you!</h1>
+        <p class="subtxt">You just made my day.</p>
+        <p class="txt-l name">Lyudmil Dachev<br>– Designer</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

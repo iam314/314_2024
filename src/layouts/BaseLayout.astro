@@ -1,0 +1,87 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import JsonLd from '../components/JsonLd.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  link: string;
+  ogImage: string;
+  schemaType?: 'base' | 'case-study' | 'product';
+  price?: string;
+  availability?: string;
+  useSwiper?: boolean;
+  footerVariant?: 'home' | 'inner' | 'photoOnly';
+}
+
+const {
+  title,
+  description,
+  link,
+  ogImage,
+  schemaType = 'base',
+  price,
+  availability,
+  useSwiper = false,
+  footerVariant = 'home',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<!-- Designed and developed by Lyudmil Dachev -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{title}</title>
+  <link rel="canonical" href={link} />
+  <meta name="description" content={description} />
+  <meta name="author" content="Lyudmil Dachev">
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={'https://www.iam314.com' + ogImage} />
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={'https://www.iam314.com' + ogImage} />
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="/css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="/css/lyudmils.css" rel="stylesheet" type="text/css">
+  <link href="/css/nandr.css" rel="stylesheet" type="text/css">
+  <link href="/images/favicon.png" rel="shortcut icon" type="image/x-icon">
+  <link href="/images/webclip.png" rel="apple-touch-icon">
+  <JsonLd {title} {description} {link} {ogImage} schemaType={schemaType} price={price} availability={availability} />
+  <script is:inline src="/js/lyudmils.js" defer></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-8K5NWXN6WD"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8K5NWXN6WD');
+  </script>
+
+  <!-- STORE -->
+  <script is:inline>
+    var PayhipConfig = { enableCart: true };
+  </script>
+  <script is:inline src="https://payhip.com/payhip.js" defer></script>
+
+  {useSwiper && (
+    <>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+      <script is:inline src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js" defer></script>
+    </>
+  )}
+</head>
+<body class="body-light">
+  <Nav />
+  <main>
+    <slot />
+  </main>
+  <Footer variant={footerVariant} />
+</body>
+</html>

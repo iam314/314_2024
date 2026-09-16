@@ -26,4 +26,4 @@ pnpm-debug.log*
 # Licensed fonts (Dinamo ABC Areal — free fonts license).
 # Kept out of the repo: the repo is public and § 10 of the EULA prohibits
 # putting the fonts in public repositories. Injected at deploy time instead.
-public/fonts/ABCArealSuperfamilyVariable.woff2
+public/fonts/ABCAreal*.woff2

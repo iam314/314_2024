@@ -502,8 +502,8 @@ ul.labels li:not(:last-child)::after {
 .body-light {
   color: var(--color--black);
   font-weight: 500;
-  /* MONO 0 = Areal. DRKM flips with dark mode (see [data-*] block above). */
-  font-variation-settings: "MONO" var(--mono-body), "DRKM" var(--axis-drkm);
+  /* DRKM-flips with dark mode (see the axis note above). */
+  font-variation-settings: "DRKM" var(--axis-drkm);
 }
 
 .body-light.is-dark {
@@ -1415,15 +1415,18 @@ h3 {
 
 /*
   ABC Areal — Dinamo (free fonts license, § 9.12).
-  One subsetted superfamily variable file covering three designs on the MONO
-  axis: 0 = Areal, 50 = Areal Semi Mono, 100 = Areal Mono. Plus wght 400-700
-  and DRKM, the darkmode axis that optically corrects white-on-dark text.
-  Self-hosted and glyph-subsetted, both expressly permitted by § 9.5.
-  The file is gitignored; see the note in .gitignore.
+  Single-family variable WOFF2, glyph-subsetted from 177 KB to 120 KB.
+  Axes: wght 400-700 and DRKM, the darkmode axis that optically corrects
+  white-on-dark text. Self-hosting and subsetting are expressly permitted
+  by § 9.5. The file is gitignored; see the note in .gitignore.
+
+  To add Areal Semi Mono (MONO 50) or Areal Mono (MONO 100) later, swap this for
+  the superfamily variable and subset it the same way — it carries all three
+  designs on the MONO axis, at 181 KB.
 */
 @font-face {
   font-family: "Areal";
-  src: url("../fonts/ABCArealSuperfamilyVariable.woff2") format("woff2");
+  src: url("../fonts/ABCArealVariable.woff2") format("woff2");
   font-weight: 400 700;
   font-style: normal;
   font-display: swap;
@@ -1433,14 +1436,9 @@ h3 {
   Areal axis state. A font-variation-settings declaration replaces the whole
   property rather than merging with what it inherits, so any rule that sets it
   must list every axis it wants — otherwise an inherited DRKM would be dropped.
-
-  MONO is left at 0 (plain Areal) everywhere. The superfamily file still carries
-  the Semi Mono (50) and Mono (100) designs if you ever want them for a specific
-  element — add e.g. font-variation-settings: "MONO" 50, "DRKM" var(--axis-drkm);
 */
 :root {
   --axis-drkm: 0;
-  --mono-body: 0;   /* Areal */
 }
 
 html.is-dark {

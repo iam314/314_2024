@@ -98,7 +98,60 @@
   };
 
   /**
-   * --- 5. EXECUTION ---
+   * --- 5. NAV SCROLL REVEAL ---
+   * Hides the fixed nav while scrolling down, brings it back on scroll up.
+   * The animation itself is CSS: .nav-content[data-nav='hidden'] in lyudmils.css.
+   */
+  const initNavScrollReveal = () => {
+    const nav = document.querySelector('.nav-content');
+    if (!nav) return;
+
+    const ALWAYS_VISIBLE_ABOVE = 120; // px: never hide while near the top of the page
+    const DIRECTION_THRESHOLD = 6;    // px: ignore trackpad jitter / micro-scrolls
+    const IDLE_REVEAL_DELAY = 1200;   // ms of no scrolling before the nav comes back
+    const BOTTOM_REVEAL_WITHIN = 24;  // px from the end of the page where the nav stays put
+    let lastY = window.scrollY;
+    let isHidden = false;
+    let idleTimer;
+
+    const setHidden = (next) => {
+      if (next === isHidden) return;
+      isHidden = next;
+      if (next) nav.setAttribute('data-nav', 'hidden');
+      else nav.removeAttribute('data-nav');
+    };
+
+    // Bring the nav back once the page has settled, so it is never gone for good.
+    const scheduleIdleReveal = () => {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => setHidden(false), IDLE_REVEAL_DELAY);
+    };
+
+    // At the end of the page you are looking for a way out, so keep the nav around.
+    const isNearBottom = () =>
+      window.scrollY + window.innerHeight >=
+      document.documentElement.scrollHeight - BOTTOM_REVEAL_WITHIN;
+
+    const onScroll = () => {
+      const y = window.scrollY;
+      const delta = y - lastY;
+
+      scheduleIdleReveal();
+
+      // Bail out without updating lastY so small movements can accumulate.
+      if (Math.abs(delta) < DIRECTION_THRESHOLD) return;
+      lastY = y;
+
+      // Ordered so the (reflow-flushing) scrollHeight read only happens when we
+      // are otherwise about to hide the nav.
+      setHidden(delta > 0 && y > ALWAYS_VISIBLE_ABOVE && !isNearBottom());
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+  };
+
+  /**
+   * --- 6. EXECUTION ---
    */
   
   // A. Run Theme & Clock immediately
@@ -132,5 +185,8 @@
         applyTheme(e.matches);
       }
     });
+
+    // 5. Nav hide-on-scroll-down
+    initNavScrollReveal();
   });
 })();

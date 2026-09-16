@@ -23,8 +23,29 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      # ABC Areal lives in a private repo: Dinamo's EULA § 10 prohibits putting the
+      # fonts in public repositories, and this repo is public. Fetched with a
+      # read-only deploy key (which, unlike a PAT, does not expire).
+      - uses: actions/checkout@v4
+        with:
+          repository: iam314/314_fonts
+          ssh-key: ${{ secrets.FONTS_DEPLOY_KEY }}
+          path: .fonts
+      - name: Install licensed font
+        run: |
+          mkdir -p public/fonts
+          cp .fonts/ABCArealVariable.woff2 public/fonts/ABCArealVariable.woff2
+          rm -rf .fonts
       - run: npm ci
       - run: npm run build
+      # Fail loudly rather than silently deploying a site that falls back to Geist.
+      - name: Verify font made it into the build
+        run: |
+          test -s dist/fonts/ABCArealVariable.woff2 || {
+            echo "::error::Areal font missing from dist. Is FONTS_DEPLOY_KEY set and valid?";
+            exit 1;
+          }
+          echo "Areal font present: $(stat -c%s dist/fonts/ABCArealVariable.woff2) bytes"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist

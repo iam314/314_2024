@@ -508,13 +508,15 @@ ul.labels li:not(:last-child)::after {
 
 .body-light.is-dark {
   background-color: var(--color--black);
-  color: var(--color--white);
-  /*
-    Reverted from `font-weight: 400` to the designed mechanism: one weight in
-    both modes, with ABC Areal's DRKM axis doing the optical correction.
-    Uncomment the line below to compare against the old weight-swap approach.
-  */
-  /* font-weight: 400; */
+  color: var(--dark-text);
+}
+
+/*
+  Only applied when --dark-weight differs from the light weight. Set it to 500
+  in :root to disable the step entirely and let DRKM do all the correcting.
+*/
+html.is-dark .body-light {
+  font-weight: var(--dark-weight);
 }
 
 .af-list-item {
@@ -1439,6 +1441,18 @@ h3 {
 */
 :root {
   --axis-drkm: 0;
+  /*
+    Dark-mode body weight. 500 = no weight step (DRKM alone corrects).
+    450 = a middle step. 400 = the old light/dark swap.
+    Any value below 500 reflows text on toggle, so treat this as a taste knob.
+  */
+  --dark-weight: 450;
+  /*
+    Dark-mode text colour. Pure white on pure black causes halation, which is
+    what makes light-on-dark read heavy. Heading toward #e3e3e3 reduces that
+    without touching weight — and therefore without any reflow.
+  */
+  --dark-text: var(--color--white);
 }
 
 html.is-dark {

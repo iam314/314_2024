@@ -318,8 +318,6 @@ h2 {
 .labels {
   font-size: clamp(0.625rem, 0.5417rem + 0.3704vw, 0.875rem);
   line-height: 1.6;
-  /* Semi Mono: the editorial counterpoint to Areal. See --mono-label. */
-  font-variation-settings: "MONO" var(--mono-label), "DRKM" var(--axis-drkm);
 }
 
 .feat-items {
@@ -344,8 +342,6 @@ h2 {
 
 .subtxtgray { 
   color: var(--color--black-40);
-  /* Metadata lines take Semi Mono as well. */
-  font-variation-settings: "MONO" var(--mono-label), "DRKM" var(--axis-drkm);
 }
 
 .subtxtgray.subtxtgray-dark {
@@ -1434,15 +1430,17 @@ h3 {
 }
 
 /*
-  Areal axis state. Every font-variation-settings declaration below lists BOTH
-  axes, because a declaration replaces the whole property rather than merging
-  with what it inherits — omitting DRKM on a label would silently drop the
-  darkmode correction in dark mode.
+  Areal axis state. A font-variation-settings declaration replaces the whole
+  property rather than merging with what it inherits, so any rule that sets it
+  must list every axis it wants — otherwise an inherited DRKM would be dropped.
+
+  MONO is left at 0 (plain Areal) everywhere. The superfamily file still carries
+  the Semi Mono (50) and Mono (100) designs if you ever want them for a specific
+  element — add e.g. font-variation-settings: "MONO" 50, "DRKM" var(--axis-drkm);
 */
 :root {
   --axis-drkm: 0;
   --mono-body: 0;   /* Areal */
-  --mono-label: 50; /* Areal Semi Mono */
 }
 
 html.is-dark {

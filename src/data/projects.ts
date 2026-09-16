@@ -1,6 +1,6 @@
 // Work case studies — extracted from work/index.kit + work/<slug>/index.kit
 export interface Project {
-  slug: string; name: string; thumb: string; thumbAlt: string; aria: string;
+  slug: string; name: string; thumb: string; thumbWidth: number; thumbHeight: number; thumbAlt: string; aria: string;
 }
 
 export const projects: Project[] = [
@@ -8,6 +8,8 @@ export const projects: Project[] = [
     "slug": "the-rnb-awards",
     "name": "The R&B Awards",
     "thumb": "/images/work/the-rnb-awards/thernbawards_thumb.avif",
+    "thumbWidth": 820,
+    "thumbHeight": 615,
     "thumbAlt": "Brand identity and website design and Webflow development for The R&B Awards, a yearly music awards show.",
     "aria": "The R&B Awards Case Study"
   },
@@ -15,6 +17,8 @@ export const projects: Project[] = [
     "slug": "brand-springboard",
     "name": "Brand Springboard",
     "thumb": "/images/work/brand-springboard/brand-springboard_thumb.avif",
+    "thumbWidth": 820,
+    "thumbHeight": 615,
     "thumbAlt": "Brand identity and website design and Webflow development for Brand Springboard, a marketing consultancy.",
     "aria": "Brand Springboard Case Study"
   },
@@ -22,6 +26,8 @@ export const projects: Project[] = [
     "slug": "workship",
     "name": "Workship",
     "thumb": "/images/work/workship/workship_thumb.avif",
+    "thumbWidth": 820,
+    "thumbHeight": 615,
     "thumbAlt": "Brand identity for Workship, a mobile coworking space built inside a converted bus.",
     "aria": "Workship Case Study"
   },
@@ -29,6 +35,8 @@ export const projects: Project[] = [
     "slug": "outsider-talks",
     "name": "Outsider Talks",
     "thumb": "/images/work/outsider-talks/outsider-talks_thumb.avif",
+    "thumbWidth": 820,
+    "thumbHeight": 615,
     "thumbAlt": "Brand identity for Outsider Talks, an independent media and events brand.",
     "aria": "Outsider Talks Case Study"
   },
@@ -36,6 +44,8 @@ export const projects: Project[] = [
     "slug": "terrasse",
     "name": "Terrasse",
     "thumb": "/images/work/terrasse/terrasse_thumb.gif",
+    "thumbWidth": 820,
+    "thumbHeight": 615,
     "thumbAlt": "Brand identity and campaign design for Terrasse, a hospitality brand.",
     "aria": "Terrasse Case Study"
   },
@@ -43,6 +53,8 @@ export const projects: Project[] = [
     "slug": "bbc-maestro",
     "name": "BBC Maestro",
     "thumb": "/images/work/bbc-maestro/bbc-maestro_thumb.avif",
+    "thumbWidth": 820,
+    "thumbHeight": 615,
     "thumbAlt": "UI and art direction for BBC Maestro, an online live scoring platform.",
     "aria": "BBC Maestro Case Study"
   },
@@ -50,6 +62,8 @@ export const projects: Project[] = [
     "slug": "air-quality",
     "name": "Air Quality App",
     "thumb": "/images/work/air-quality/air-quality_thumb.avif",
+    "thumbWidth": 820,
+    "thumbHeight": 615,
     "thumbAlt": "UI design and concept for an air quality monitoring application.",
     "aria": "Air Quality App Case Study"
   },
@@ -57,6 +71,8 @@ export const projects: Project[] = [
     "slug": "ora-estete",
     "name": "Ora Estete",
     "thumb": "/images/work/ora-estete/ora-estete_thumb.avif",
+    "thumbWidth": 820,
+    "thumbHeight": 615,
     "thumbAlt": "Brand identity and website for Ora Estete, a high-end video production company.",
     "aria": "Ora Estete Case Study"
   },
@@ -64,6 +80,8 @@ export const projects: Project[] = [
     "slug": "fotofabrika",
     "name": "Fotofabrika",
     "thumb": "/images/work/fotofabrika/fotofabrika_thumb.gif",
+    "thumbWidth": 815,
+    "thumbHeight": 620,
     "thumbAlt": "Website design and Webflow development for Fotofabrika, a photography foundation and events space.",
     "aria": "Fotofabrika Case Study"
   },
@@ -71,6 +89,8 @@ export const projects: Project[] = [
     "slug": "crazy-frog",
     "name": "Crazy Frog",
     "thumb": "/images/work/crazy-frog/crazy-frog_thumb.avif",
+    "thumbWidth": 820,
+    "thumbHeight": 615,
     "thumbAlt": "Brand identity and Shopify build for Crazy Frog, a retail brand.",
     "aria": "Crazy Frog Case Study"
   },
@@ -78,6 +98,8 @@ export const projects: Project[] = [
     "slug": "marks",
     "name": "Marks",
     "thumb": "/images/work/marks/marks_thumb.gif",
+    "thumbWidth": 820,
+    "thumbHeight": 615,
     "thumbAlt": "A curated collection of logo marks and brand symbols by Lyudmil Dachev.",
     "aria": "Marks Case Study"
   }

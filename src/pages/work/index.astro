@@ -33,7 +33,7 @@ const meta = {
                   <a class="product-links" href={'/work/' + p.slug + '/'} aria-label={p.aria}>
                     <div class="project-wrapper">
                       <div class="product-image">
-                        <img class="img-responsive" loading="lazy" src={p.thumb} alt={p.thumbAlt}>
+                        <img class="img-responsive" loading="lazy" decoding="async" src={p.thumb} width={p.thumbWidth} height={p.thumbHeight} alt={p.thumbAlt}>
                       </div>
                     </div>
                     <div class="titleprice">

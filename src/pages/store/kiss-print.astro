@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Faq from '../../components/Faq.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import { getProductPage } from '../../data/productPages';
 
 const meta = {
   title: "The kiss – Limited Edition Screen Print by Lyudmil Dachev",
@@ -10,6 +12,8 @@ const meta = {
   price: "40",
   availability: "https://schema.org/SoldOut",
 };
+
+const { gallery, schema } = getProductPage('kiss-print');
 ---
 
 <BaseLayout
@@ -20,42 +24,14 @@ const meta = {
   schemaType="product"
   price={meta.price}
   availability={meta.availability}
+  product={schema}
   useSwiper
   footerVariant="inner"
 >
     <section class="wrap inner-store-hero">
       <div class="grid">
         <div class="productgallery-grid">
-          <div class="product-gallery">
-            <!-- Thumbnail slider -->
-            <div class="swiper product-thumbs">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img src="/images/store/thekiss/thekiss-1.avif" alt="The Kiss print thumbnail" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/thekiss/thekiss-2.avif" alt="The Kiss detail 1 thumbnail" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/thekiss/thekiss-3.avif" alt="The Kiss detail 2 thumbnail" loading="lazy">
-                </div>
-              </div>
-            </div>
-            <!-- Main slider -->
-            <div class="swiper product-main">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img src="/images/store/thekiss/thekiss-1.avif" alt="The Kiss print" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/thekiss/thekiss-2.avif" alt="The Kiss detail 1" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/thekiss/thekiss-3.avif" alt="The Kiss detail 2" loading="lazy">
-                </div>
-              </div>
-            </div>
-          </div>
+          <ProductGallery items={gallery} label="The Kiss screen print gallery" />
         </div>      
         <div class="productdecription-grid">
           <h1 class="txt-l">The kiss</h1>

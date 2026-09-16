@@ -1,6 +1,6 @@
 // Store products — extracted from store/index.kit + store/<slug>/index.kit
 export interface Product {
-  slug: string; href: string; aria: string; thumb: string; thumbAlt: string; name: string; type: string; price: string;
+  slug: string; href: string; aria: string; thumb: string; thumbWidth: number; thumbHeight: number; thumbAlt: string; name: string; type: string; price: string;
 }
 
 export const products: Product[] = [
@@ -9,6 +9,8 @@ export const products: Product[] = [
     "href": "/store/stray-print/",
     "aria": "Stray Giclée Print — €40",
     "thumb": "/images/store/stray/stray_thumb.avif",
+    "thumbWidth": 800,
+    "thumbHeight": 800,
     "thumbAlt": "Stray giclée print by Lyudmil Dachev",
     "name": "Stray",
     "type": "Giclée print",
@@ -19,6 +21,8 @@ export const products: Product[] = [
     "href": "/store/horizon-print/",
     "aria": "The Horizon Hand-Pulled Screen Print — €9",
     "thumb": "/images/store/thehorizon/thehorizon_thumb.avif",
+    "thumbWidth": 800,
+    "thumbHeight": 800,
     "thumbAlt": "The Horizon hand-pulled screen print by Lyudmil Dachev",
     "name": "The horizon",
     "type": "Hand pulled screen print",
@@ -29,6 +33,8 @@ export const products: Product[] = [
     "href": "/store/kiss-print/",
     "aria": "The Kiss Screen Print — Sold Out",
     "thumb": "/images/store/thekiss/thekiss_thumb.avif",
+    "thumbWidth": 600,
+    "thumbHeight": 600,
     "thumbAlt": "The Kiss hand-pulled screen print by Lyudmil Dachev",
     "name": "The kiss",
     "type": "Hand pulled screen print",
@@ -39,6 +45,8 @@ export const products: Product[] = [
     "href": "/store/314bits-font/",
     "aria": "314 Bits Display Font — €12",
     "thumb": "/images/store/314bits/314bits.avif",
+    "thumbWidth": 600,
+    "thumbHeight": 600,
     "thumbAlt": "314 Bits geometric display typeface by Lyudmil Dachev",
     "name": "314 bits",
     "type": "Display font",
@@ -49,6 +57,8 @@ export const products: Product[] = [
     "href": "/store/flag-icons/",
     "aria": "Flag Icons and Animations — Pay what you want",
     "thumb": "/images/store/flags/flags_thumb.gif",
+    "thumbWidth": 600,
+    "thumbHeight": 600,
     "thumbAlt": "Minimal flag icon set by Lyudmil Dachev",
     "name": "Flag icons",
     "type": "Icons and animations",

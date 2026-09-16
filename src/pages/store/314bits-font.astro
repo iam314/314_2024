@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Faq from '../../components/Faq.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import { getProductPage } from '../../data/productPages';
 
 const meta = {
   title: "314 bits — Geometric Display Typeface (575 Glyphs) by Lyudmil Dachev",
@@ -10,6 +12,8 @@ const meta = {
   price: "12",
   availability: "https://schema.org/InStock",
 };
+
+const { gallery, schema } = getProductPage('314bits-font');
 ---
 
 <BaseLayout
@@ -20,66 +24,14 @@ const meta = {
   schemaType="product"
   price={meta.price}
   availability={meta.availability}
+  product={schema}
   useSwiper
   footerVariant="inner"
 >
     <section class="wrap inner-store-hero">
       <div class="grid">
         <div class="productgallery-grid">
-          <div class="product-gallery">
-            <!-- Thumbnail slider -->
-            <div class="swiper product-thumbs">
-              <div class="swiper-wrapper">
-                <!-- <div class="swiper-slide">
-                  <img src="/images/store/314bits/314bits_1.avif" alt="Image that says Hi in the 3 weights of the font" loading="lazy">
-                </div> -->
-                <div class="swiper-slide">
-                  <img src="/images/store/314bits/314bits_2.avif" alt="314 bits display typeface specimen showing capital letter A in regular weight" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/314bits/314bits_3.avif" alt="314 bits display typeface specimen showing upper and lower case letters in regular weight" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/314bits/314bits_4.avif" alt="314 bits display typeface specimen showing capital letter A in striked weight" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/314bits/314bits_5.avif" alt="314 bits display typeface specimen showing upper and lower case letters in striked weight" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/314bits/314bits_6.avif" alt="314 bits display typeface specimen showing capital letter A in hand weight" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/314bits/314bits_7.avif" alt="314 bits display typeface specimen showing upper and lower case letters in hand weight" loading="lazy">
-                </div>                                                                
-              </div>
-            </div>
-            <!-- Main slider -->
-            <div class="swiper product-main">
-              <div class="swiper-wrapper">
-                <!-- <div class="swiper-slide">
-                  <img src="/images/store/314bits/314bits_1.avif" alt="Image that says Hi in the 3 weights of the font" loading="lazy">
-                </div> -->
-                <div class="swiper-slide">
-                  <img src="/images/store/314bits/314bits_2.avif" alt="314 bits display typeface specimen showing capital letter A in regular weight" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/314bits/314bits_3.avif" alt="314 bits display typeface specimen showing upper and lower case letters in regular weight" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/314bits/314bits_4.avif" alt="314 bits display typeface specimen showing capital letter A in striked weight" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/314bits/314bits_5.avif" alt="314 bits display typeface specimen showing upper and lower case letters in striked weight" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/314bits/314bits_6.avif" alt="314 bits display typeface specimen showing capital letter A in hand weight" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/314bits/314bits_7.avif" alt="314 bits display typeface specimen showing upper and lower case letters in hand weight" loading="lazy">
-                </div>                                                
-              </div>
-            </div>
-          </div>
+          <ProductGallery items={gallery} label="314 bits display typeface specimens gallery" />
         </div>      
         <div class="productdecription-grid">
           <h1 class="txt-l">314 bits</h1>

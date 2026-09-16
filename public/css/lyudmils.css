@@ -15,6 +15,20 @@ html {
   scroll-behavior: smooth;
 }
 
+/*
+  The width/height attributes on <img> are presentational hints, which means the
+  browser sets them as CSS width + height. If a rule then overrides only `width`
+  (e.g. width: 100%), the attribute height stays as a specified length and
+  `aspect-ratio` is ignored, so the image stops scaling.
+  `height: auto` neutralises the hint so the ratio keeps driving the height.
+  Rules that want a fixed height (.product-main img, .upnext-img img) are more
+  specific and still win.
+*/
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 body {
   font-family: Geist, sans-serif;
   font-size: 1rem;

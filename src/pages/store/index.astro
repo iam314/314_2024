@@ -27,13 +27,22 @@ const meta = {
       <div class="products-grid">
         <ul role="list" class="w-list-unstyled grid-3">
           {
-            products.map((p) => (
+            products.map((p, i) => (
               <li class="grid-item">
                 <article>
                   <a class="product-links" href={p.href} aria-label={p.aria}>
                     <div class="product-wrapper">
                       <div class="product-image">
-                        <img class="img-responsive" loading="lazy" src={p.thumb} alt={p.thumbAlt}>
+                        <img
+                          class="img-responsive"
+                          src={p.thumb}
+                          width={p.thumbWidth}
+                          height={p.thumbHeight}
+                          alt={p.thumbAlt}
+                          loading={i === 0 ? 'eager' : 'lazy'}
+                          fetchpriority={i === 0 ? 'high' : undefined}
+                          decoding={i === 0 ? undefined : 'async'}
+                        >
                       </div>
                     </div>
                     <div class="titleprice">

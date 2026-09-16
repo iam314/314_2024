@@ -1,15 +1,19 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Faq from '../../components/Faq.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import { getProductPage } from '../../data/productPages';
 
 const meta = {
   title: "Flag Icons – 112 Minimal Flag Icons & Lottie Animations by Lyudmil Dachev",
   description: "Flag Icons is a collection of 112 minimal flag icons by Lyudmil Dachev, plus 15 animated flags in Lottie, JSON, GIF and EPS formats. Personal & commercial use allowed.",
   link: "https://www.iam314.com/store/flag-icons/",
   ogImage: "/images/ogimages/og-flag-icons.png",
-  price: "0+",
+  price: "0",
   availability: "https://schema.org/InStock",
 };
+
+const { gallery, schema } = getProductPage('flag-icons');
 ---
 
 <BaseLayout
@@ -20,48 +24,14 @@ const meta = {
   schemaType="product"
   price={meta.price}
   availability={meta.availability}
+  product={schema}
   useSwiper
   footerVariant="inner"
 >
     <section class="wrap inner-store-hero">
       <div class="grid">
         <div class="productgallery-grid">
-          <div class="product-gallery">
-            <!-- Thumbnail slider -->
-            <div class="swiper product-thumbs">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img src="/images/store/flags/flags-all.gif" alt="All icons in one looping animation" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/flags/flag_icons-1.avif" alt="Preview grid of flag icons from the 112-icon set 1/3" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/flags/flag_icons-2.avif" alt="Preview grid of flag icons from the 112-icon set 2/3" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/flags/flag_icons-3.avif" alt="Preview grid of flag icons from the 112-icon set 3/3" loading="lazy">
-                </div>
-              </div>
-            </div>
-            <!-- Main slider -->
-            <div class="swiper product-main">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img src="/images/store/flags/flags-all.gif" alt="All icons in one looping animation" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/flags/flag_icons-1.avif" alt="Preview grid of flag icons from the 112-icon set 1/3" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/flags/flag_icons-2.avif" alt="Preview grid of flag icons from the 112-icon set 2/3" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/flags/flag_icons-3.avif" alt="Preview grid of flag icons from the 112-icon set 3/3" loading="lazy">
-                </div>
-              </div>
-            </div>
-          </div>
+          <ProductGallery items={gallery} label="Flag Icons icon set gallery" />
         </div>      
         <div class="productdecription-grid">
           <h1 class="txt-l">Flag icons</h1>

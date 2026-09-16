@@ -1,4 +1,6 @@
 ---
+import type { ProductSchema } from '../data/productPages';
+
 interface Props {
   title: string;
   description: string;
@@ -7,6 +9,7 @@ interface Props {
   schemaType?: 'base' | 'case-study' | 'product';
   price?: string;
   availability?: string;
+  product?: ProductSchema;
 }
 
 const {
@@ -17,7 +20,29 @@ const {
   schemaType = 'base',
   price,
   availability,
+  product,
 } = Astro.props;
+
+const SITE = 'https://www.iam314.com';
+const abs = (path: string) => (path.startsWith('http') ? path : SITE + path);
+
+// The returns policy published on every store page (see components/Faq.astro):
+// 30 days, by mail, return shipping paid by the customer, digital goods excluded.
+// NOTE: `applicableCountry` is intentionally omitted — the published policy has no
+// geographic restriction. Add it (e.g. applicableCountry: ['BG', 'DE']) to switch on
+// Google's return-policy badge for the countries you actually accept returns from.
+const physicalReturnPolicy = {
+  '@type': 'MerchantReturnPolicy',
+  returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+  merchantReturnDays: 30,
+  returnMethod: 'https://schema.org/ReturnByMail',
+  returnFees: 'https://schema.org/ReturnShippingFees',
+};
+
+const digitalReturnPolicy = {
+  '@type': 'MerchantReturnPolicy',
+  returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
+};
 
 const baseGraph = [
   {
@@ -76,13 +101,30 @@ if (schemaType === 'case-study') {
 }
 
 if (schemaType === 'product') {
+  const isPhysical = product?.productType !== 'digital';
+
   graph.push({
     '@type': 'Product',
     '@id': link + '#product',
     name: title,
-    image: 'https://www.iam314.com' + ogImage,
+    // Full gallery as an image array (first entry = primary). Falls back to the
+    // OG image for any product that has no gallery data yet.
+    image: product?.images?.length ? product.images.map(abs) : [abs(ogImage)],
     description,
     brand: { '@id': 'https://www.iam314.com/#organization' },
+    ...(product?.sku ? { sku: product.sku } : {}),
+    ...(product?.category ? { category: product.category } : {}),
+    ...(product?.material ? { material: product.material } : {}),
+    ...(product?.size ? { size: product.size } : {}),
+    ...(product?.additionalProperty?.length
+      ? {
+          additionalProperty: product.additionalProperty.map(({ name, value }) => ({
+            '@type': 'PropertyValue',
+            name,
+            value,
+          })),
+        }
+      : {}),
     offers: {
       '@type': 'Offer',
       url: link,
@@ -90,6 +132,16 @@ if (schemaType === 'product') {
       priceCurrency: 'EUR',
       availability,
       seller: { '@id': 'https://www.iam314.com/#organization' },
+      ...(product?.minPrice
+        ? {
+            priceSpecification: {
+              '@type': 'PriceSpecification',
+              minPrice: product.minPrice,
+              priceCurrency: 'EUR',
+            },
+          }
+        : {}),
+      hasMerchantReturnPolicy: isPhysical ? physicalReturnPolicy : digitalReturnPolicy,
     },
   });
 }

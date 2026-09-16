@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Faq from '../../components/Faq.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import { getProductPage } from '../../data/productPages';
 
 const meta = {
   title: "The horizon – Limited Edition Screen Print by Lyudmil Dachev",
@@ -10,6 +12,8 @@ const meta = {
   price: "9",
   availability: "https://schema.org/InStock",
 };
+
+const { gallery, schema } = getProductPage('horizon-print');
 ---
 
 <BaseLayout
@@ -20,36 +24,14 @@ const meta = {
   schemaType="product"
   price={meta.price}
   availability={meta.availability}
+  product={schema}
   useSwiper
   footerVariant="inner"
 >
     <section class="wrap inner-store-hero">
       <div class="grid">
         <div class="productgallery-grid">
-          <div class="product-gallery">
-            <!-- Thumbnail slider -->
-            <div class="swiper product-thumbs">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img src="/images/store/thehorizon/thehorizon_1.avif" alt="The horizon screen print — full view" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/thehorizon/thehorizon_2.avif" alt="The horizon screen print — details view" loading="lazy">
-                </div>
-              </div>
-            </div>
-            <!-- Main slider -->
-            <div class="swiper product-main">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img src="/images/store/thehorizon/thehorizon_1.avif" alt="The horizon screen print — full view" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/thehorizon/thehorizon_2.avif" alt="The horizon screen print — details view" loading="lazy">
-                </div>
-              </div>
-            </div>
-          </div>
+          <ProductGallery items={gallery} label="The horizon screen print gallery" />
         </div>      
         <div class="productdecription-grid">
           <h1 class="txt-l">The horizon</h1>

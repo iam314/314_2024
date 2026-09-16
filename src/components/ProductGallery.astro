@@ -1,0 +1,80 @@
+---
+import type { GalleryItem } from '../data/productPages';
+
+interface Props {
+  items: GalleryItem[];
+  /** Accessible name for the gallery, e.g. "The Kiss screen print gallery". */
+  label: string;
+}
+
+const { items, label } = Astro.props;
+
+const thumbSrc = (item: GalleryItem) => item.thumbSrc ?? item.src;
+const thumbWidth = (item: GalleryItem) => item.thumbWidth ?? item.width;
+const thumbHeight = (item: GalleryItem) => item.thumbHeight ?? item.height;
+---
+
+<div class="product-gallery" role="group" aria-label={label}>
+  <!--
+    Thumbnail slider. These are decorative duplicates of the main slides, so the
+    images carry an empty alt rather than repeating the description twice.
+  -->
+  <div class="swiper product-thumbs">
+    <div class="swiper-wrapper">
+      {
+        items.map((item) => (
+          <div class="swiper-slide">
+            <img
+              src={thumbSrc(item)}
+              alt=""
+              width={thumbWidth(item)}
+              height={thumbHeight(item)}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Main slider. The first slide is the LCP element, so it loads eagerly. -->
+  <div class="swiper product-main">
+    <div class="swiper-wrapper">
+      {
+        items.map((item, i) =>
+          item.type === 'video' ? (
+            <div class="swiper-slide">
+              <video
+                width={item.width}
+                height={item.height}
+                preload="metadata"
+                loop
+                muted
+                playsinline
+                controls
+                poster={item.poster}
+                aria-label={item.alt}
+              >
+                <source src={item.src} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          ) : (
+            <div class="swiper-slide">
+              <img
+                src={item.src}
+                alt={item.alt}
+                width={item.width}
+                height={item.height}
+                loading={i === 0 ? 'eager' : 'lazy'}
+                fetchpriority={i === 0 ? 'high' : undefined}
+                decoding={i === 0 ? undefined : 'async'}
+              />
+            </div>
+          )
+        )
+      }
+    </div>
+  </div>
+</div>

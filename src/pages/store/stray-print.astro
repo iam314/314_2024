@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Faq from '../../components/Faq.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import { getProductPage } from '../../data/productPages';
 
 const meta = {
   title: "Stray – Limited Edition Giclée Print by Lyudmil Dachev",
@@ -10,6 +12,8 @@ const meta = {
   price: "40",
   availability: "https://schema.org/InStock",
 };
+
+const { gallery, schema } = getProductPage('stray-print');
 ---
 
 <BaseLayout
@@ -20,42 +24,14 @@ const meta = {
   schemaType="product"
   price={meta.price}
   availability={meta.availability}
+  product={schema}
   useSwiper
   footerVariant="inner"
 >
     <section class="wrap inner-store-hero">
       <div class="grid">
         <div class="productgallery-grid">
-          <div class="product-gallery">
-            <!-- Thumbnail slider -->
-            <div class="swiper product-thumbs">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img src="/images/store/stray/stray-1.avif" alt="Stray giclée print thumbnail" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/stray/stray-2.avif" alt="Stray detail 1 thumbnail" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/stray/stray-3.avif" alt="The Kiss detail 2 thumbnail" loading="lazy">
-                </div>
-              </div>
-            </div>
-            <!-- Main slider -->
-            <div class="swiper product-main">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img src="/images/store/stray/stray-1.avif" alt="Stray giclée print" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/stray/stray-2.avif" alt="Stray detail 1" loading="lazy">
-                </div>
-                <div class="swiper-slide">
-                  <img src="/images/store/stray/stray-3.avif" alt="Stray detail 2" loading="lazy">
-                </div>
-              </div>
-            </div>
-          </div>
+          <ProductGallery items={gallery} label="Stray limited edition giclée print gallery" />
         </div>      
         <div class="productdecription-grid">
           <h1 class="txt-l">Stray</h1>
@@ -127,6 +103,22 @@ const thumbsSwiper = new Swiper('.product-thumbs', {
   }
 });
 
+    // Only the slide in view should be playing, so the video only buffers when it is seen.
+    const syncProductVideos = (swiper) => {
+      const active = swiper.slides[swiper.activeIndex];
+      swiper.slides.forEach(function (slide) {
+        const video = slide.querySelector('video');
+        if (!video) return;
+        if (slide === active) {
+          // play() rejects when the browser blocks autoplay - ignore that.
+          const started = video.play();
+          if (started && started.catch) started.catch(function () {});
+        } else if (!video.paused) {
+          video.pause();
+        }
+      });
+    };
+
     // Main slider with thumbs
     const mainSwiper = new Swiper('.product-main', {
       spaceBetween: 16,
@@ -134,6 +126,10 @@ const thumbsSwiper = new Swiper('.product-thumbs', {
       grabCursor: true,
       thumbs: {
         swiper: thumbsSwiper
+      },
+      on: {
+        init: syncProductVideos,
+        activeIndexChange: syncProductVideos
       }
     });
   });

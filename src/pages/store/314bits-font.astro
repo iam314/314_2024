@@ -25,7 +25,6 @@ const { gallery, schema } = getProductPage('314bits-font');
   price={meta.price}
   availability={meta.availability}
   product={schema}
-  useSwiper
   footerVariant="inner"
 >
     <section class="wrap inner-store-hero">
@@ -80,41 +79,4 @@ const { gallery, schema } = getProductPage('314bits-font');
     });
   });
   </script>
-
-<!-- SWIPER -->
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', function () {
-    // Thumbnails
-const thumbsSwiper = new Swiper('.product-thumbs', {
-  spaceBetween: 8,
-  freeMode: true,
-  watchSlidesProgress: true,
-
-  // default (desktop)
-  direction: 'vertical',
-  slidesPerView: 'auto',
-
-  breakpoints: {
-    0: {
-      direction: 'horizontal',
-      slidesPerView: 'auto'
-    },
-    767: {
-      direction: 'vertical',
-      slidesPerView: 'auto'
-    }
-  }
-});
-
-    // Main slider with thumbs
-    const mainSwiper = new Swiper('.product-main', {
-      spaceBetween: 16,
-      loop: true,
-      grabCursor: true,
-      thumbs: {
-        swiper: thumbsSwiper
-      }
-    });
-  });
-</script>
 </BaseLayout>

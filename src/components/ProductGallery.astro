@@ -1,5 +1,9 @@
 ---
 import type { GalleryItem } from '../data/productPages';
+// Self-hosted Swiper. Core CSS only: the site styles the gallery itself, and the
+// module styles in swiper-bundle.css (navigation, pagination, scrollbar, effects,
+// zoom, lazy) were for options this gallery does not enable.
+import 'swiper/css';
 
 interface Props {
   items: GalleryItem[];
@@ -78,3 +82,64 @@ const thumbHeight = (item: GalleryItem) => item.thumbHeight ?? item.height;
     </div>
   </div>
 </div>
+
+<script>
+  import Swiper from 'swiper';
+  import { Thumbs, FreeMode } from 'swiper/modules';
+
+  const thumbsSwiper = new Swiper('.product-thumbs', {
+    modules: [FreeMode],
+    spaceBetween: 8,
+    freeMode: true,
+    watchSlidesProgress: true,
+
+    // default (desktop)
+    direction: 'vertical',
+    slidesPerView: 'auto',
+
+    breakpoints: {
+      0: {
+        direction: 'horizontal',
+        slidesPerView: 'auto',
+      },
+      767: {
+        direction: 'vertical',
+        slidesPerView: 'auto',
+      },
+    },
+  });
+
+  /**
+   * Only the slide in view should play, so a video does not buffer until it is seen.
+   * This used to live inline on the Stray page only; it is harmless on galleries
+   * with no video, where no slide contains one.
+   */
+  const syncProductVideos = (swiper: Swiper) => {
+    const active = swiper.slides[swiper.activeIndex];
+    swiper.slides.forEach((slide) => {
+      const video = slide.querySelector('video');
+      if (!video) return;
+      if (slide === active) {
+        // play() rejects when the browser blocks autoplay — ignore that.
+        const started = video.play();
+        if (started && started.catch) started.catch(() => {});
+      } else if (!video.paused) {
+        video.pause();
+      }
+    });
+  };
+
+  new Swiper('.product-main', {
+    modules: [Thumbs],
+    spaceBetween: 16,
+    loop: true,
+    grabCursor: true,
+    thumbs: {
+      swiper: thumbsSwiper,
+    },
+    on: {
+      init: syncProductVideos,
+      activeIndexChange: syncProductVideos,
+    },
+  });
+</script>

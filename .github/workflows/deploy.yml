@@ -19,6 +19,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Full history: astro.config.mjs derives sitemap lastmod from each page's
+          # last commit date. On a shallow clone every file reports HEAD's date,
+          # which is worse than omitting lastmod entirely.
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22

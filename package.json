@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && cp dist/sitemap-index.xml dist/sitemap.xml",
+    "build": "astro build && node scripts/minify-css.mjs && cp dist/sitemap-index.xml dist/sitemap.xml",
     "preview": "astro preview",
     "astro": "astro"
   },

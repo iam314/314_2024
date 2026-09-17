@@ -3,6 +3,13 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import JsonLd from '../components/JsonLd.astro';
 import type { ProductSchema } from '../data/productPages';
+import { assetVersion } from '../utils/assetVersion';
+
+// Versioned so a CSS/JS change is picked up immediately instead of being served
+// from cache. See src/utils/assetVersion.ts.
+const vNormalize = assetVersion('css/normalize.css');
+const vLyudmils = assetVersion('css/lyudmils.css');
+const vScripts = assetVersion('js/lyudmils.js');
 
 interface Props {
   title: string;
@@ -49,9 +56,10 @@ const {
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="/css/normalize.css" rel="stylesheet" type="text/css">
-  <link href="/css/lyudmils.css" rel="stylesheet" type="text/css">
-  <link href="/css/nandr.css" rel="stylesheet" type="text/css">
+  <link href={`/css/normalize.css?v=${vNormalize}`} rel="stylesheet" type="text/css">
+  <link href={`/css/lyudmils.css?v=${vLyudmils}`} rel="stylesheet" type="text/css">
+  {/* nandr.css is only used by /niceandrandom/ and is loaded there. */}
+  <slot name="head" />
   <link href="/images/favicon.png" rel="shortcut icon" type="image/x-icon">
   <link href="/images/webclip.png" rel="apple-touch-icon">
 
@@ -78,7 +86,7 @@ const {
     });
   </script>
   <JsonLd {title} {description} {link} {ogImage} schemaType={schemaType} price={price} availability={availability} product={product} />
-  <script is:inline src="/js/lyudmils.js" defer></script>
+  <script is:inline src={`/js/lyudmils.js?v=${vScripts}`} defer></script>
 
   <!-- Google tag (gtag.js) -->
   <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-8K5NWXN6WD"></script>

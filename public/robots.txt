@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.iam314.com/sitemap.xml
+Sitemap: https://www.iam314.com/sitemap-images.xml

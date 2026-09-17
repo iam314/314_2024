@@ -26,6 +26,68 @@ const {
 const SITE = 'https://www.iam314.com';
 const abs = (path: string) => (path.startsWith('http') ? path : SITE + path);
 
+/**
+ * Disciplines, taken from the labels already used on the work pages rather than
+ * invented. Without this, "what does this person do" is only inferable from prose.
+ */
+const KNOWS_ABOUT = [
+  'Brand identity',
+  'Visual identity systems',
+  'Logo design',
+  'Web design',
+  'Webflow development',
+  'Shopify development',
+  'UI/UX design',
+  'Art direction',
+  'Motion design',
+  'Data visualization',
+  'Type design',
+  'Screen printing',
+  'Giclée fine art printing',
+];
+
+const service = (name: string, description: string) => ({
+  '@type': 'Offer',
+  itemOffered: {
+    '@type': 'Service',
+    name,
+    description,
+    provider: { '@id': SITE + '/#person' },
+  },
+});
+
+const OFFER_CATALOG = {
+  '@type': 'OfferCatalog',
+  '@id': SITE + '/#services',
+  name: 'Design services',
+  itemListElement: [
+    service(
+      'Brand identity design',
+      'Visual identity systems for founder-led businesses: logo, wordmark, typography, colour and usage guidelines.',
+    ),
+    service(
+      'Web design and Webflow development',
+      'Design and build of marketing sites and portfolios, delivered as custom Webflow projects.',
+    ),
+    service(
+      'Shopify development',
+      'Custom Shopify themes and storefront builds for retail brands, including progressive web app experiences.',
+    ),
+    service(
+      'UI/UX design',
+      'Interface design for web and mobile products, from flows and wireframes through to finished screens.',
+    ),
+    service(
+      'Art direction',
+      'Art direction and campaign design, including key visuals, motion and data visualization.',
+    ),
+    service(
+      'Limited edition prints',
+      'Hand-pulled screen prints and fine art giclée prints, released in editions of 5 to 9.',
+    ),
+  ],
+};
+
 // The returns policy published on every store page (see components/Faq.astro):
 // 30 days, by mail, return shipping paid by the customer, digital goods excluded.
 // NOTE: `applicableCountry` is intentionally omitted — the published policy has no
@@ -56,15 +118,23 @@ const baseGraph = [
     image: 'https://www.iam314.com/images/lyudmil-dachev-brand-identity-designer.avif',
     address: { '@type': 'PostalAddress', addressLocality: 'Sofia', addressCountry: 'BG' },
     sameAs: ['https://www.linkedin.com/in/iam314/', 'https://www.behance.net/iam314'],
+    knowsAbout: KNOWS_ABOUT,
     worksFor: { '@id': 'https://www.iam314.com/#organization' },
   },
   {
     '@type': 'ProfessionalService',
     '@id': 'https://www.iam314.com/#organization',
     name: 'iam314',
+    description:
+      'Independent design practice of Lyudmil Dachev, working on brand identity, web design and development for founder-led businesses, plus limited edition prints and type.',
     url: 'https://www.iam314.com',
     logo: 'https://www.iam314.com/images/favicon.png',
+    image: 'https://www.iam314.com/images/lyudmil-dachev-brand-identity-designer.avif',
+    email: 'hi@iam314.com',
+    address: { '@type': 'PostalAddress', addressLocality: 'Sofia', addressCountry: 'BG' },
     founder: { '@id': 'https://www.iam314.com/#person' },
+    knowsAbout: KNOWS_ABOUT,
+    hasOfferCatalog: OFFER_CATALOG,
     priceRange: '€€€',
     areaServed: 'Worldwide',
   },

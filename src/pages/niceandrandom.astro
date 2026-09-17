@@ -1,11 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { gallery } from '../data/gallery';
+import { assetVersion } from '../utils/assetVersion';
+
+// This page is the only consumer of nandr.css, so it loads it here rather than
+// on every page. Versioned for the same cache reason as the global stylesheets.
+const vNandr = assetVersion('css/nandr.css');
 
 const meta = {
   title: 'Nice & Random — Lyudmil Dachev',
   description:
-    'A personal archive of images, moments, and things that matter. Skating, graffiti, counter-culture, and everything in between. The other side of the practice.',
+    'An archive of images, moments, and things that matter. Skating, graffiti, counter-culture, and everything in between. The other side of the practice.',
   link: 'https://www.iam314.com/niceandrandom/',
   ogImage: '/images/ogimages/og-nice-random.png',
 };
@@ -18,6 +23,7 @@ const meta = {
   ogImage={meta.ogImage}
   footerVariant="inner"
 >
+  <link slot="head" href={`/css/nandr.css?v=${vNandr}`} rel="stylesheet" type="text/css">
   <main>
     <div class="visually-hidden">
       <h1>Nice & Random — Lyudmil Dachev</h1>

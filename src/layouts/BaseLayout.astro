@@ -56,6 +56,32 @@ const {
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {/*
+    Third-party origins. All three are requested on every page: jsdelivr serves
+    Lenis (and Swiper on store pages), Google serves gtag, Payhip serves the cart.
+    Preconnecting overlaps their DNS + TCP + TLS with our own loading.
+
+    No `crossorigin` here, because these are loaded as plain stylesheets and
+    scripts. A crossorigin preconnect would open a separate connection that the
+    non-CORS requests would never reuse.
+  */}
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://payhip.com">
+
+  {/*
+    The body font is render-critical but is only discovered once lyudmils.css has
+    downloaded and been parsed, so without this the font sits at the end of a
+    waterfall. Preloading starts it alongside the stylesheets.
+
+    `crossorigin` is required even though the font is same-origin: font fetches
+    are always CORS-mode, and a preload that does not match is discarded and the
+    font is downloaded twice. For the same reason the href must match the
+    @font-face URL exactly — hence no ?v= here, since the CSS requests the bare path.
+  */}
+  <link rel="preload" href="/fonts/ABCArealVariable.woff2" as="font" type="font/woff2" crossorigin>
+
   <link href={`/css/normalize.css?v=${vNormalize}`} rel="stylesheet" type="text/css">
   <link href={`/css/lyudmils.css?v=${vLyudmils}`} rel="stylesheet" type="text/css">
   {/* nandr.css is only used by /niceandrandom/ and is loaded there. */}

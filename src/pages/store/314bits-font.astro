@@ -9,7 +9,7 @@ const meta = {
   description: "314 Bits is a geometric display typeface developed from 2009–2024. Includes 575 glyphs and OpenType features (aalt, salt, ss01, subs, sups).",
   link: "https://www.iam314.com/store/314bits-font/",
   ogImage: "/images/ogimages/og-314-bits.png",
-  price: "12",
+  price: "7",
   availability: "https://schema.org/InStock",
 };
 
@@ -34,7 +34,7 @@ const { gallery, schema } = getProductPage('314bits-font');
         </div>      
         <div class="productdecription-grid">
           <h1 class="txt-l">314 bits</h1>
-          <p class="txt-s">€12</p>
+          <p class="txt-s" id="price-display">€7</p>
           <p class="subtxtgray">Display font</p>
           <p class="paragraph1">Started in 2009 and completed in 2024, 314 bits is a display typeface shaped over time. What began as a personal experiment evolved into a full character set.</p>
           <p class="paragraph1">
@@ -42,14 +42,19 @@ const { gallery, schema } = getProductPage('314bits-font');
             575 unique glyphs of each weight<br>
             OpenType features: aalt, kern, locl, ordn, salt, ss01, subs, sups,<br>
             Supports 100+ Latin-based languages including English, German, French, Spanish, Bulgarian, and more.</p>
+
+          <div class="variant-selector">
+            <label for="weight-select" class="subtxtgray">Weight</label>
+            <select id="weight-select" class="variant-select">
+              <option value="1790408723318" data-price="€7">Regular</option>
+              <option value="1790408768646" data-price="€7">Striked</option>
+              <option value="1790408793702" data-price="€7">Hand</option>
+              <option value="1790408523743" data-price="€15">All 3 weights (bundle)</option>
+            </select>
+          </div>
+
           <div class="buttons">
-            <a href="https://payhip.com/b/i4xct?redirect=https://iam314.com/thanks/"
-              class="add-btn payhip-add-to-cart-button"
-              data-theme="none"
-              data-product="i4xct"
-              >
-              Add to cart
-            </a>
+            <button type="button" class="add-btn" id="add-to-cart-btn">Add to cart</button>
             <button type="button"
               class="buy-btn buy-now-btn"
               data-product="i4xct"
@@ -63,9 +68,88 @@ const { gallery, schema } = getProductPage('314bits-font');
     </section>
 <Faq />
 
+    <style>
+      .variant-selector {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .variant-selector label {
+        font-size: clamp(1rem, 0.986rem + 0.07vw, 1.05rem);
+        color: var(--color--black-40);
+      }
+      .variant-select {
+        appearance: none;
+        -webkit-appearance: none;
+        background: transparent;
+        border: 1px solid var(--color--black);
+        border-radius: 999rem;
+        padding: 1rem 1.25rem;
+        font-family: inherit;
+        font-size: clamp(1rem, 0.986rem + 0.07vw, 1.05rem);
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        color: var(--color--black);
+        width: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='black' stroke-width='1.5' d='M1 4l5 5 5-5'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1.25rem center;
+        padding-right: 2.5rem;
+      }
+      .variant-select:focus {
+        outline: none;
+        border-color: var(--color--black-40);
+      }
+    </style>
+
 <!-- STORE -->
   <script is:inline>
   document.addEventListener("DOMContentLoaded", function () {
+    var select = document.getElementById('weight-select');
+    var priceDisplay = document.getElementById('price-display');
+
+    function updatePrice() {
+      var selected = select.options[select.selectedIndex];
+      priceDisplay.textContent = selected.getAttribute('data-price');
+    }
+    select.addEventListener('change', updatePrice);
+
+    // Add to cart — call Payhip's cart API directly once the cart iframe is ready
+    document.getElementById('add-to-cart-btn').addEventListener('click', function () {
+      var variant = select.value;
+      var attempts = 0;
+      function tryAdd() {
+        attempts++;
+        var hasPayhip = window.Payhip && window.Payhip.Cart && window.Payhip.Cart.addItem;
+        var hasIframe = window.PayhipCartIframe && window.PayhipCartIframe.contentWindow;
+
+        if (hasPayhip && hasIframe) {
+          try {
+            Payhip.Cart.addItem({
+              product: 'i4xct',
+              targetVariant: variant
+            });
+          } catch (err) {
+            console.error('[314bits] Payhip.Cart.addItem threw:', err);
+          }
+        } else if (attempts < 50) {
+          setTimeout(tryAdd, 100);
+        } else {
+          // Fallback — cart never initialised, open checkout directly
+          Payhip.Checkout.open({
+            product: 'i4xct',
+            method: "overlay",
+            targetVariant: variant,
+            successUrl: "https://iam314.com/thanks/"
+          });
+        }
+      }
+      tryAdd();
+    });
+
+    // Buy now
     document.querySelectorAll(".buy-now-btn").forEach(function (btn) {
       btn.addEventListener("click", function () {
         Payhip.Checkout.open({
@@ -73,7 +157,8 @@ const { gallery, schema } = getProductPage('314bits-font');
           method: "overlay",
           message: btn.dataset.message,
           title: btn.dataset.title,
-          successUrl: "https://iam314.com/thanks/"
+          successUrl: "https://iam314.com/thanks/",
+          targetVariant: select.value
         });
       });
     });

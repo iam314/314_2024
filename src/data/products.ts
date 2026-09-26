@@ -50,7 +50,7 @@ export const products: Product[] = [
     "thumbAlt": "314 Bits geometric display typeface by Lyudmil Dachev",
     "name": "314 bits",
     "type": "Display font",
-    "price": "€7–€15"
+    "price": "€15"
   },
   {
     "slug": "flag-icons",

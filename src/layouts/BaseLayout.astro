@@ -3,16 +3,12 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import JsonLd from '../components/JsonLd.astro';
 import type { ProductSchema } from '../data/productPages';
-import { assetVersion } from '../utils/assetVersion';
 // Self-hosted rather than pulled from jsdelivr: one less third-party origin, and
 // it goes through the bundler so it is hashed and cached like everything else.
 import 'lenis/dist/lenis.css';
+import '../styles/normalize.css';
+import '../styles/lyudmils.css';
 
-// Versioned so a CSS/JS change is picked up immediately instead of being served
-// from cache. See src/utils/assetVersion.ts.
-const vNormalize = assetVersion('css/normalize.css');
-const vLyudmils = assetVersion('css/lyudmils.css');
-const vScripts = assetVersion('js/lyudmils.js');
 
 interface Props {
   title: string;
@@ -82,8 +78,6 @@ const {
   */}
   <link rel="preload" href="/fonts/ABCArealVariable.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link href={`/css/normalize.css?v=${vNormalize}`} rel="stylesheet" type="text/css">
-  <link href={`/css/lyudmils.css?v=${vLyudmils}`} rel="stylesheet" type="text/css">
   {/* nandr.css is only used by /niceandrandom/ and is loaded there. */}
   <slot name="head" />
   <link href="/images/favicon.png" rel="shortcut icon" type="image/x-icon">
@@ -112,8 +106,9 @@ const {
       (window as any).lenis = lenis; // handy for poking at it from the console
     }
   </script>
+  <script src="../scripts/lyudmils.js"></script>
   <JsonLd {title} {description} {link} {ogImage} schemaType={schemaType} price={price} availability={availability} product={product} />
-  <script is:inline src={`/js/lyudmils.js?v=${vScripts}`} defer></script>
+
 
   <!-- Google tag (gtag.js) -->
   <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-8K5NWXN6WD"></script>

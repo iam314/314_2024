@@ -1,11 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { gallery } from '../data/gallery';
-import { assetVersion } from '../utils/assetVersion';
-
-// This page is the only consumer of nandr.css, so it loads it here rather than
-// on every page. Versioned for the same cache reason as the global stylesheets.
-const vNandr = assetVersion('css/nandr.css');
+import '../styles/nandr.css';
 
 const meta = {
   title: 'Nice & Random — Lyudmil Dachev',
@@ -23,7 +19,7 @@ const meta = {
   ogImage={meta.ogImage}
   footerVariant="inner"
 >
-  <link slot="head" href={`/css/nandr.css?v=${vNandr}`} rel="stylesheet" type="text/css">
+
   <main>
     <div class="visually-hidden">
       <h1>Nice & Random — Lyudmil Dachev</h1>

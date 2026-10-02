@@ -153,13 +153,7 @@
   /**
    * --- 6. EXECUTION ---
    */
-  
-  // A. Run Theme & Clock immediately
-  applyTheme(getInitialTheme());
-  updateSofiaClock();
-
-  // B. Lifecycle Hooks
-  document.addEventListener('DOMContentLoaded', () => {
+  const init = () => {
     // 1. Theme & Clock Re-sync
     applyTheme(getInitialTheme());
     updateSofiaClock();
@@ -188,5 +182,11 @@
 
     // 5. Nav hide-on-scroll-down
     initNavScrollReveal();
-  });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();

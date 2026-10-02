@@ -156,7 +156,7 @@ h2 {
   flex-flow: column;
   margin-top: 7.5rem;
   font-size: 0.75rem;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   display: flex;
 }
 
@@ -306,6 +306,7 @@ h2 {
   column-gap: 1.25rem;
   font-size: clamp(1rem, 0.986rem + 0.07vw, 1.05rem);
   line-height: 1.6;
+  letter-spacing: 0.02em;
 }
 .paragraph1 {
   column-count: 1;
@@ -334,6 +335,7 @@ h2 {
   margin-top: 2.5rem;
   font-size: clamp(1rem, 0.986rem + 0.07vw, 1.05rem);
   max-width: 55ch;
+  letter-spacing: 0.02em;
 }
 
 .subtxt.subtxt-dark {
@@ -364,13 +366,13 @@ h2 {
   margin-bottom: 0;
   font-size: clamp(2.02rem, 1.598rem + 2.11vw, 3.5rem);
   line-height: 1;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .txt-l {
   font-size: clamp(1.6rem, 1.426rem + 0.87vw, 2.3405rem);
   line-height: 1;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .txt-l.name {
@@ -381,7 +383,7 @@ h2 {
   margin-bottom: 0;
   font-size: clamp(1.42rem, 1.326rem + 0.47vw, 1.8205rem);
   line-height: 1;
-  letter-spacing: -0.003em;
+  letter-spacing: -0.01em;
 }
 
 .txt-s {
@@ -480,6 +482,7 @@ ul.labels li:not(:last-child)::after {
   margin-right: 0.25rem;
   font-size: clamp(0.65rem, 0.622rem + 0.14vw, 0.75rem);
   line-height: 1;
+  letter-spacing: 0.02em;
 }
 
 .blink {
@@ -1402,14 +1405,14 @@ h3 {
 
 @font-face {
   font-family: "Geist";
-  src: url("../fonts/Geist-Medium.woff2") format("woff2");
+  src: url("/fonts/Geist-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Geist";
-  src: url("../fonts/Geist-Regular.woff2") format("woff2");
+  src: url("/fonts/Geist-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -1428,7 +1431,7 @@ h3 {
 */
 @font-face {
   font-family: "Areal";
-  src: url("../fonts/ABCArealVariable.woff2") format("woff2");
+  src: url("/fonts/ABCArealVariable.woff2") format("woff2");
   font-weight: 400 700;
   font-style: normal;
   font-display: swap;

@@ -72,7 +72,7 @@ export const productPages: Record<string, ProductPage> = {
         src: '/images/store/stray/stray-1.avif',
         width: 1006,
         height: 1174,
-        alt: 'Stray — limited edition giclée print by Lyudmil Dachev, 30 × 40 cm',
+        alt: 'Stray — limited edition giclée print by Lyudmil Dachev, 30 × 40 cm / 11.811 × 15.748 in',
       },
       {
         type: 'image',
@@ -105,7 +105,7 @@ export const productPages: Record<string, ProductPage> = {
       category: 'Art prints',
       productType: 'physical',
       material: 'Hahnemühle Photo Rag® Bright White fine art paper',
-      size: '30 × 40 cm',
+      size: '30 × 40 cm / 11.811 × 15.748 in',
       additionalProperty: [
         { name: 'Print technique', value: 'Fine art giclée' },
         { name: 'Signed', value: 'Hand-signed by the artist in graphite' },
@@ -126,28 +126,28 @@ export const productPages: Record<string, ProductPage> = {
         src: '/images/store/journal-1/journal-1-1.avif',
         width: 1006,
         height: 1174,
-        alt: 'Journal 1 — original artwork by Lyudmil Dachev, printed on premium matte photo paper',
+        alt: 'Journal 1 — open edition print by Lyudmil Dachev, printed on premium matte photo paper',
       },
       {
         type: 'image',
         src: '/images/store/journal-1/journal-1-2.avif',
         width: 1006,
         height: 1174,
-        alt: 'Journal 1 print — view one',
+        alt: 'Journal 1 print — detail 1',
       },
       {
         type: 'image',
         src: '/images/store/journal-1/journal-1-3.avif',
         width: 1006,
         height: 1174,
-        alt: 'Journal 1 print — view two',
+        alt: 'Journal 1 print — detail 2',
       },
       {
         type: 'image',
         src: '/images/store/journal-1/journal-1-4.avif',
         width: 1006,
         height: 1174,
-        alt: 'Journal 1 print — view three',
+        alt: 'Journal 1 print — detail 3',
       },
       {
         type: 'video',
@@ -168,7 +168,7 @@ export const productPages: Record<string, ProductPage> = {
       material: 'Premium matte photo paper, 180 g/m²',
       additionalProperty: [
         { name: 'Print technique', value: 'Full-colour inkjet print with a smooth, non-reflective finish' },
-        { name: 'Sizes', value: '20×20 cm / 7.874×7.874 in, 30×30 cm / 11.811×11.811 in, 50×50 cm / 19.685×19.685 in' },
+        { name: 'Sizes', value: '20 × 20 cm / 7.874 × 7.874 in, 30 × 30 cm / 11.811 × 11.811 in, 50 × 50 cm / 19.685 × 19.685 in' },
       ],
       images: [
         '/images/store/journal-1/journal-1-1.avif',
@@ -177,9 +177,9 @@ export const productPages: Record<string, ProductPage> = {
         '/images/store/journal-1/journal-1-4.avif',
       ],
       offers: [
-        { name: '20 × 20 cm', price: 12 },
-        { name: '30 × 30 cm', price: 16 },
-        { name: '50 × 50 cm', price: 22 },
+        { name: '20 × 20 cm / 7.874 × 7.874 in', price: 12 },
+        { name: '30 × 30 cm / 11.811 × 11.811 in', price: 16 },
+        { name: '50 × 50 cm / 19.685 × 19.685 in', price: 22 },
       ],
     },
   },
@@ -191,7 +191,7 @@ export const productPages: Record<string, ProductPage> = {
         src: '/images/store/thekiss/thekiss-1.avif',
         width: 1006,
         height: 1174,
-        alt: 'The Kiss — limited edition hand-pulled screen print by Lyudmil Dachev, 40 × 50 cm',
+        alt: 'The Kiss — limited edition hand-pulled screen print by Lyudmil Dachev, 40 × 50 cm / 15.748 × 19.685 in',
       },
       {
         type: 'image',
@@ -213,7 +213,7 @@ export const productPages: Record<string, ProductPage> = {
       category: 'Art prints',
       productType: 'physical',
       material: 'Hand-pulled screen print on paper',
-      size: '40 × 50 cm',
+      size: '40 × 50 cm / 15.748 × 19.685 in',
       additionalProperty: [
         { name: 'Print technique', value: 'Hand-pulled screen print' },
         { name: 'Edition', value: 'Limited edition of 9' },
@@ -235,14 +235,14 @@ export const productPages: Record<string, ProductPage> = {
         src: '/images/store/thehorizon/thehorizon_1.avif',
         width: 1006,
         height: 1174,
-        alt: 'The horizon — limited edition hand-pulled screen print by Lyudmil Dachev, 25 × 17.5 cm',
+        alt: 'The horizon — limited edition hand-pulled screen print by Lyudmil Dachev, 25 × 17.5 cm / 9.842 × 6.889 in',
       },
       {
         type: 'image',
         src: '/images/store/thehorizon/thehorizon_2.avif',
         width: 1006,
         height: 1174,
-        alt: 'The horizon screen print — detail',
+        alt: 'The horizon screen print — detail 1',
       },
     ],
     schema: {
@@ -250,7 +250,7 @@ export const productPages: Record<string, ProductPage> = {
       category: 'Art prints',
       productType: 'physical',
       material: 'Hand-pulled screen print on paper',
-      size: '25 × 17.5 cm',
+      size: '25 × 17.5 cm / 9.842 × 6.889 in',
       additionalProperty: [
         { name: 'Print technique', value: 'Hand-pulled screen print' },
         { name: 'Edition', value: 'Limited edition of 5' },

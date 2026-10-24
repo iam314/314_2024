@@ -23,15 +23,14 @@ export const products: Product[] = [
     // page (productPages.ts) still needs the real Journal 1 images/video.
     "slug": "journal-1-print",
     "href": "/store/journal-1-print/",
-    "aria": "Journal 1 Giclée Print — €22",
+    "aria": "Journal 1 Print — €22",
     "thumb": "/images/store/journal-1/journal-1_thumb.avif",
     "thumbWidth": 800,
     "thumbHeight": 800,
-    "thumbAlt": "Journal 1 giclée print by Lyudmil Dachev",
+    "thumbAlt": "Journal 1 print by Lyudmil Dachev",
     "name": "Journal 1",
     "type": "Print",
-    "price": "€22",
-    "hidden": true
+    "price": "€22"
   },
   {
     "slug": "horizon-print",

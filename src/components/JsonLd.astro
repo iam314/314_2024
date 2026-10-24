@@ -195,24 +195,45 @@ if (schemaType === 'product') {
           })),
         }
       : {}),
-    offers: {
-      '@type': 'Offer',
-      url: link,
-      price,
-      priceCurrency: 'EUR',
-      availability,
-      seller: { '@id': 'https://www.iam314.com/#organization' },
-      ...(product?.minPrice
-        ? {
-            priceSpecification: {
-              '@type': 'PriceSpecification',
-              minPrice: product.minPrice,
-              priceCurrency: 'EUR',
-            },
-          }
-        : {}),
-      hasMerchantReturnPolicy: isPhysical ? physicalReturnPolicy : digitalReturnPolicy,
-    },
+    offers: product?.offers?.length
+      ? {
+          '@type': 'AggregateOffer',
+          url: link,
+          lowPrice: String(Math.min(...product.offers.map((o) => o.price))),
+          highPrice: String(Math.max(...product.offers.map((o) => o.price))),
+          priceCurrency: 'EUR',
+          offerCount: product.offers.length,
+          availability,
+          seller: { '@id': 'https://www.iam314.com/#organization' },
+          offers: product.offers.map((o) => ({
+            '@type': 'Offer',
+            name: o.name,
+            price: String(o.price),
+            priceCurrency: 'EUR',
+            availability,
+            url: link,
+            seller: { '@id': 'https://www.iam314.com/#organization' },
+          })),
+          hasMerchantReturnPolicy: isPhysical ? physicalReturnPolicy : digitalReturnPolicy,
+        }
+      : {
+          '@type': 'Offer',
+          url: link,
+          price,
+          priceCurrency: 'EUR',
+          availability,
+          seller: { '@id': 'https://www.iam314.com/#organization' },
+          ...(product?.minPrice
+            ? {
+                priceSpecification: {
+                  '@type': 'PriceSpecification',
+                  minPrice: product.minPrice,
+                  priceCurrency: 'EUR',
+                },
+              }
+            : {}),
+          hasMerchantReturnPolicy: isPhysical ? physicalReturnPolicy : digitalReturnPolicy,
+        },
   });
 }
 

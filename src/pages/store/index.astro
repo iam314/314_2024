@@ -27,7 +27,7 @@ const meta = {
       <div class="products-grid">
         <ul role="list" class="w-list-unstyled grid-3">
           {
-            products.map((p, i) => (
+            products.filter((p) => !p.hidden).map((p, i) => (
               <li class="grid-item">
                 <article>
                   <a class="product-links" href={p.href} aria-label={p.aria}>

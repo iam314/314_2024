@@ -53,7 +53,7 @@ for (const [slug, page] of Object.entries(productPages)) {
 // Store index thumbnails.
 urlEntries.push({
   loc: `${SITE}/store/`,
-  images: products.map((p) => ({ loc: SITE + p.thumb, title: p.thumbAlt })),
+  images: products.filter((p) => !p.hidden).map((p) => ({ loc: SITE + p.thumb, title: p.thumbAlt })),
 });
 
 // Work index thumbnails, so case-study imagery is discoverable too.

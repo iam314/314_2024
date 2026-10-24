@@ -1,6 +1,8 @@
 // Store products — extracted from store/index.kit + store/<slug>/index.kit
 export interface Product {
   slug: string; href: string; aria: string; thumb: string; thumbWidth: number; thumbHeight: number; thumbAlt: string; name: string; type: string; price: string;
+  /** Set true to keep the product page live but hide the card from /store/. */
+  hidden?: boolean;
 }
 
 export const products: Product[] = [
@@ -15,6 +17,21 @@ export const products: Product[] = [
     "name": "Stray",
     "type": "Giclée print",
     "price": "€40"
+  },
+  {
+    // Thumbnail is the final Journal 1 artwork. Gallery + copy on the product
+    // page (productPages.ts) still needs the real Journal 1 images/video.
+    "slug": "journal-1-print",
+    "href": "/store/journal-1-print/",
+    "aria": "Journal 1 Giclée Print — €22",
+    "thumb": "/images/store/journal-1/journal-1_thumb.avif",
+    "thumbWidth": 800,
+    "thumbHeight": 800,
+    "thumbAlt": "Journal 1 giclée print by Lyudmil Dachev",
+    "name": "Journal 1",
+    "type": "Print",
+    "price": "€22",
+    "hidden": true
   },
   {
     "slug": "horizon-print",

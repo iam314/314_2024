@@ -51,6 +51,12 @@ export interface ProductSchema {
   additionalProperty?: { name: string; value: string }[];
   /** Absolute-path images used for schema.org Product.image (first = primary). */
   images: string[];
+  /**
+   * Individual selling options (e.g. print sizes). When present the schema emits
+   * an AggregateOffer with low/high price + one Offer per variant, so rich
+   * results can show the full "€X–€Y" range instead of a single anonymous price.
+   */
+  offers?: { name: string; price: number }[];
 }
 
 export interface ProductPage {
@@ -109,6 +115,71 @@ export const productPages: Record<string, ProductPage> = {
         '/images/store/stray/stray-1.avif',
         '/images/store/stray/stray-2.avif',
         '/images/store/stray/stray-3.avif',
+      ],
+    },
+  },
+
+  'journal-1-print': {
+    gallery: [
+      {
+        type: 'image',
+        src: '/images/store/journal-1/journal-1-1.avif',
+        width: 1006,
+        height: 1174,
+        alt: 'Journal 1 — original artwork by Lyudmil Dachev, printed on premium matte photo paper',
+      },
+      {
+        type: 'image',
+        src: '/images/store/journal-1/journal-1-2.avif',
+        width: 1006,
+        height: 1174,
+        alt: 'Journal 1 print — view one',
+      },
+      {
+        type: 'image',
+        src: '/images/store/journal-1/journal-1-3.avif',
+        width: 1006,
+        height: 1174,
+        alt: 'Journal 1 print — view two',
+      },
+      {
+        type: 'image',
+        src: '/images/store/journal-1/journal-1-4.avif',
+        width: 1006,
+        height: 1174,
+        alt: 'Journal 1 print — view three',
+      },
+      {
+        type: 'video',
+        src: '/images/store/journal-1/journal-1.mp4',
+        width: 720,
+        height: 1280,
+        poster: '/images/store/journal-1/journal-1-video-poster.avif',
+        alt: 'Film of the Journal 1 print by Lyudmil Dachev',
+        thumbSrc: '/images/store/journal-1/journal-1-video-thumb.avif',
+        thumbWidth: 800,
+        thumbHeight: 800,
+      },
+    ],
+    schema: {
+      sku: 'JOURNAL1-PRINT',
+      category: 'Art prints',
+      productType: 'physical',
+      material: 'Premium matte photo paper, 180 g/m²',
+      additionalProperty: [
+        { name: 'Print technique', value: 'Full-colour inkjet print with a smooth, non-reflective finish' },
+        { name: 'Sizes', value: '20×20 cm / 7.874×7.874 in, 30×30 cm / 11.811×11.811 in, 50×50 cm / 19.685×19.685 in' },
+      ],
+      images: [
+        '/images/store/journal-1/journal-1-1.avif',
+        '/images/store/journal-1/journal-1-2.avif',
+        '/images/store/journal-1/journal-1-3.avif',
+        '/images/store/journal-1/journal-1-4.avif',
+      ],
+      offers: [
+        { name: '20 × 20 cm', price: 12 },
+        { name: '30 × 30 cm', price: 16 },
+        { name: '50 × 50 cm', price: 22 },
       ],
     },
   },

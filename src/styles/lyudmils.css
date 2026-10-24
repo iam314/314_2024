@@ -234,6 +234,9 @@ h2 {
 .nav-content[data-nav='hidden'] .links > :nth-child(4) { transition-delay: 0.2s; }
 .nav-content[data-nav='hidden'] .links > :nth-child(5) { transition-delay: 0.25s; }
 .nav-content[data-nav='hidden'] .links > :nth-child(6) { transition-delay: 0.3s; }
+/* The theme switcher (7th child) must be the last thing to disappear, so it
+   exits after every nav link: the button stays visible longest while scrolling. */
+.nav-content[data-nav='hidden'] .links > :nth-child(7) { transition-delay: 0.35s; }
 
 @media (prefers-reduced-motion: reduce) {
   .nav-content[data-nav='hidden'] .logo,
@@ -740,7 +743,9 @@ ul.w-list-unstyled.grid-6, .grid-1, .grid-4 {
   grid-column: span 5;
   width: 100%;
   aspect-ratio: 6 / 7;
-  padding: 2.5rem;
+  /* No padding: the slide images are 1006×1174 (6:7), so they fill the box
+     exactly. The old 2.5rem padding added an unwanted frame AND broke the
+     ratio (content box no longer 6:7), letterboxing the photos. */
 }
 
 .product-main img,

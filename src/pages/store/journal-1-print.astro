@@ -39,23 +39,18 @@ const { gallery, schema } = getProductPage('journal-1-print');
           <p class="paragraph1">
             Original artwork by Lyudmil Dachev.<br>Printed on premium matte photo paper, 180 g/m². Rich, full-colour inkjet print, with a smooth, non-reflective finish.<br>Available in three sizes: 20×20 centimeters / 7.874×7.874 inch, 30×30 centimeters / 11.811×11.811 inch and 50×50 centimeters / 19.685×19.685 inch.</p>
           <div class="variant-selector">
-            <!-- Price display only: the actual size selection happens inside Payhip's
-                 own checkout for product MrBGT, so buyers can't pick a size that
-                 doesn't exist. Size prices: 20x20 €12, 30x30 €16, 50x50 €22. -->
+            <!-- Each size maps directly to a Payhip variant ID on product MrBGT,
+                 so Add to cart and Buy pass the buyer's chosen size to Payhip.
+                 Display prices: 20x20 €12, 30x30 €16, 50x50 €22. -->
             <label for="size-select" class="subtxtgray">Size</label>
             <select id="size-select" class="variant-select">
-              <option value="" data-price="€12">20 × 20 cm / 7.874 × 7.874 in</option>
-              <option value="" data-price="€16">30 × 30 cm / 11.811 × 11.811 in</option>
-              <option value="" data-price="€22">50 × 50 cm / 19.685 × 19.685 in</option>
+              <option value="1792857432512" data-price="€12">20 × 20 cm / 7.874 × 7.874 in</option>
+              <option value="1792857447316" data-price="€16">30 × 30 cm / 11.811 × 11.811 in</option>
+              <option value="1792857455010" data-price="€22">50 × 50 cm / 19.685 × 19.685 in</option>
             </select>
           </div>
           <div class="buttons">
-            <a href="https://payhip.com/b/MrBGT?redirect=https://iam314.com/thanks/"
-              class="add-btn payhip-add-to-cart-button"
-              data-theme="none"
-              data-product="MrBGT">
-              Add to cart
-            </a>
+            <button type="button" class="add-btn" id="add-to-cart-btn">Add to cart</button>
             <button type="button"
               class="buy-btn buy-now-btn"
               data-product="MrBGT"
@@ -111,18 +106,47 @@ const { gallery, schema } = getProductPage('journal-1-print');
     var select = document.getElementById('size-select');
     var priceDisplay = document.getElementById('price-display');
 
-    // The size selector is price display only — Payhip product MrBGT owns the
-    // real variant selection in its own checkout, so the local <select> is just
-    // the visual mirror of the three sizes (20x20 €12 / 30x30 €16 / 50x50 €22).
     function updatePrice() {
       var selected = select.options[select.selectedIndex];
       priceDisplay.textContent = selected.getAttribute('data-price');
     }
     select.addEventListener('change', updatePrice);
 
-    // Buy now — Payhip opens its checkout for product MrBGT, where the buyer
-    // picks the size. The Add to cart button is rendered by payhip.js itself
-    // (payhip-add-to-cart-button, loaded automatically from BaseLayout).
+    // Add to cart — call Payhip's cart API directly once the cart iframe is ready.
+    // The selected size's variant ID (from size-select) is passed as targetVariant.
+    document.getElementById('add-to-cart-btn').addEventListener('click', function () {
+      var variant = select.value;
+      var attempts = 0;
+      function tryAdd() {
+        attempts++;
+        var hasPayhip = window.Payhip && window.Payhip.Cart && window.Payhip.Cart.addItem;
+        var hasIframe = window.PayhipCartIframe && window.PayhipCartIframe.contentWindow;
+
+        if (hasPayhip && hasIframe) {
+          try {
+            Payhip.Cart.addItem({
+              product: 'MrBGT',
+              targetVariant: variant
+            });
+          } catch (err) {
+            console.error('[journal-1] Payhip.Cart.addItem threw:', err);
+          }
+        } else if (attempts < 50) {
+          setTimeout(tryAdd, 100);
+        } else {
+          // Fallback — cart never initialised, open checkout directly with the size
+          Payhip.Checkout.open({
+            product: 'MrBGT',
+            method: "overlay",
+            targetVariant: variant,
+            successUrl: "https://iam314.com/thanks/"
+          });
+        }
+      }
+      tryAdd();
+    });
+
+    // Buy now — open checkout for the selected size variant
     document.querySelectorAll(".buy-now-btn").forEach(function (btn) {
       btn.addEventListener("click", function () {
         Payhip.Checkout.open({
@@ -130,7 +154,8 @@ const { gallery, schema } = getProductPage('journal-1-print');
           method: "overlay",
           message: btn.dataset.message,
           title: btn.dataset.title,
-          successUrl: "https://iam314.com/thanks/"
+          successUrl: "https://iam314.com/thanks/",
+          targetVariant: select.value
         });
       });
     });

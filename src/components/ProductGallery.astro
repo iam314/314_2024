@@ -9,15 +9,9 @@ interface Props {
   items: GalleryItem[];
   /** Accessible name for the gallery, e.g. "The Kiss screen print gallery". */
   label: string;
-  /**
-   * Optional view-transition-name for the main image. Set to the same value as
-   * the matching store card ("product-<slug>") so the card can morph into the
-   * gallery during a View Transition.
-   */
-  name?: string;
 }
 
-const { items, label, name } = Astro.props;
+const { items, label } = Astro.props;
 
 const thumbSrc = (item: GalleryItem) => item.thumbSrc ?? item.src;
 const thumbWidth = (item: GalleryItem) => item.thumbWidth ?? item.width;
@@ -49,7 +43,7 @@ const thumbHeight = (item: GalleryItem) => item.thumbHeight ?? item.height;
   </div>
 
   <!-- Main slider. The first slide is the LCP element, so it loads eagerly. -->
-  <div class="swiper product-main" style={name ? `view-transition-name:${name}` : undefined}>
+  <div class="swiper product-main">
     <div class="swiper-wrapper">
       {
         items.map((item, i) =>

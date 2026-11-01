@@ -1,18 +1,23 @@
 /* ============================================
    View transitions (Astro ClientRouter)
 
-   The browser's default crossfade holds both pages at full opacity for the
-   whole duration, so on image-heavy pages the outgoing grid ghosts through the
-   incoming page. Clear the old page quickly, then let the new content settle in
-   with a short upward drift.
+   A restrained crossfade with a custom ease: the outgoing page slips away and
+   fades, the incoming page eases up into place. The motion is deliberately tiny
+   — just enough to give the change a direction.
 
-   The fixed header is pulled out of the root snapshot (it is persisted across
-   navigations) so it stays pinned while the rest of the page moves.
+   The fixed header is a named group so the page motion cannot move it (that
+   would double it up mid-transition). It still fades on the same timing as the
+   page, so it never looks like it arrives before or after the content.
    ============================================ */
 
 @keyframes vt-page-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
   to {
     opacity: 0;
+    transform: translateY(-0.5rem);
   }
 }
 
@@ -27,44 +32,16 @@
   }
 }
 
-header[data-astro-transition-persist] {
-  view-transition-name: site-header;
-}
-
-::view-transition-old(site-header),
-::view-transition-new(site-header),
-::view-transition-group(site-header) {
-  animation: none;
-}
-
-/* Store card → product gallery morph. The card is named on click (lyudmils.js);
-   the gallery is named statically on every product page. */
-::view-transition-group(active-product) {
-  animation-duration: 420ms;
-  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-::view-transition-old(active-product) {
-  animation-duration: 200ms;
-}
-
-::view-transition-new(active-product) {
-  animation-duration: 420ms;
-}
-
-::view-transition-old(root) {
-  animation: 160ms cubic-bezier(0.4, 0, 1, 1) both vt-page-out;
-}
-
-::view-transition-new(root) {
-  animation: 380ms cubic-bezier(0.22, 1, 0.36, 1) both vt-page-in;
-}
-
-/* Reverse the drift when navigating back, so direction reads correctly. The
-   pseudo-element is chained to the originating (root) element, matching how
-   Astro qualifies its own directional rules. */
-:root[data-astro-transition='back']::view-transition-new(root) {
-  animation-name: vt-page-in-back;
+/* Reverse when navigating back, so direction reads correctly. */
+@keyframes vt-page-out-back {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
 }
 
 @keyframes vt-page-in-back {
@@ -78,9 +55,62 @@ header[data-astro-transition-persist] {
   }
 }
 
+/* Opacity-only timing, shared by the header so it stays in step with the page. */
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.nav-content {
+  view-transition-name: site-nav;
+}
+
+/* Pinned: no position/size morph, only the crossfade. */
+::view-transition-group(site-nav) {
+  animation: none;
+}
+
+::view-transition-old(site-nav) {
+  animation: 180ms cubic-bezier(0.4, 0, 1, 1) both vt-fade-out;
+}
+
+::view-transition-new(site-nav) {
+  animation: 420ms cubic-bezier(0.16, 1, 0.3, 1) both vt-fade-in;
+}
+
+::view-transition-old(root) {
+  animation: 180ms cubic-bezier(0.4, 0, 1, 1) both vt-page-out;
+}
+
+::view-transition-new(root) {
+  animation: 420ms cubic-bezier(0.16, 1, 0.3, 1) both vt-page-in;
+}
+
+/* The pseudo-element is chained to the originating (root) element, matching how
+   Astro qualifies its own directional rules. */
+:root[data-astro-transition='back']::view-transition-old(root) {
+  animation-name: vt-page-out-back;
+}
+
+:root[data-astro-transition='back']::view-transition-new(root) {
+  animation-name: vt-page-in-back;
+}
+
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(root),
-  ::view-transition-new(root) {
+  ::view-transition-new(root),
+  ::view-transition-old(site-nav),
+  ::view-transition-new(site-nav) {
     animation: none;
   }
 }

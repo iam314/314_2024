@@ -56,27 +56,28 @@
   };
 
   /**
-   * --- 4. LOTTIE SMART-LOADER (Industrial Version) ---
+   * --- 4. LOTTIE SMART-LOADER ---
+   *
+   * The player is self-hosted and version-pinned (no unpkg, no @latest). The
+   * dynamic import lets the bundler code-split it into its own chunk, so it is
+   * only fetched on pages that actually contain a <lottie-player>, and it is
+   * served from our origin with a hashed filename like everything else.
    */
+  let lottieImport;
   const loadLottieIfNeeded = () => {
-    const player = document.querySelector('lottie-player');
-    
-    if (player) {
-      if (!document.getElementById('lottie-script')) {
-        const script = document.createElement('script');
-        script.id = 'lottie-script';
-        script.src = "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js";
-        
-        // When the script finishes loading, force the player to play
-        script.onload = () => {
-          if (player.play) {
-            player.play();
-          }
-        };
-        
-        document.head.appendChild(script);
-      }
-    }
+    const players = document.querySelectorAll('lottie-player');
+    if (!players.length) return;
+
+    // Cache the promise: the import is only evaluated once per page.
+    if (!lottieImport) lottieImport = import('@lottiefiles/lottie-player');
+
+    lottieImport
+      .then(() => {
+        players.forEach((player) => {
+          if (player.play) player.play();
+        });
+      })
+      .catch(() => {});
   };
 
   /**

@@ -69,5 +69,12 @@ const meta = {
       </div>
     </div>
   </section>
-  <script is:inline src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+  {/*
+    ConvertKit's script binds a submit handler per form. Without data-astro-rerun
+    the View Transitions router skips it after the first visit, so the next time
+    this page is reached client-side the fresh form is unbound and submits
+    natively to app.kit.com, which renders a rejection page. Re-running is cheap
+    (the file is cached) and lets it bind each new form.
+  */}
+  <script is:inline data-astro-rerun src="https://f.convertkit.com/ckjs/ck.5.js"></script>
 </BaseLayout>

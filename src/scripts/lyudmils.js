@@ -12,35 +12,17 @@
    * --- 2. THEME SWITCHER LOGIC ---
    */
   const applyTheme = (isDark) => {
-    const method = isDark ? 'add' : 'remove';
+    // All dark styling hangs off html.is-dark (see lyudmils.css), so a single
+    // class flips the whole site — no per-element class bookkeeping needed. The
+    // same class is set before first paint by the inline script in BaseLayout.
     document.documentElement.classList.toggle('is-dark', isDark);
+    document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
 
-    const targets = {
-      '.body-light': 'is-dark',
-      '.nav-links': 'nav-links-dark',
-      '.logo': 'logo-dark',
-      '.subtxt': 'subtxt-dark',
-      '.subtxtgray': 'subtxtgray-dark',
-      '.contact-link': 'contact-link-dark',
-      '.p-link-tt': 'p-link-tt-dark',
-      '.work-wrap': 'work-wrap-dark',
-      '.projects-grid': 'projects-grid-dark',
-      '.product-wrapper': 'product-wrapper-dark',
-      '.product-links': 'product-links-dark',
-      '.add-btn': 'add-btn-dark',
-      '.buy-btn': 'buy-btn-dark',
-      '.swiper-wrapper': 'swiper-wrapper-dark',
-      '.formkit-submit': 'formkit-submit-dark',
-      '.formkit-input': 'formkit-input-dark',
-      '.flipped': 'flipped-dark'
-    };
-
-    Object.entries(targets).forEach(([selector, className]) => {
-      document.querySelectorAll(selector).forEach(el => el.classList[method](className));
-    });
+    const themeColor = document.querySelector('meta[name="theme-color"]');
+    if (themeColor) themeColor.setAttribute('content', isDark ? '#000000' : '#ffffff');
 
     const btn = document.querySelector('.mode-switch');
-    if (btn) btn.setAttribute('aria-pressed', isDark);
+    if (btn) btn.setAttribute('aria-pressed', String(isDark));
   };
 
   const getInitialTheme = () => {

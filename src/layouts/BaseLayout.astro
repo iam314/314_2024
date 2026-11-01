@@ -53,6 +53,27 @@ const {
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff">
+
+  {/*
+    Theme before first paint. Applying dark mode from lyudmils.js on
+    DOMContentLoaded left dark-mode visitors seeing a light flash on every page,
+    so the class is set synchronously here instead. lyudmils.js only keeps it in
+    sync afterwards. Keep the storage key in sync with lyudmils.js.
+  */}
+  <script is:inline>
+    (function () {
+      try {
+        var stored = localStorage.getItem('iam314_theme_preference');
+        var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('is-dark', dark);
+        document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', dark ? '#000000' : '#ffffff');
+      } catch (e) {}
+    })();
+  </script>
 
   {/*
     Third-party origins. All three are requested on every page: jsdelivr serves

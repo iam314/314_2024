@@ -106,8 +106,13 @@ const {
   <link href="/images/favicon.png" rel="shortcut icon" type="image/x-icon">
   <link href="/images/webclip.png" rel="apple-touch-icon">
 
-  {/* Client-side navigation with the native View Transition API. Scripts that
-      need to re-run per page hook into astro:page-load (see lyudmils.js). */}
+  {/*
+    Client-side navigation with the native View Transition API. Scripts that need
+    to re-run per page hook into astro:page-load (see lyudmils.js).
+
+    To remove page transitions entirely: delete this <ClientRouter />, its import
+    above, and the `import '../styles/transitions.css'` line. See AGENTS.md.
+  */}
   <ClientRouter />
 
   {/*

@@ -105,8 +105,8 @@ const { gallery, schema } = getProductPage('314bits-font');
     </style>
 
 <!-- STORE -->
-  <script is:inline>
-  document.addEventListener("DOMContentLoaded", function () {
+  <script is:inline data-astro-rerun>
+  (function () {
     var select = document.getElementById('weight-select');
     var priceDisplay = document.getElementById('price-display');
 
@@ -149,19 +149,6 @@ const { gallery, schema } = getProductPage('314bits-font');
       tryAdd();
     });
 
-    // Buy now
-    document.querySelectorAll(".buy-now-btn").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        Payhip.Checkout.open({
-          product: btn.dataset.product,
-          method: "overlay",
-          message: btn.dataset.message,
-          title: btn.dataset.title,
-          successUrl: "https://iam314.com/thanks/",
-          targetVariant: select.value
-        });
-      });
-    });
-  });
+  })();
   </script>
 </BaseLayout>

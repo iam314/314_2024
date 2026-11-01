@@ -1,0 +1,116 @@
+/* ============================================
+   View transitions (Astro ClientRouter)
+
+   A bold crossfade with a custom ease: the outgoing page is pushed away and
+   drops back, the incoming page snaps up into place. Big type and full-bleed
+   images get a firm shove rather than a polite fade.
+
+   The fixed header is a named group so the page motion cannot move it (that
+   would double it up mid-transition). It still fades on the same timing as the
+   page, so it never looks like it arrives before or after the content.
+   ============================================ */
+
+@keyframes vt-page-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-2.5rem) scale(0.9);
+  }
+}
+
+@keyframes vt-page-in {
+  from {
+    opacity: 0;
+    transform: translateY(4.5rem) scale(1.08);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Reverse when navigating back, so direction reads correctly. */
+@keyframes vt-page-out-back {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(2.5rem) scale(0.9);
+  }
+}
+
+@keyframes vt-page-in-back {
+  from {
+    opacity: 0;
+    transform: translateY(-4.5rem) scale(1.08);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Opacity-only timing, shared by the header so it stays in step with the page. */
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.nav-content {
+  view-transition-name: site-nav;
+}
+
+/* Pinned: no position/size morph, only the crossfade. */
+::view-transition-group(site-nav) {
+  animation: none;
+}
+
+::view-transition-old(site-nav) {
+  animation: 130ms cubic-bezier(0.4, 0, 1, 1) both vt-fade-out;
+}
+
+::view-transition-new(site-nav) {
+  animation: 540ms cubic-bezier(0.16, 1, 0.3, 1) both vt-fade-in;
+}
+
+::view-transition-old(root) {
+  animation: 130ms cubic-bezier(0.4, 0, 1, 1) both vt-page-out;
+}
+
+::view-transition-new(root) {
+  animation: 540ms cubic-bezier(0.16, 1, 0.3, 1) both vt-page-in;
+}
+
+/* The pseudo-element is chained to the originating (root) element, matching how
+   Astro qualifies its own directional rules. */
+:root[data-astro-transition='back']::view-transition-old(root) {
+  animation-name: vt-page-out-back;
+}
+
+:root[data-astro-transition='back']::view-transition-new(root) {
+  animation-name: vt-page-in-back;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  ::view-transition-old(site-nav),
+  ::view-transition-new(site-nav) {
+    animation: none;
+  }
+}

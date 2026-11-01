@@ -84,9 +84,10 @@
    * Hides the fixed nav while scrolling down, brings it back on scroll up.
    * The animation itself is CSS: .nav-content[data-nav='hidden'] in lyudmils.css.
    */
+  let navRevealInitialized = false;
   const initNavScrollReveal = () => {
-    const nav = document.querySelector('.nav-content');
-    if (!nav) return;
+    if (navRevealInitialized) return;
+    navRevealInitialized = true;
 
     const ALWAYS_VISIBLE_ABOVE = 120; // px: never hide while near the top of the page
     const DIRECTION_THRESHOLD = 6;    // px: ignore trackpad jitter / micro-scrolls
@@ -99,6 +100,9 @@
     const setHidden = (next) => {
       if (next === isHidden) return;
       isHidden = next;
+      // Re-query: client-side navigation replaces the nav element.
+      const nav = document.querySelector('.nav-content');
+      if (!nav) return;
       if (next) nav.setAttribute('data-nav', 'hidden');
       else nav.removeAttribute('data-nav');
     };
@@ -130,6 +134,14 @@
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
+
+    // The nav is persisted across client-side navigations, so a hidden state
+    // would carry over to the next page. Bring it back on every page load.
+    document.addEventListener('astro:page-load', () => {
+      isHidden = false;
+      const nav = document.querySelector('.nav-content');
+      if (nav) nav.removeAttribute('data-nav');
+    });
   };
 
   /**
@@ -144,27 +156,64 @@
     // 2. Load Lottie only if necessary
     loadLottieIfNeeded();
 
-    // 3. Theme Toggle Click
-    const themeSwitcher = document.querySelector('.mode-switch');
-    if (themeSwitcher) {
-      themeSwitcher.addEventListener('click', () => {
-        const isDark = document.documentElement.classList.contains('is-dark');
-        const nextMode = !isDark;
-        applyTheme(nextMode);
-        localStorage.setItem(STORAGE_KEY, nextMode ? 'dark' : 'light');
-      });
-    }
+    // 3. Theme Toggle Click. Delegated to document because the nav is replaced
+    // on every client-side navigation, so a listener bound to the button would
+    // be lost (and would not exist for the button on later pages).
+    document.addEventListener('click', (e) => {
+      const target = e.target;
+      if (!target || !target.closest || !target.closest('.mode-switch')) return;
+      const isDark = document.documentElement.classList.contains('is-dark');
+      const nextMode = !isDark;
+      applyTheme(nextMode);
+      localStorage.setItem(STORAGE_KEY, nextMode ? 'dark' : 'light');
+    });
 
-    // 4. OS Preference Change
+    // 4. "Buy" buttons. Delegated for the same reason as the theme toggle, so
+    // each product page no longer needs its own copy of this wiring. The chosen
+    // variant is read from the page's own <select>, if it has one.
+    document.addEventListener('click', (e) => {
+      const target = e.target;
+      const btn = target && target.closest && target.closest('.buy-now-btn');
+      if (!btn || !window.Payhip) return;
+      const scope = btn.closest('.productdecription-grid');
+      const select = scope ? scope.querySelector('select') : null;
+      window.Payhip.Checkout.open({
+        product: btn.dataset.product,
+        method: 'overlay',
+        message: btn.dataset.message,
+        title: btn.dataset.title,
+        successUrl: 'https://iam314.com/thanks/',
+        ...(select ? { targetVariant: select.value } : {}),
+      });
+    });
+
+    // 5. OS Preference Change
     prefersDark.addEventListener('change', e => {
       if (!localStorage.getItem(STORAGE_KEY)) {
         applyTheme(e.matches);
       }
     });
 
-    // 5. Nav hide-on-scroll-down
+    // 6. Nav hide-on-scroll-down
     initNavScrollReveal();
   };
+
+  /**
+   * Client-side navigation (Astro view transitions). This file only executes
+   * once, so re-sync the per-page state here. `astro:after-swap` runs right
+   * after the new DOM is in place; `astro:page-load` fires once the transition
+   * has settled (and on the initial hard load).
+   */
+  document.addEventListener('astro:after-swap', () => {
+    // Swapping <html> attributes drops is-dark, so restore it before paint.
+    applyTheme(getInitialTheme());
+  });
+
+  document.addEventListener('astro:page-load', () => {
+    applyTheme(getInitialTheme());
+    updateSofiaClock();
+    loadLottieIfNeeded();
+  });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

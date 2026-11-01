@@ -101,8 +101,8 @@ const { gallery, schema } = getProductPage('journal-1-print');
     </style>
 
 <!-- STORE -->
-  <script is:inline>
-  document.addEventListener("DOMContentLoaded", function () {
+  <script is:inline data-astro-rerun>
+  (function () {
     var select = document.getElementById('size-select');
     var priceDisplay = document.getElementById('price-display');
 
@@ -146,19 +146,6 @@ const { gallery, schema } = getProductPage('journal-1-print');
       tryAdd();
     });
 
-    // Buy now — open checkout for the selected size variant
-    document.querySelectorAll(".buy-now-btn").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        Payhip.Checkout.open({
-          product: btn.dataset.product,
-          method: "overlay",
-          message: btn.dataset.message,
-          title: btn.dataset.title,
-          successUrl: "https://iam314.com/thanks/",
-          targetVariant: select.value
-        });
-      });
-    });
-  });
+  })();
   </script>
 </BaseLayout>

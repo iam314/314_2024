@@ -87,28 +87,6 @@ const thumbHeight = (item: GalleryItem) => item.thumbHeight ?? item.height;
   import Swiper from 'swiper';
   import { Thumbs, FreeMode } from 'swiper/modules';
 
-  const thumbsSwiper = new Swiper('.product-thumbs', {
-    modules: [FreeMode],
-    spaceBetween: 8,
-    freeMode: true,
-    watchSlidesProgress: true,
-
-    // default (desktop)
-    direction: 'vertical',
-    slidesPerView: 'auto',
-
-    breakpoints: {
-      0: {
-        direction: 'horizontal',
-        slidesPerView: 'auto',
-      },
-      767: {
-        direction: 'vertical',
-        slidesPerView: 'auto',
-      },
-    },
-  });
-
   /**
    * Only the slide in view should play, so a video does not buffer until it is seen.
    * This used to live inline on the Stray page only; it is harmless on galleries
@@ -129,17 +107,68 @@ const thumbHeight = (item: GalleryItem) => item.thumbHeight ?? item.height;
     });
   };
 
-  new Swiper('.product-main', {
-    modules: [Thumbs],
-    spaceBetween: 16,
-    loop: true,
-    grabCursor: true,
-    thumbs: {
-      swiper: thumbsSwiper,
-    },
-    on: {
-      init: syncProductVideos,
-      activeIndexChange: syncProductVideos,
-    },
-  });
+  let thumbsSwiper: Swiper | undefined;
+  let mainSwiper: Swiper | undefined;
+
+  /**
+   * (Re)build the gallery. This runs on `astro:page-load` because the script
+   * itself only executes once: on subsequent client-side navigations Astro skips
+   * identical scripts, so the listener registered here is what keeps later
+   * product pages working.
+   */
+  const initGallery = () => {
+    if (!document.querySelector('.product-thumbs') || !document.querySelector('.product-main')) return;
+
+    // Drop the previous page's instances before building the new ones.
+    mainSwiper?.destroy(true, true);
+    thumbsSwiper?.destroy(true, true);
+
+    thumbsSwiper = new Swiper('.product-thumbs', {
+      modules: [FreeMode],
+      spaceBetween: 8,
+      freeMode: true,
+      watchSlidesProgress: true,
+
+      // default (desktop)
+      direction: 'vertical',
+      slidesPerView: 'auto',
+
+      breakpoints: {
+        0: {
+          direction: 'horizontal',
+          slidesPerView: 'auto',
+        },
+        767: {
+          direction: 'vertical',
+          slidesPerView: 'auto',
+        },
+      },
+    });
+
+    mainSwiper = new Swiper('.product-main', {
+      modules: [Thumbs],
+      spaceBetween: 16,
+      loop: true,
+      grabCursor: true,
+      thumbs: {
+        swiper: thumbsSwiper,
+      },
+      on: {
+        init: syncProductVideos,
+        activeIndexChange: syncProductVideos,
+      },
+    });
+  };
+
+  document.addEventListener('astro:page-load', initGallery);
+
+  // Fallback for a hard load with no View Transitions router (or JS disabled
+  // scripts): initialise as soon as the DOM is ready.
+  if (!document.querySelector('meta[name="astro-view-transitions-enabled"]')) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initGallery, { once: true });
+    } else {
+      initGallery();
+    }
+  }
 </script>

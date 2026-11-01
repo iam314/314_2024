@@ -2,12 +2,14 @@
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import JsonLd from '../components/JsonLd.astro';
+import { ClientRouter } from 'astro:transitions';
 import type { ProductSchema } from '../data/productPages';
 // Self-hosted rather than pulled from jsdelivr: one less third-party origin, and
 // it goes through the bundler so it is hashed and cached like everything else.
 import 'lenis/dist/lenis.css';
 import '../styles/normalize.css';
 import '../styles/lyudmils.css';
+import '../styles/transitions.css';
 
 
 interface Props {
@@ -105,6 +107,15 @@ const {
   <link href="/images/webclip.png" rel="apple-touch-icon">
 
   {/*
+    Client-side navigation with the native View Transition API. Scripts that need
+    to re-run per page hook into astro:page-load (see lyudmils.js).
+
+    To remove page transitions entirely: delete this <ClientRouter />, its import
+    above, and the `import '../styles/transitions.css'` line. See AGENTS.md.
+  */}
+  <ClientRouter />
+
+  {/*
     Lenis smooth scroll. The stylesheet is imported in the frontmatter above;
     this rule is the one thing lenis.css does not ship, and without it the
     native smooth-scroll fights Lenis for control of the page.
@@ -125,6 +136,10 @@ const {
       });
 
       (window as any).lenis = lenis; // handy for poking at it from the console
+
+      // Lenis' scroll range is measured from the document; re-measure after a
+      // client-side navigation swaps in a taller/shorter page.
+      document.addEventListener('astro:page-load', () => lenis.resize());
     }
   </script>
   <script src="../scripts/lyudmils.js"></script>
@@ -139,6 +154,18 @@ const {
     gtag('js', new Date());
 
     gtag('config', 'G-8K5NWXN6WD');
+
+    // Client-side navigation does not reload the page, so gtag would only ever
+    // see the first page. The first astro:page-load corresponds to that initial
+    // page view (already counted by config), so skip it and report the rest.
+    var firstAstroPageLoad = true;
+    document.addEventListener('astro:page-load', function () {
+      if (firstAstroPageLoad) { firstAstroPageLoad = false; return; }
+      gtag('event', 'page_view', {
+        page_location: location.href,
+        page_title: document.title
+      });
+    });
   </script>
 
 </head>
@@ -200,6 +227,15 @@ const {
       try { usedCart = localStorage.getItem(CART_FLAG) === '1'; } catch (err) {}
 
       if (usedCart || document.querySelector(CONTROLS)) loadPayhip();
+
+      // Client-side navigation swaps in a new page without re-running this
+      // script, so re-check for cart controls (e.g. landing on Home, then
+      // navigating to a product page where Payhip was never requested).
+      document.addEventListener('astro:page-load', function () {
+        var used = false;
+        try { used = localStorage.getItem(CART_FLAG) === '1'; } catch (err) {}
+        if (used || document.querySelector(CONTROLS)) loadPayhip();
+      });
     })();
   </script>
 </body>

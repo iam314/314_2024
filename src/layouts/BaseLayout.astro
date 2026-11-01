@@ -2,14 +2,12 @@
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import JsonLd from '../components/JsonLd.astro';
-import { ClientRouter } from 'astro:transitions';
 import type { ProductSchema } from '../data/productPages';
 // Self-hosted rather than pulled from jsdelivr: one less third-party origin, and
 // it goes through the bundler so it is hashed and cached like everything else.
 import 'lenis/dist/lenis.css';
 import '../styles/normalize.css';
 import '../styles/lyudmils.css';
-import '../styles/transitions.css';
 
 
 interface Props {
@@ -105,15 +103,6 @@ const {
   <slot name="head" />
   <link href="/images/favicon.png" rel="shortcut icon" type="image/x-icon">
   <link href="/images/webclip.png" rel="apple-touch-icon">
-
-  {/*
-    Client-side navigation with the native View Transition API. Scripts that need
-    to re-run per page hook into astro:page-load (see lyudmils.js).
-
-    To remove page transitions entirely: delete this <ClientRouter />, its import
-    above, and the `import '../styles/transitions.css'` line. See AGENTS.md.
-  */}
-  <ClientRouter />
 
   {/*
     Lenis smooth scroll. The stylesheet is imported in the frontmatter above;

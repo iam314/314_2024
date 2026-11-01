@@ -8,23 +8,21 @@ astro dev --background
 
 Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
-## Page transitions (view transitions)
+## Store / Payhip
 
-Client-side navigation is enabled by `<ClientRouter />` in
-`src/layouts/BaseLayout.astro`, and the animation lives in
-`src/styles/transitions.css`.
+The cart is loaded lazily (see the script at the end of `src/layouts/BaseLayout.astro`)
+and initialised by `initPayhip()`, not by Payhip's own `window.load` hook — a
+lazily-loaded Payhip never receives that event and would otherwise load inert
+(no button handlers, no cart UI).
 
-To remove it and go back to normal full page loads:
+## Page transitions
 
-1. In `src/layouts/BaseLayout.astro`, delete the `<ClientRouter />` component and
-   the `import { ClientRouter } from 'astro:transitions';` line.
-2. There, also delete `import '../styles/transitions.css';` (and optionally the
-   file itself).
-
-That is all. The `astro:page-load` / `astro:after-swap` listeners in
-`lyudmils.js`, `BaseLayout.astro` and `ProductGallery.astro`, and the
-`data-astro-rerun` attributes on the store scripts, simply never fire without the
-router and degrade to normal page loads.
+Not enabled. The site intentionally uses normal full page loads: when the View
+Transitions router swapped `<body>` it destroyed Payhip's injected cart DOM and
+made the cart feel unreliable, so it was removed. The previous implementation
+lives on the `feat/view-transitions` branch. Some scripts still carry
+`astro:page-load` / `astro:after-swap` listeners and `data-astro-rerun`
+attributes; they simply never fire without the router and are harmless.
 
 ## Documentation
 

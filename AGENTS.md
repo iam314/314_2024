@@ -20,8 +20,6 @@ To remove it and go back to normal full page loads:
    the `import { ClientRouter } from 'astro:transitions';` line.
 2. There, also delete `import '../styles/transitions.css';` (and optionally the
    file itself).
-3. In `src/components/Nav.astro`, remove `data-astro-reload` from the Newsletter
-   link.
 
 That is all. The `astro:page-load` / `astro:after-swap` listeners in
 `lyudmils.js`, `BaseLayout.astro` and `ProductGallery.astro`, and the

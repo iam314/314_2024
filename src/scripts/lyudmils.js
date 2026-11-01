@@ -187,14 +187,30 @@
       });
     });
 
-    // 5. OS Preference Change
+    // 5. Give the clicked store card a view-transition-name so it morphs into
+    // the product gallery (see transitions.css). Capture phase, so it is set
+    // before the router begins the transition. Only the clicked card is named,
+    // which keeps every other card in the normal page fade.
+    document.addEventListener(
+      'click',
+      (e) => {
+        const target = e.target;
+        const link = target && target.closest && target.closest('.products-grid a.product-links');
+        if (!link) return;
+        const image = link.querySelector('.product-image');
+        if (image) image.style.viewTransitionName = 'active-product';
+      },
+      true,
+    );
+
+    // 6. OS Preference Change
     prefersDark.addEventListener('change', e => {
       if (!localStorage.getItem(STORAGE_KEY)) {
         applyTheme(e.matches);
       }
     });
 
-    // 6. Nav hide-on-scroll-down
+    // 7. Nav hide-on-scroll-down
     initNavScrollReveal();
   };
 

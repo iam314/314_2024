@@ -18,20 +18,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           # Full history: astro.config.mjs derives sitemap lastmod from each page's
           # last commit date. On a shallow clone every file reports HEAD's date,
           # which is worse than omitting lastmod entirely.
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
       # ABC Areal lives in a private repo: Dinamo's EULA § 10 prohibits putting the
       # fonts in public repositories, and this repo is public. Fetched with a
       # read-only deploy key (which, unlike a PAT, does not expire).
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: iam314/314_fonts
           ssh-key: ${{ secrets.FONTS_DEPLOY_KEY }}
@@ -51,7 +51,7 @@ jobs:
             exit 1;
           }
           echo "Areal font present: $(stat -c%s dist/fonts/ABCArealVariable.woff2) bytes"
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: ./dist
 
@@ -63,4 +63,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

@@ -58,20 +58,4 @@ const { gallery, schema } = getProductPage('horizon-print');
     </section>
 <Faq />
 
-<!-- STORE -->
-  <script is:inline>
-  document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".buy-now-btn").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        Payhip.Checkout.open({
-          product: btn.dataset.product,
-          method: "overlay",
-          message: btn.dataset.message,
-          title: btn.dataset.title,
-          successUrl: "https://iam314.com/thanks/"
-        });
-      });
-    });
-  });
-  </script>
 </BaseLayout>

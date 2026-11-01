@@ -1,9 +1,9 @@
 /* ============================================
    View transitions (Astro ClientRouter)
 
-   A restrained crossfade with a custom ease: the outgoing page slips away and
-   fades, the incoming page eases up into place. The motion is deliberately tiny
-   — just enough to give the change a direction.
+   A bold crossfade with a custom ease: the outgoing page is pushed away and
+   drops back, the incoming page snaps up into place. Big type and full-bleed
+   images get a firm shove rather than a polite fade.
 
    The fixed header is a named group so the page motion cannot move it (that
    would double it up mid-transition). It still fades on the same timing as the
@@ -17,14 +17,14 @@
   }
   to {
     opacity: 0;
-    transform: translateY(-0.5rem) scale(0.99);
+    transform: translateY(-1.5rem) scale(0.94);
   }
 }
 
 @keyframes vt-page-in {
   from {
     opacity: 0;
-    transform: translateY(0.75rem) scale(1.01);
+    transform: translateY(2rem) scale(1.05);
   }
   to {
     opacity: 1;
@@ -40,14 +40,14 @@
   }
   to {
     opacity: 0;
-    transform: translateY(0.5rem) scale(0.99);
+    transform: translateY(1.5rem) scale(0.94);
   }
 }
 
 @keyframes vt-page-in-back {
   from {
     opacity: 0;
-    transform: translateY(-0.75rem) scale(1.01);
+    transform: translateY(-2rem) scale(1.05);
   }
   to {
     opacity: 1;
@@ -81,19 +81,19 @@
 }
 
 ::view-transition-old(site-nav) {
-  animation: 150ms cubic-bezier(0.4, 0, 1, 1) both vt-fade-out;
+  animation: 170ms cubic-bezier(0.4, 0, 1, 1) both vt-fade-out;
 }
 
 ::view-transition-new(site-nav) {
-  animation: 380ms cubic-bezier(0.2, 0, 0, 1) both vt-fade-in;
+  animation: 460ms cubic-bezier(0.16, 1, 0.3, 1) both vt-fade-in;
 }
 
 ::view-transition-old(root) {
-  animation: 150ms cubic-bezier(0.4, 0, 1, 1) both vt-page-out;
+  animation: 170ms cubic-bezier(0.4, 0, 1, 1) both vt-page-out;
 }
 
 ::view-transition-new(root) {
-  animation: 380ms cubic-bezier(0.2, 0, 0, 1) both vt-page-in;
+  animation: 460ms cubic-bezier(0.16, 1, 0.3, 1) both vt-page-in;
 }
 
 /* The pseudo-element is chained to the originating (root) element, matching how

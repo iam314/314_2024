@@ -198,7 +198,7 @@ const {
   <script is:inline>
     (function () {
       var CART_FLAG = 'iam314:cart-active';
-      var CONTROLS = '.payhip-add-to-cart-button, .buy-now-btn';
+      var CONTROLS = '.payhip-add-to-cart-button, .buy-now-btn, #add-to-cart-btn';
 
       function loadPayhip() {
         if (window.__payhipRequested) return;
@@ -207,6 +207,50 @@ const {
         s.src = 'https://payhip.com/payhip.js';
         s.defer = true;
         document.head.appendChild(s);
+      }
+
+      function needsPayhip() {
+        var used = false;
+        try { used = localStorage.getItem(CART_FLAG) === '1'; } catch (err) {}
+        return used || !!document.querySelector(CONTROLS);
+      }
+
+      /*
+        Payhip initialises itself from the window `load` event only. A script that
+        arrives later — because we lazy-load it, or because the page was swapped in
+        by the View Transitions router — never gets that event, so Payhip loads
+        inert: no click handlers on the buttons (so an add-to-cart <a> follows its
+        href to payhip.com) and no cart UI. So we run its setup ourselves.
+      */
+      function initPayhip() {
+        if (!window.Payhip || typeof window.Payhip.Setup !== 'function') return false;
+
+        if (!window.__payhipSetupDone) {
+          // First setup on this document. Full Setup(), which registers Payhip's
+          // single window `message` listener.
+          window.Payhip.Setup();
+          window.__payhipSetupDone = true;
+        } else {
+          // The DOM was replaced by a client-side navigation. Rebuild only the
+          // parts that live in the DOM and rebind the buttons. Deliberately NOT
+          // Messages.listen(): it has no guard and would stack another message
+          // listener on every page, making the cart behave erratically.
+          window.Payhip.MiscUtil.attachPayhipCss();
+          window.Payhip.Comms.initiate();
+          window.Payhip.Button.initiate();
+          window.Payhip.Cart.initiate();
+        }
+        return true;
+      }
+
+      function ensurePayhip() {
+        if (!needsPayhip()) return;
+        if (!window.__payhipRequested) loadPayhip();
+        if (initPayhip()) return;
+        var tries = 0;
+        var timer = setInterval(function () {
+          if (initPayhip() || ++tries > 100) clearInterval(timer);
+        }, 100);
       }
 
       // Remember that this visitor has used the cart, so later pages show the bubble.
@@ -223,19 +267,39 @@ const {
         true,
       );
 
-      var usedCart = false;
-      try { usedCart = localStorage.getItem(CART_FLAG) === '1'; } catch (err) {}
+      // Until Payhip has bound its own handler, an add-to-cart <a> would navigate
+      // to payhip.com. Hold the click, then replay it once Payhip is ready.
+      document.addEventListener(
+        'click',
+        function (e) {
+          var t = e.target;
+          var btn = t && t.closest && t.closest('.payhip-add-to-cart-button');
+          if (!btn || window.__payhipSetupDone) return;
+          e.preventDefault();
+          ensurePayhip();
+          var product = btn.getAttribute('data-product');
+          var tries = 0;
+          var timer = setInterval(function () {
+            if (window.__payhipSetupDone) {
+              clearInterval(timer);
+              // Payhip clones buttons during setup, so look it up fresh.
+              var fresh = product
+                ? document.querySelector('.payhip-add-to-cart-button[data-product="' + product + '"]')
+                : btn;
+              if (fresh) fresh.click();
+            } else if (++tries > 100) {
+              clearInterval(timer);
+            }
+          }, 100);
+        },
+        true,
+      );
 
-      if (usedCart || document.querySelector(CONTROLS)) loadPayhip();
+      ensurePayhip();
 
-      // Client-side navigation swaps in a new page without re-running this
-      // script, so re-check for cart controls (e.g. landing on Home, then
-      // navigating to a product page where Payhip was never requested).
-      document.addEventListener('astro:page-load', function () {
-        var used = false;
-        try { used = localStorage.getItem(CART_FLAG) === '1'; } catch (err) {}
-        if (used || document.querySelector(CONTROLS)) loadPayhip();
-      });
+      // The body is replaced on client-side navigation, taking Payhip's injected
+      // cart with it. Rebuild it for the new page.
+      document.addEventListener('astro:after-swap', ensurePayhip);
     })();
   </script>
 </body>

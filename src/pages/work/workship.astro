@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Cta from '../../components/CTA.astro';
+import ProjectAbout from '../../components/ProjectAbout.astro';
 
 const meta = {
   title: "Workship — Brand Identity by Lyudmil Dachev",
@@ -27,6 +28,10 @@ const meta = {
             <li class="labels subtxtgray">Logo design</li>
             <li class="labels subtxtgray">Identity</li>
           </ul>
+
+          <ProjectAbout>
+            <p>{meta.description}</p>
+          </ProjectAbout>
       </div>
     </div>
   </section>    

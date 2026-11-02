@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Cta from '../../components/CTA.astro';
+import ProjectAbout from '../../components/ProjectAbout.astro';
 
 const meta = {
   title: "Crazy Frog — Brand Identity & Shopify build by Lyudmil Dachev",
@@ -30,6 +31,10 @@ const meta = {
             <li class="labels subtxtgray">Shopify</li>
             <li class="labels subtxtgray">PWA</li>
           </ul>
+
+          <ProjectAbout>
+            <p>{meta.description}</p>
+          </ProjectAbout>
       </div>
     </div>
   </section>

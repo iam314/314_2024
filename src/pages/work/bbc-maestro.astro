@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Cta from '../../components/CTA.astro';
+import ProjectAbout from '../../components/ProjectAbout.astro';
 
 const meta = {
   title: "BBC Maestro — Web App Design by Lyudmil Dachev",
@@ -28,6 +29,10 @@ const meta = {
             <li class="labels subtxtgray">Web app design</li>
             <li class="labels subtxtgray">Art direction</li>
           </ul>
+
+          <ProjectAbout>
+            <p>{meta.description}</p>
+          </ProjectAbout>
       </div>
     </div>
   </section>

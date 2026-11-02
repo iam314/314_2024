@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Cta from '../../components/CTA.astro';
+import ProjectAbout from '../../components/ProjectAbout.astro';
 
 const meta = {
   title: "Brand Springboard — Brand Identity & Website by Lyudmil Dachev",
@@ -30,6 +31,10 @@ const meta = {
             <li class="labels subtxtgray">Development</li>
             <li class="labels subtxtgray">Webflow</li>
           </ul>
+
+          <ProjectAbout>
+            <p>{meta.description}</p>
+          </ProjectAbout>
         <!-- <p class="labels subtxtgray">Logo Design / Identity / Web Design / Development / Webflow</p> -->
       </div>
     </div>

@@ -38,15 +38,15 @@ const { gallery, schema } = getProductPage('314bits-font');
           <p class="subtxtgray">Display font</p>
           <p class="paragraph1">Started in 2009 and completed in 2024, 314 bits is a display typeface shaped over time. What began as a personal experiment evolved into a full character set.</p>
           <p class="paragraph1">
-            3 weights<br>
-            575 unique glyphs of each weight<br>
+            3 styles<br>
+            575 unique glyphs of each style<br>
             OpenType features: aalt, kern, locl, ordn, salt, ss01, subs, sups,<br>
             Supports 100+ Latin-based languages including English, German, French, Spanish, Bulgarian, and more.</p>
 
           <div class="variant-selector">
-            <label for="weight-select" class="subtxtgray">Weight</label>
-            <select id="weight-select" class="variant-select">
-              <option value="1790408523743" data-price="€20">All 3 weights (bundle)</option>
+            <label for="style-select" class="subtxtgray">Style</label>
+            <select id="style-select" class="variant-select">
+              <option value="1790408523743" data-price="€20">All 3 styles (bundle)</option>
               <option value="1790408723318" data-price="€10">Regular</option>
               <option value="1790408768646" data-price="€10">Striked</option>
               <option value="1790408793702" data-price="€10">Hand</option>
@@ -107,7 +107,7 @@ const { gallery, schema } = getProductPage('314bits-font');
 <!-- STORE -->
   <script is:inline data-astro-rerun>
   (function () {
-    var select = document.getElementById('weight-select');
+    var select = document.getElementById('style-select');
     var priceDisplay = document.getElementById('price-display');
 
     function updatePrice() {

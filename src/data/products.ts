@@ -57,6 +57,20 @@ export const products: Product[] = [
     "price": "<span style=\"text-decoration: line-through;\">€40</span> SOLD OUT"
   },
   {
+    "slug": "314blok-font",
+    "href": "/store/314blok-font/",
+    "aria": "314 Blok Display Font — €10",
+    "thumb": "/images/store/314blok/314blok.avif",
+    "thumbWidth": 600,
+    "thumbHeight": 600,
+    "thumbAlt": "314 Blok display typeface by Lyudmil Dachev",
+    "name": "314 blok",
+    "type": "Display font",
+    "price": "€10",
+    // Temporarily hidden while the product page is finished. Remove to list it.
+    "hidden": true
+  },
+  {
     "slug": "314bits-font",
     "href": "/store/314bits-font/",
     "aria": "314 Bits Display Font — From €10",

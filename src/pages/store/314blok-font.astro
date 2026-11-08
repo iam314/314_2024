@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Faq from '../../components/Faq.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import { getProductPage } from '../../data/productPages';
+
+// TODO: replace with the real Payhip product id once 314 blok is listed on Payhip.
+const payhipProduct = 'REPLACE_WITH_PAYHIP_ID';
+
+const meta = {
+  // TODO: copy is a 314 bits placeholder — rewrite for 314 blok.
+  title: "314 blok — Display Typeface by Lyudmil Dachev",
+  description: "314 blok is a display typeface by Lyudmil Dachev.",
+  link: "https://www.iam314.com/store/314blok-font/",
+  ogImage: "/images/ogimages/og-314-bits.png",
+  price: "10",
+  availability: "https://schema.org/InStock",
+};
+
+const { gallery, schema } = getProductPage('314blok-font');
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  link={meta.link}
+  ogImage={meta.ogImage}
+  schemaType="product"
+  price={meta.price}
+  availability={meta.availability}
+  product={schema}
+  footerVariant="inner"
+>
+    <section class="wrap inner-store-hero">
+      <div class="grid">
+        <div class="productgallery-grid">
+          <ProductGallery items={gallery} label="314 blok display typeface specimens gallery" />
+        </div>      
+        <div class="productdecription-grid">
+          <h1 class="txt-l">314 blok</h1>
+          <p class="txt-s">€10</p>
+          <p class="subtxtgray">Display font</p>
+          <!-- TODO: placeholder copy — rewrite for 314 blok. -->
+          <p class="paragraph1">314 blok is a display typeface by Lyudmil Dachev.</p>
+          <p class="paragraph1">
+            1 style<br>
+            OpenType features: aalt, kern, locl, ordn, salt, ss01, subs, sups,<br>
+            Supports Latin-based languages including English, German, French, Spanish, Bulgarian, and more.</p>
+          <div class="buttons">
+            <a href={`https://payhip.com/b/${payhipProduct}?redirect=https://iam314.com/thanks/`}
+              class="add-btn payhip-add-to-cart-button"
+              data-theme="none"
+              data-product={payhipProduct}>
+              Add to cart
+            </a>
+            <button type="button"
+              class="buy-btn buy-now-btn"
+              data-product={payhipProduct}
+              data-message="Thanks for buying 314 blok!"
+              data-title="314 blok – font"
+            >Buy
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+<Faq />
+
+</BaseLayout>

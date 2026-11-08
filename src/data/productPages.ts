@@ -316,6 +316,49 @@ export const productPages: Record<string, ProductPage> = {
     },
   },
 
+  // TODO: placeholder gallery lifted from 314 bits. Swap srcs + alts for real 314 blok art.
+  '314blok-font': {
+    gallery: [
+      {
+        type: 'image',
+        src: '/images/store/314bits/314bits_2.avif',
+        width: 1006,
+        height: 1174,
+        alt: '314 blok display typeface specimen — placeholder, lifted from 314 bits',
+      },
+      {
+        type: 'image',
+        src: '/images/store/314bits/314bits_3.avif',
+        width: 1006,
+        height: 1174,
+        alt: '314 blok display typeface specimen — placeholder, lifted from 314 bits',
+      },
+      {
+        type: 'image',
+        src: '/images/store/314bits/314bits_4.avif',
+        width: 1006,
+        height: 1174,
+        alt: '314 blok display typeface specimen — placeholder, lifted from 314 bits',
+      },
+    ],
+    schema: {
+      sku: '314BLOK-FONT',
+      category: 'Fonts',
+      productType: 'digital',
+      additionalProperty: [
+        { name: 'Styles', value: '1' },
+        { name: 'Glyphs', value: '522' },
+        { name: 'Language support', value: 'Latin and Cyrillic' },
+        { name: 'Released', value: '2026' },
+      ],
+      images: [
+        '/images/store/314bits/314bits_2.avif',
+        '/images/store/314bits/314bits_3.avif',
+        '/images/store/314bits/314bits_4.avif',
+      ],
+    },
+  },
+
   '314bits-font': {
     gallery: [
       {
@@ -323,42 +366,42 @@ export const productPages: Record<string, ProductPage> = {
         src: '/images/store/314bits/314bits_2.avif',
         width: 1006,
         height: 1174,
-        alt: '314 bits display typeface specimen — capital letter A in the regular weight',
+        alt: '314 bits display typeface specimen — capital letter A in the regular style',
       },
       {
         type: 'image',
         src: '/images/store/314bits/314bits_3.avif',
         width: 1006,
         height: 1174,
-        alt: '314 bits display typeface specimen — upper and lower case in the regular weight',
+        alt: '314 bits display typeface specimen — upper and lower case in the regular style',
       },
       {
         type: 'image',
         src: '/images/store/314bits/314bits_4.avif',
         width: 1006,
         height: 1174,
-        alt: '314 bits display typeface specimen — capital letter A in the striked weight',
+        alt: '314 bits display typeface specimen — capital letter A in the striked style',
       },
       {
         type: 'image',
         src: '/images/store/314bits/314bits_5.avif',
         width: 1006,
         height: 1174,
-        alt: '314 bits display typeface specimen — upper and lower case in the striked weight',
+        alt: '314 bits display typeface specimen — upper and lower case in the striked style',
       },
       {
         type: 'image',
         src: '/images/store/314bits/314bits_6.avif',
         width: 1006,
         height: 1174,
-        alt: '314 bits display typeface specimen — capital letter A in the hand weight',
+        alt: '314 bits display typeface specimen — capital letter A in the hand style',
       },
       {
         type: 'image',
         src: '/images/store/314bits/314bits_7.avif',
         width: 1006,
         height: 1174,
-        alt: '314 bits display typeface specimen — upper and lower case in the hand weight',
+        alt: '314 bits display typeface specimen — upper and lower case in the hand style',
       },
     ],
     schema: {
@@ -366,11 +409,19 @@ export const productPages: Record<string, ProductPage> = {
       category: 'Fonts',
       productType: 'digital',
       additionalProperty: [
-        { name: 'Weights', value: '3' },
-        { name: 'Glyphs per weight', value: '575' },
+        { name: 'Styles', value: '3' },
+        { name: 'Glyphs per style', value: '575' },
         { name: 'OpenType features', value: 'aalt, kern, locl, ordn, salt, ss01, subs, sups' },
         { name: 'Language support', value: '100+ Latin-based languages' },
         { name: 'Released', value: 'Started 2009, completed 2024' },
+      ],
+      // 4 purchasable options (3 single styles + bundle) → AggregateOffer
+      // €10–€20 instead of a single anonymous price.
+      offers: [
+        { name: 'Regular', price: 10 },
+        { name: 'Striked', price: 10 },
+        { name: 'Hand', price: 10 },
+        { name: 'All 3 styles (bundle)', price: 20 },
       ],
       images: [
         '/images/store/314bits/314bits_2.avif',

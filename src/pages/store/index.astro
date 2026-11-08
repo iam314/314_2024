@@ -2,6 +2,17 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { products } from '../../data/products';
 
+const SITE = 'https://www.iam314.com';
+const visibleProducts = products.filter((p) => !p.hidden);
+
+// Structured data for the listing page: an ItemList of the cards rendered below.
+// Each item points at its product page, which carries the Product + Offer node.
+const itemList = visibleProducts.map((p) => ({
+  name: p.name,
+  url: SITE + p.href,
+  image: p.thumb,
+}));
+
 const meta = {
   title: 'Store – Prints & Digital Products by Lyudmil Dachev',
   description:
@@ -16,6 +27,7 @@ const meta = {
   description={meta.description}
   link={meta.link}
   ogImage={meta.ogImage}
+  itemList={itemList}
   footerVariant="inner"
 >
   <div class="visually-hidden">
@@ -27,7 +39,7 @@ const meta = {
       <div class="products-grid">
         <ul role="list" class="w-list-unstyled grid-3">
           {
-            products.filter((p) => !p.hidden).map((p, i) => (
+            visibleProducts.map((p, i) => (
               <li class="grid-item">
                 <article>
                   <a class="product-links" href={p.href} aria-label={p.aria}>

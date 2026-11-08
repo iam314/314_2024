@@ -19,6 +19,7 @@ interface Props {
   price?: string;
   availability?: string;
   product?: ProductSchema;
+  itemList?: { name: string; url: string; image?: string }[];
   footerVariant?: 'home' | 'inner' | 'photoOnly';
 }
 
@@ -31,6 +32,7 @@ const {
   price,
   availability,
   product,
+  itemList,
   footerVariant = 'home',
 } = Astro.props;
 ---
@@ -132,7 +134,7 @@ const {
     }
   </script>
   <script src="../scripts/lyudmils.js"></script>
-  <JsonLd {title} {description} {link} {ogImage} schemaType={schemaType} price={price} availability={availability} product={product} />
+  <JsonLd {title} {description} {link} {ogImage} schemaType={schemaType} price={price} availability={availability} product={product} itemList={itemList} />
 
 
   <!-- Google tag (gtag.js) -->

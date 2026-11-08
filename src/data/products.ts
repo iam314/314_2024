@@ -59,14 +59,14 @@ export const products: Product[] = [
   {
     "slug": "314bits-font",
     "href": "/store/314bits-font/",
-    "aria": "314 Bits Display Font — From €7",
+    "aria": "314 Bits Display Font — From €10",
     "thumb": "/images/store/314bits/314bits.avif",
     "thumbWidth": 600,
     "thumbHeight": 600,
     "thumbAlt": "314 Bits geometric display typeface by Lyudmil Dachev",
     "name": "314 bits",
     "type": "Display font",
-    "price": "€15"
+    "price": "€20"
   },
   {
     "slug": "flag-icons",

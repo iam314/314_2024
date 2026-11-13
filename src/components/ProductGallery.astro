@@ -110,6 +110,34 @@ const thumbHeight = (item: GalleryItem) => item.thumbHeight ?? item.height;
   let thumbsSwiper: Swiper | undefined;
   let mainSwiper: Swiper | undefined;
 
+  // Must match the `spaceBetween` of the thumbnail Swiper below.
+  const THUMB_GAP = 8;
+  // On desktop the thumbnail column only shows this many slides; the rest stay
+  // hidden and are revealed by switching the main slide (or dragging the
+  // column). Mirrors the horizontal thumbs on small screens, which overflow
+  // after a few slides instead of stacking all of them.
+  const THUMB_VISIBLE = 6;
+
+  /**
+   * Cap the desktop thumbnail column at THUMB_VISIBLE slides. Only applied when
+   * there is something to hide: with THUMB_VISIBLE or fewer slides the natural
+   * height is left alone. Mobile keeps its horizontal, fully scrollable row.
+   */
+  const clampThumbViewport = (swiper: Swiper) => {
+    const el = swiper.el as HTMLElement;
+    const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+    const first = swiper.slides[0] as HTMLElement | undefined;
+
+    if (!isDesktop || !first || swiper.slides.length <= THUMB_VISIBLE) {
+      el.style.height = '';
+    } else {
+      const slideHeight = first.getBoundingClientRect().height;
+      el.style.height = `${THUMB_VISIBLE * slideHeight + (THUMB_VISIBLE - 1) * THUMB_GAP}px`;
+    }
+
+    swiper.update();
+  };
+
   /**
    * (Re)build the gallery. This runs on `astro:page-load` because the script
    * itself only executes once: on subsequent client-side navigations Astro skips
@@ -125,7 +153,7 @@ const thumbHeight = (item: GalleryItem) => item.thumbHeight ?? item.height;
 
     thumbsSwiper = new Swiper('.product-thumbs', {
       modules: [FreeMode],
-      spaceBetween: 8,
+      spaceBetween: THUMB_GAP,
       freeMode: true,
       watchSlidesProgress: true,
 
@@ -145,6 +173,14 @@ const thumbHeight = (item: GalleryItem) => item.thumbHeight ?? item.height;
       },
     });
 
+    clampThumbViewport(thumbsSwiper);
+
+    // Re-measure once the main slider (and therefore the grid row) has settled.
+    const onMainInit = (swiper: Swiper) => {
+      syncProductVideos(swiper);
+      if (thumbsSwiper) clampThumbViewport(thumbsSwiper);
+    };
+
     mainSwiper = new Swiper('.product-main', {
       modules: [Thumbs],
       spaceBetween: 16,
@@ -152,13 +188,24 @@ const thumbHeight = (item: GalleryItem) => item.thumbHeight ?? item.height;
       grabCursor: true,
       thumbs: {
         swiper: thumbsSwiper,
+        // Reveal the next thumbnail one step before it is strictly needed:
+        // when the active slide reaches the last visible thumb, the column
+        // scrolls to show that there are more, so the hidden ones are not
+        // undiscoverable.
+        autoScrollOffset: 1,
       },
       on: {
-        init: syncProductVideos,
+        init: onMainInit,
         activeIndexChange: syncProductVideos,
       },
     });
   };
+
+  // The column height is derived from the measured slide size, so it has to be
+  // recomputed whenever the viewport (and with it the slide size) changes.
+  window.addEventListener('resize', () => {
+    if (thumbsSwiper) clampThumbViewport(thumbsSwiper);
+  });
 
   document.addEventListener('astro:page-load', initGallery);
 

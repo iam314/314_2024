@@ -4,13 +4,11 @@ import Faq from '../../components/Faq.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
 import { getProductPage } from '../../data/productPages';
 
-// TODO: replace with the real Payhip product id once 314 blok is listed on Payhip.
-const payhipProduct = 'REPLACE_WITH_PAYHIP_ID';
+const payhipProduct = 'anoWZ';
 
 const meta = {
-  // TODO: copy is a 314 bits placeholder — rewrite for 314 blok.
-  title: "314 blok — Display Typeface by Lyudmil Dachev",
-  description: "314 blok is a display typeface by Lyudmil Dachev.",
+  title: "314 blok — Latin & Cyrillic Block Display Typeface by Lyudmil Dachev",
+  description: "314 blok is a raw block display typeface born from protest t-shirt lettering: 522 glyphs, Latin & Cyrillic, and OpenType features (ss01, locl, kern, aalt).",
   link: "https://www.iam314.com/store/314blok-font/",
   ogImage: "/images/ogimages/og-314-blok.png",
   price: "10",
@@ -40,12 +38,15 @@ const { gallery, schema } = getProductPage('314blok-font');
           <h1 class="txt-l">314 blok</h1>
           <p class="txt-s">€10</p>
           <p class="subtxtgray">Display font</p>
-          <!-- TODO: placeholder copy — rewrite for 314 blok. -->
-          <p class="paragraph1">314 blok is a display typeface by Lyudmil Dachev.</p>
+          <p class="paragraph1">This typeface started as a t-shirt design. A friend’s mum asked me to make one for her son’s birthday, with one word on it: “МРЪШЛЯК”. For context, it’s a misspelled Bulgarian word that refers to a political incident. It came out of a politician’s mouth during the anti government protests.</p>
+          <p class="paragraph1">I drew letters that suited it perfectly. Imagine old Fiat block letters that had a baby with a punk rocker, and that baby went to an anti government protest. I liked these letters so much I had to turn them into a font.</p>
+          <p class="paragraph1">Welcome to the eastern blok.</p>
           <p class="paragraph1">
             1 style<br>
-            OpenType features: aalt, kern, locl, ordn, salt, ss01, subs, sups,<br>
-            Supports Latin-based languages including English, German, French, Spanish, Bulgarian, and more.</p>
+            522 unique glyphs<br>
+            Latin and Cyrillic<br>
+            OpenType features: ss01, locl, kern, aalt<br>
+            Supports the Latin and Cyrillic scripts, including English, German, French, Spanish, Bulgarian, and more.</p>
           <div class="buttons">
             <a href={`https://payhip.com/b/${payhipProduct}?redirect=https://iam314.com/thanks/`}
               class="add-btn payhip-add-to-cart-button"

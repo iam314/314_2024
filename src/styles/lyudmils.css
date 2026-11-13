@@ -712,7 +712,10 @@ html.is-dark .buy-btn:hover {
   gap: 1.25rem;
 }
 
-/* Vertical thumbnails – let Swiper handle wrapper layout */
+/* Vertical thumbnails – let Swiper handle wrapper layout.
+   The column height is capped to 6 slides by ProductGallery.astro (inline
+   style), so extra slides stay hidden and scroll into view with the main
+   slider — same idea as the horizontal thumbs on mobile. */
 .product-thumbs {
   grid-column: span 1;
   max-width: 100%;
